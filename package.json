@@ -1,0 +1,77 @@
+{
+  "name": "kaplanck",
+  "version": "0.0.0",
+  "description": "A KaPlay plugin that integrates Planck, while keeping the simple/fun API of KaPlay.",
+  "homepage": "https://github.com/KeSuave/KaPlanck.git",
+  "keywords": [
+    "KaPlay",
+    "Planck",
+    "plugin",
+    "box2d",
+    "javascript",
+    "typescript",
+    "physics",
+    "game",
+    "2d"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KeSuave/KaPlanck.git"
+  },
+  "author": "KeSuave",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/kaplanck.umd.cjs",
+  "module": "./dist/kaplanck.js",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/kaplanck.js"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/kaplanck.umd.cjs"
+      }
+    }
+  },
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "dev": "vite --open",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "prepare": "husky",
+    "lint": "eslint src",
+    "format": "prettier --config .prettierrc --write \"src/**/*.ts\""
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.15.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@types/node": "^22.9.0",
+    "eslint": "^9.15.0",
+    "eslint-config-prettier": "^9.1.0",
+    "globals": "^15.12.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.10",
+    "prettier": "3.3.3",
+    "semantic-release": "^24.2.0",
+    "typescript": "~5.6.2",
+    "typescript-eslint": "^8.15.0",
+    "vite": "^5.4.10",
+    "vite-plugin-dts": "^4.3.0"
+  },
+  "peerDependencies": {
+    "kaplay": "^3001.0.2",
+    "planck": "^1.0.6"
+  },
+  "lint-staged": {
+    "**/*.ts": [
+      "npm run format",
+      "npm run lint"
+    ]
+  }
+}
