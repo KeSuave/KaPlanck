@@ -1,6 +1,6 @@
 {
   "name": "kaplanck",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "A KaPlay plugin that integrates Planck, while keeping the simple/fun API of KaPlay.",
   "homepage": "https://github.com/KeSuave/KaPlanck.git",
   "keywords": [
