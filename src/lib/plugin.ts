@@ -51,7 +51,7 @@ import {
 } from "./utils";
 
 interface KaPlanckPlugin {
-  // mimicked transform components
+  // transform components
 
   /**
    * Sets the position of a body.
@@ -305,6 +305,13 @@ interface KaPlanckPluginOpts {
 /**
  * A plugin to allows to use PlanckJS seamlessly with KaPlay.
  *
+ * **IMPORTANT**
+ *
+ * Vec2 from KaPlay and Vec2 from PlanckJS are different, please use them accordingly.
+ *
+ * PlanckJS uses radians for angles while KaPlay uses degrees, please make use of KaPlay's
+ * tools to convert between them.
+ *
  * @param {KaPlanckPluginOpts} opt
  */
 const KaPlanckPlugin =
@@ -327,7 +334,7 @@ const KaPlanckPlugin =
         return body(bodyDef);
       },
       kpFixture(def?: KPFixtureDef) {
-        return fixture(def);
+        return fixture(k, def);
       },
       kpFixtures(defs: KPFixtureDef[]) {
         return fixtures(defs);

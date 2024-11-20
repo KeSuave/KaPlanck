@@ -1,7 +1,7 @@
 import type { GameObj, KAPLAYCtx, Vec2 as KaVec2, RenderProps } from "kaplay";
 import { Settings, Vec2, type World } from "planck";
 
-import { KPWorldComp } from "./components/World";
+import type { KPWorldComp } from "./components/World";
 
 export function u2p(u: number) {
   return u * Settings.lengthUnitsPerMeter;
@@ -53,4 +53,22 @@ export function getRenderProps(obj: GameObj): RenderProps {
     shader: obj.shader,
     uniform: obj.uniform,
   };
+}
+
+export function findWorldContainer(k: KAPLAYCtx): GameObj<KPWorldComp> | null {
+  let obj: GameObj<KPWorldComp> | null = null;
+
+  const objs = k.get("*");
+
+  for (const currentObj of objs) {
+    const possibleWorldComp = currentObj.c("kpWorld") as KPWorldComp | null;
+
+    if (possibleWorldComp) {
+      obj = currentObj as GameObj<KPWorldComp>;
+
+      break;
+    }
+  }
+
+  return obj;
 }
