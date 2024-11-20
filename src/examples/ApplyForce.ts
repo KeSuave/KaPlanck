@@ -164,13 +164,13 @@ const applyForceScene = (k: KAPLANCKCtx) => () => {
   }
 
   scene.onUpdate(() => {
-    if (k.isKeyDown(["right", "a"]) && !k.isKeyDown(["left", "d"])) {
+    if (k.isKeyDown("right") && !k.isKeyDown("left")) {
       jet.body?.applyAngularImpulse(0.2, true);
-    } else if (k.isKeyDown(["left", "d"]) && !k.isKeyDown(["right", "a"])) {
+    } else if (k.isKeyDown("left") && !k.isKeyDown("right")) {
       jet.body?.applyAngularImpulse(-0.2, true);
     }
 
-    if (k.isKeyDown(["up", "w"])) {
+    if (k.isKeyDown("up")) {
       if (!jet.body) return;
 
       const f = jet.body.getWorldVector(new Vec2(0, -1));
