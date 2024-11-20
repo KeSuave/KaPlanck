@@ -1,6 +1,7 @@
 import kaplay from "kaplay";
 import eightBallScene from "./examples/8-Ball";
 import addPairScene from "./examples/AddPair";
+import applyForceScene from "./examples/ApplyForce";
 import sampleScene from "./examples/Sample";
 import KaPlanckPlugin from "./lib/plugin";
 
@@ -19,5 +20,6 @@ const k = kaplay({
 k.scene("sample", sampleScene(k));
 k.scene("eightBall", eightBallScene(k));
 k.scene("addPair", addPairScene(k));
+k.scene("applyForce", applyForceScene(k));
 
 k.go("sample");

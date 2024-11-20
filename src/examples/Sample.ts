@@ -2,8 +2,7 @@ import type { KPShapeComp, KPWorldComp } from "../lib";
 
 import type { GameObj } from "kaplay";
 import { Vec2 } from "planck";
-import type { KAPLANCKCtx } from "../types";
-import addScenesButtons from "./shared";
+import { addScenesButtons, type KAPLANCKCtx } from "./shared";
 
 const sampleScene = (k: KAPLANCKCtx) => () => {
   const scene = k.add([]);
@@ -144,6 +143,7 @@ function addShape(
   worldContainer.add([
     k.color(color.r, color.g, color.b),
     k.kpPos(k.kpCenter().sub({ x: k.rand(-10, 10), y: k.rand(10, 15) })),
+    k.kpRotate(),
     comp,
     k.kpBody({ type: "dynamic" }),
     k.kpFixture({ density: 1, friction: 0.3 }),

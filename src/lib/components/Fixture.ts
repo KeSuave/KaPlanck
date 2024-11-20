@@ -4,15 +4,17 @@ import type { Fixture, FixtureDef } from "planck";
 import type { KPBodyComp } from "./Body";
 import type { KPShapeComp } from "./Shape";
 
+export interface KPFixtureDef extends Omit<FixtureDef, "shape"> {
+  userData?: Record<string, unknown>;
+}
+
 export interface KPFixtureComp extends Comp {
   fixture: Fixture | null;
 }
 
 type FixtureThis = GameObj<KPFixtureComp & KPBodyComp & KPShapeComp>;
 
-export default function fixture(
-  def?: Omit<FixtureDef, "shape">,
-): KPFixtureComp {
+export default function fixture(def?: KPFixtureDef): KPFixtureComp {
   return {
     id: "kpFixture",
     require: ["kpBody", "kpShape"],

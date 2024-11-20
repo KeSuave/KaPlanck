@@ -33,8 +33,7 @@ import type {
   KPFixtureComp,
   KPPosComp,
 } from "../lib";
-import type { KAPLANCKCtx } from "../types";
-import addScenesButtons from "./shared";
+import { addScenesButtons, type KAPLANCKCtx } from "./shared";
 
 interface UserData {
   gameObj: GameObj;
@@ -107,6 +106,7 @@ const eightBallScene = (k: KAPLANCKCtx) => () => {
   worldContainer.add([
     k.color(40, 40, 40),
     k.kpPos(k.kpCenter()),
+    k.kpRotate(),
     k.kpPolygonShape({
       vertices: railV,
       draw: true,
@@ -117,6 +117,7 @@ const eightBallScene = (k: KAPLANCKCtx) => () => {
   worldContainer.add([
     k.color(40, 40, 40),
     k.kpPos(k.kpCenter()),
+    k.kpRotate(),
     k.kpPolygonShape({
       vertices: mirror(railV, -1, 1),
       draw: true,
@@ -129,6 +130,7 @@ const eightBallScene = (k: KAPLANCKCtx) => () => {
   worldContainer.add([
     k.color(40, 40, 40),
     k.kpPos(k.kpCenter()),
+    k.kpRotate(),
     k.kpPolygonShape({
       vertices: railH,
       draw: true,
@@ -139,6 +141,7 @@ const eightBallScene = (k: KAPLANCKCtx) => () => {
   worldContainer.add([
     k.color(40, 40, 40),
     k.kpPos(k.kpCenter()),
+    k.kpRotate(),
     k.kpPolygonShape({
       vertices: mirror(railH, -1, 1),
       draw: true,
@@ -149,6 +152,7 @@ const eightBallScene = (k: KAPLANCKCtx) => () => {
   worldContainer.add([
     k.color(40, 40, 40),
     k.kpPos(k.kpCenter()),
+    k.kpRotate(),
     k.kpPolygonShape({
       vertices: mirror(railH, 1, -1),
       draw: true,
@@ -159,6 +163,7 @@ const eightBallScene = (k: KAPLANCKCtx) => () => {
   worldContainer.add([
     k.color(40, 40, 40),
     k.kpPos(k.kpCenter()),
+    k.kpRotate(),
     k.kpPolygonShape({
       vertices: mirror(railH, -1, -1),
       draw: true,
@@ -171,6 +176,7 @@ const eightBallScene = (k: KAPLANCKCtx) => () => {
   worldContainer.add([
     k.color(60, 60, 60),
     k.kpPos(k.kpCenter().sub({ x: 0, y: -height * 0.5 - pocketRadius * 1.5 })),
+    k.kpRotate(),
     k.kpCircleShape({ radius: pocketRadius, draw: true }),
     k.kpBody(),
     k.kpFixture(pocketFixDef),
@@ -178,6 +184,7 @@ const eightBallScene = (k: KAPLANCKCtx) => () => {
   worldContainer.add([
     k.color(60, 60, 60),
     k.kpPos(k.kpCenter().sub({ x: 0, y: height * 0.5 + pocketRadius * 1.5 })),
+    k.kpRotate(),
     k.kpCircleShape({ radius: pocketRadius, draw: true }),
     k.kpBody(),
     k.kpFixture(pocketFixDef),
@@ -190,6 +197,7 @@ const eightBallScene = (k: KAPLANCKCtx) => () => {
         y: height * 0.5 + pocketRadius * 0.7,
       }),
     ),
+    k.kpRotate(),
     k.kpCircleShape({ radius: pocketRadius, draw: true }),
     k.kpBody(),
     k.kpFixture(pocketFixDef),
@@ -202,6 +210,7 @@ const eightBallScene = (k: KAPLANCKCtx) => () => {
         y: height * 0.5 + pocketRadius * 0.7,
       }),
     ),
+    k.kpRotate(),
     k.kpCircleShape({ radius: pocketRadius, draw: true }),
     k.kpBody(),
     k.kpFixture(pocketFixDef),
@@ -214,6 +223,7 @@ const eightBallScene = (k: KAPLANCKCtx) => () => {
         y: -height * 0.5 - pocketRadius * 0.7,
       }),
     ),
+    k.kpRotate(),
     k.kpCircleShape({ radius: pocketRadius, draw: true }),
     k.kpBody(),
     k.kpFixture(pocketFixDef),
@@ -226,6 +236,7 @@ const eightBallScene = (k: KAPLANCKCtx) => () => {
         y: -height * 0.5 - pocketRadius * 0.7,
       }),
     ),
+    k.kpRotate(),
     k.kpCircleShape({ radius: pocketRadius, draw: true }),
     k.kpBody(),
     k.kpFixture(pocketFixDef),
@@ -254,6 +265,7 @@ const eightBallScene = (k: KAPLANCKCtx) => () => {
     const ball = worldContainer.add([
       k.color(color[0], color[1], color[2]),
       k.kpPos(k.kpCenter().add(balls[i])),
+      k.kpRotate(),
       k.kpCircleShape({ radius: ballRadius, draw: true }),
       k.kpBody(ballBodyDef),
       k.kpFixture(ballFixDef),

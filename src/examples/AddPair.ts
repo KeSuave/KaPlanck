@@ -21,8 +21,7 @@
  * SOFTWARE.
  */
 
-import type { KAPLANCKCtx } from "../types";
-import addScenesButtons from "./shared";
+import { addScenesButtons, type KAPLANCKCtx } from "./shared";
 
 const addPairScene = (k: KAPLANCKCtx) => () => {
   const scene = k.add([]);
@@ -34,6 +33,7 @@ const addPairScene = (k: KAPLANCKCtx) => () => {
       k.kpPos(
         k.kpCenter().add({ x: Math.random() * -6, y: Math.random() * 2 - 1 }),
       ),
+      k.kpRotate(),
       k.kpCircleShape({ radius: 0.1, draw: true }),
       k.kpBody({ type: "dynamic" }),
       k.kpFixture(),
@@ -42,6 +42,7 @@ const addPairScene = (k: KAPLANCKCtx) => () => {
 
   const box = worldContainer.add([
     k.kpPos(k.kpCenter().add({ x: -40, y: 0 })),
+    k.kpRotate(),
     k.kpBoxShape({ halfWidth: 1.5, halfHeight: 1.5, draw: true }),
     k.kpBody({ type: "dynamic", bullet: true }),
     k.kpFixture({ density: 1 }),

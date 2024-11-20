@@ -1,22 +1,22 @@
-import type { Comp, GameObj } from "kaplay";
+import type { Comp, GameObj, KAPLAYCtx, RotateComp } from "kaplay";
 
 import { KPBodyComp } from "./Body";
 
 export interface KPRotateComp extends Comp {
   kpAngle: number;
 
-  rotateBy(angle: number): void;
-  rotateTo(angle: number): void;
+  kpRotateBy(angle: number): void;
+  kpRotateTo(angle: number): void;
 }
 
 type RotateCompThis = GameObj<KPRotateComp>;
 
-export default function rotate(angle?: number): KPRotateComp {
+export default function rotate(k: KAPLAYCtx, angle?: number): KPRotateComp {
   return {
     id: "kpRotate",
     kpAngle: angle ?? 0,
 
-    rotateBy(this: RotateCompThis, angle: number) {
+    kpRotateBy(this: RotateCompThis, angle: number) {
       this.kpAngle += angle;
 
       const bodyComp = this.c("kpBody") as KPBodyComp | null;
@@ -27,7 +27,7 @@ export default function rotate(angle?: number): KPRotateComp {
         bodyComp.body.setTransform(bodyComp.body.getPosition(), angle);
       }
     },
-    rotateTo(this: RotateCompThis, angle) {
+    kpRotateTo(this: RotateCompThis, angle) {
       this.kpAngle = angle;
 
       const bodyComp = this.c("kpBody") as KPBodyComp | null;
@@ -36,6 +36,23 @@ export default function rotate(angle?: number): KPRotateComp {
         if (!bodyComp.body) return;
 
         bodyComp.body.setTransform(bodyComp.body.getPosition(), angle);
+      }
+    },
+
+    add(this: RotateCompThis) {
+      this.use(k.rotate());
+
+      const rotateComp = this.c("rotate") as RotateComp | null;
+
+      if (rotateComp) {
+        rotateComp.angle = this.kpAngle;
+      }
+    },
+    update(this: RotateCompThis) {
+      const rotateComp = this.c("rotate") as RotateComp | null;
+
+      if (rotateComp) {
+        rotateComp.angle = k.rad2deg(this.kpAngle);
       }
     },
   };

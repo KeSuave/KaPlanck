@@ -1,4 +1,4 @@
-import type { GameObj, KAPLAYCtx, Vec2 as KaVec2 } from "kaplay";
+import type { GameObj, KAPLAYCtx, Vec2 as KaVec2, RenderProps } from "kaplay";
 import { Settings, Vec2, type World } from "planck";
 
 import { KPWorldComp } from "./components/World";
@@ -43,4 +43,14 @@ export function getWorldFromGameObj(obj: GameObj) {
   }
 
   return world;
+}
+
+export function getRenderProps(obj: GameObj): RenderProps {
+  return {
+    color: obj.color,
+    opacity: obj.opacity,
+    outline: obj.outline,
+    shader: obj.shader,
+    uniform: obj.uniform,
+  };
 }

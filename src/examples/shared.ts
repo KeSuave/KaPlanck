@@ -1,6 +1,10 @@
 import type { GameObj, KAPLAYCtx } from "kaplay";
 
-export default function addScenesButtons(k: KAPLAYCtx, scene: GameObj) {
+import type KaPlanckPlugin from "../lib";
+
+export type KAPLANCKCtx = KAPLAYCtx & KaPlanckPlugin;
+
+export function addScenesButtons(k: KAPLAYCtx, scene: GameObj) {
   const scenes = Object.keys(k._k.game.scenes);
   const spacing = 10;
   const width = 200;

@@ -12,14 +12,14 @@ export interface KPBodyComp extends Comp {
   inspectColor: { r: number; g: number; b: number };
 }
 
-type BodyCompThis = GameObj<KPBodyComp & KPPosComp>;
+type BodyCompThis = GameObj<KPBodyComp & KPPosComp & KPRotateComp>;
 
 export default function body(
   def?: Omit<BodyDef, "position" | "angle">,
 ): KPBodyComp {
   return {
     id: "kpBody",
-    require: ["kpPos"],
+    require: ["kpPos", "kpRotate"],
     body: null,
 
     add(this: BodyCompThis) {
@@ -29,22 +29,17 @@ export default function body(
         throw new Error("kpBody requires to be a descendant of kpWorld");
       }
 
-      const rotateComp = this.c("kpRotate") as KPRotateComp | null;
-
-      let angle = 0;
-
-      if (rotateComp) angle = rotateComp.kpAngle;
-
-      this.body = world.createBody({ ...def, position: this.kpPos, angle });
+      this.body = world.createBody({
+        ...def,
+        position: this.kpPos,
+        angle: this.kpAngle,
+      });
     },
     fixedUpdate(this: BodyCompThis) {
       if (!this.body) return;
 
       this.kpPos = this.body.getPosition();
-
-      const rotateComp = this.c("kpRotate") as KPRotateComp | null;
-
-      if (rotateComp) rotateComp.kpAngle = this.body.getAngle();
+      this.kpAngle = this.body.getAngle();
     },
     destroy(this: BodyCompThis) {
       if (!this.body) return;

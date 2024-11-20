@@ -1,15 +1,15 @@
-import type { ColorComp, GameObj, KAPLAYCtx } from "kaplay";
-import { KPShapeComp, KPShapeCompOpt, getAngle } from "./Shape";
+import type { GameObj, KAPLAYCtx } from "kaplay";
+import { KPShapeComp, KPShapeOpt } from "./Shape";
+import { getRenderProps, p2kVec2 } from "../utils";
 
-import type { Vec2Value } from "planck";
 import { PolygonShape } from "planck";
-import { p2kVec2 } from "../utils";
+import type { Vec2Value } from "planck";
 
 export interface KPPolygonShapeComp extends KPShapeComp {
   shape: PolygonShape;
 }
 
-export interface KPPolygonShapeCompOpt extends KPShapeCompOpt {
+export interface KPPolygonShapeOpt extends KPShapeOpt {
   vertices?: Vec2Value[];
 }
 
@@ -17,23 +17,31 @@ type PolygonShapeCompThis = GameObj<KPPolygonShapeComp>;
 
 export default function polygonShape(
   k: KAPLAYCtx,
-  opt?: KPPolygonShapeCompOpt,
+  opt?: KPPolygonShapeOpt,
 ): KPPolygonShapeComp {
   return {
     id: "kpShape",
     shape: new PolygonShape(opt?.vertices),
 
     draw(this: PolygonShapeCompThis) {
-      if (!opt?.draw) return;
-
-      const angle = getAngle(this);
-      const pts = this.shape.m_vertices.map((v) => p2kVec2(k, v));
-
-      k.drawPolygon({
-        pts: pts,
-        angle: k.rad2deg(angle),
-        color: (this as unknown as ColorComp).color,
-      });
+      drawPolygonShape(k, opt, this, this.shape);
     },
   };
+}
+
+export function drawPolygonShape(
+  k: KAPLAYCtx,
+  opt: KPPolygonShapeOpt | undefined,
+  obj: GameObj,
+  shape: PolygonShape,
+) {
+  if (!opt?.draw) return;
+
+  const renderingProps = getRenderProps(obj);
+  const pts = shape.m_vertices.map((v) => p2kVec2(k, v));
+
+  k.drawPolygon({
+    ...renderingProps,
+    pts,
+  });
 }

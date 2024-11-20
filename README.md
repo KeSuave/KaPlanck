@@ -5,7 +5,7 @@ A KaPlay plugin that integrates Planck, while keeping the simple/fun API of KaPl
 ## Installation
 
 ```shell
-npm i planck kaplanck
+npm i kaplanck
 ```
 
 ## Usage

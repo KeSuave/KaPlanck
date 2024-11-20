@@ -15,30 +15,12 @@ export interface KPPosComp extends Comp {
   kpMoveTo(x: number, y: number, speed?: number): void;
 }
 
-type KPPosCompThis = GameObj<KPPosComp>;
+type PosCompThis = GameObj<KPPosComp>;
 
 export default function pos(k: KAPLAYCtx, ...args: KPVec2Args): KPPosComp {
   return {
     id: "kpPos",
     kpPos: vec2FromArgs(...args),
-
-    add(this: KPPosCompThis) {
-      this.use(k.pos());
-
-      const posComp = this.c("pos") as PosComp | null;
-
-      if (posComp) {
-        posComp.pos = p2kVec2(k, this.kpPos);
-      }
-    },
-
-    update(this: KPPosCompThis) {
-      const posComp = this.c("pos") as PosComp | null;
-
-      if (posComp) {
-        posComp.pos = p2kVec2(k, this.kpPos);
-      }
-    },
 
     kpMove(...margs: KPVec2Args) {
       this.kpMoveBy(vec2FromArgs(...margs).mul(k.dt()));
@@ -81,6 +63,24 @@ export default function pos(k: KAPLAYCtx, ...args: KPVec2Args): KPPosComp {
       diff.normalize();
 
       this.kpMove(dest.mul(speed));
+    },
+
+    add(this: PosCompThis) {
+      this.use(k.pos());
+
+      const posComp = this.c("pos") as PosComp | null;
+
+      if (posComp) {
+        posComp.pos = p2kVec2(k, this.kpPos);
+      }
+    },
+
+    update(this: PosCompThis) {
+      const posComp = this.c("pos") as PosComp | null;
+
+      if (posComp) {
+        posComp.pos = p2kVec2(k, this.kpPos);
+      }
     },
   };
 }

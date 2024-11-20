@@ -65,7 +65,9 @@
     "vite-plugin-dts": "^4.3.0"
   },
   "peerDependencies": {
-    "kaplay": "^3001.0.2",
+    "kaplay": "^3001.0.2"
+  },
+  "dependencies": {
     "planck": "^1.0.6"
   },
   "lint-staged": {
