@@ -1,7 +1,8 @@
-import type { KAPLAYCtx, Vec2 as KaVec2 } from "kaplay";
+import type { GameObj, KAPLAYCtx, Vec2 as KaVec2, Tag } from "kaplay";
 import {
   Settings,
   type BodyDef,
+  type Contact,
   type Vec2,
   type Vec2Value,
   type WorldDef,
@@ -40,7 +41,14 @@ import shapes, {
   type KPShapeDef,
   type KPShapesComp,
 } from "./components/Shapes";
-import { center, k2pVec2, p2kVec2, p2u, u2p } from "./utils";
+import {
+  center,
+  findWorldContainer,
+  k2pVec2,
+  p2kVec2,
+  p2u,
+  u2p,
+} from "./utils";
 
 interface KaPlanckPlugin {
   // mimicked transform components
@@ -181,6 +189,58 @@ interface KaPlanckPlugin {
    */
   kpShapes(defs: KPShapeDef[]): KPShapesComp;
 
+  // events
+  /**
+   * Register an event that runs once when 2 game objs with certain tags collides.
+   * Requires an object with the `kpWorld` component.
+   * Requires objects with `kpFixture` or `kpFixtures` components.
+   *
+   * @param {Tag} tagA
+   * @param {Tag} tagB
+   * @param {(objA: GameObj, objB: GameObj, contact?: Contact) => void} action
+   * @param {GameObj<KPWorldComp>} [worldContainer] If not provided, the first object with `kpObj` will be used.
+   * @memberof KaPlanckPlugin
+   */
+  onKPCollide(
+    tagA: Tag,
+    tagB: Tag,
+    action: (objA: GameObj, objB: GameObj, contact?: Contact) => void,
+    worldContainer?: GameObj<KPWorldComp>,
+  ): void;
+  /**
+   * Register an event that runs every frame when 2 game objs with certain tags collide.
+   * Requires an object with the `kpWorld` component.
+   * Requires objects with `kpFixture` or `kpFixtures` components.
+   *
+   * @param {Tag} tagA
+   * @param {Tag} tagB
+   * @param {(objA: GameObj, objB: GameObj, contact?: Contact) => void} action
+   * @param {GameObj<KPWorldComp>} [worldContainer] If not provided, the first object with `kpWorld` will be used.
+   * @memberof KaPlanckPlugin
+   */
+  onKPCollideUpdate(
+    tagA: Tag,
+    tagB: Tag,
+    action: (objA: GameObj, objB: GameObj, contact?: Contact) => void,
+    worldContainer?: GameObj<KPWorldComp>,
+  ): void;
+  /**
+   * Register an event that runs once when 2 game objs with certain tags stop colliding.
+   * Requires an object with the `kpWorld` component.
+   *
+   * @param {Tag} tagA
+   * @param {Tag} tagB
+   * @param {(objA: GameObj, objB: GameObj, contact?: Contact) => void} action
+   * @param {GameObj<KPWorldComp>} [worldContainer] If not provided, the first object with `kpWorld` will be used.
+   * @memberof KaPlanckPlugin
+   */
+  onKPCollideEnd(
+    tagA: Tag,
+    tagB: Tag,
+    action: (objA: GameObj, objB: GameObj, contact?: Contact) => void,
+    worldContainer?: GameObj<KPWorldComp>,
+  ): void;
+
   // tools
   /**
    * Returns the center of the canvas in unit.
@@ -289,6 +349,102 @@ const KaPlanckPlugin =
       },
       kpShapes(defs: KPShapeDef[]) {
         return shapes(k, defs);
+      },
+
+      onKPCollide(
+        tagA: Tag,
+        tagB: Tag,
+        action: (objA: GameObj, objB: GameObj, contact?: Contact) => void,
+        worldContainer?: GameObj<KPWorldComp>,
+      ) {
+        const eventWorldContainer = worldContainer
+          ? worldContainer
+          : findWorldContainer(k);
+
+        if (!eventWorldContainer) {
+          throw new Error("No pkWorld found");
+        }
+
+        eventWorldContainer.onContactPreSolve(
+          (objA: GameObj, objB: GameObj, contact?: Contact) => {
+            if (!objA.tags.includes(tagA) && !objB.tags.includes(tagA)) return;
+            if (!objA.tags.includes(tagB) && !objB.tags.includes(tagB)) return;
+
+            action(objA, objB, contact);
+          },
+        );
+      },
+      onKPCollideUpdate(
+        tagA: Tag,
+        tagB: Tag,
+        action: (objA: GameObj, objB: GameObj, contact?: Contact) => void,
+        worldContainer?: GameObj<KPWorldComp>,
+      ) {
+        const eventWorldContainer = worldContainer
+          ? worldContainer
+          : findWorldContainer(k);
+
+        if (!eventWorldContainer) {
+          throw new Error("No pkWorld found");
+        }
+
+        let isColliding = false;
+        let currentObjA: GameObj | null = null;
+        let currentObjB: GameObj | null = null;
+        let currentContact: Contact | undefined = undefined;
+
+        eventWorldContainer.onContactBegin(
+          (objA: GameObj, objB: GameObj, contact?: Contact) => {
+            if (!objA.tags.includes(tagA) && !objB.tags.includes(tagA)) return;
+            if (!objA.tags.includes(tagB) && !objB.tags.includes(tagB)) return;
+
+            isColliding = true;
+            currentContact = contact;
+            currentObjA = objA;
+            currentObjB = objB;
+          },
+        );
+
+        eventWorldContainer.onContactEnd((objA: GameObj, objB: GameObj) => {
+          if (!objA.tags.includes(tagA) && !objB.tags.includes(tagA)) return;
+          if (!objA.tags.includes(tagB) && !objB.tags.includes(tagB)) return;
+
+          isColliding = false;
+          currentContact = undefined;
+          currentObjA = null;
+          currentObjB = null;
+        });
+
+        k.onFixedUpdate(() => {
+          if (!isColliding || !currentObjA || !currentObjB || !currentContact) {
+            return;
+          }
+
+          action(currentObjA, currentObjB, currentContact);
+        });
+      },
+      onKPCollideEnd(
+        tagA: Tag,
+        tagB: Tag,
+        action: (objA: GameObj, objB: GameObj, contact?: Contact) => void,
+        worldContainer?: GameObj<KPWorldComp>,
+      ) {
+        const eventWorldContainer = worldContainer
+          ? worldContainer
+          : findWorldContainer(k);
+
+        if (!eventWorldContainer) {
+          throw new Error("No pkWorld found");
+        }
+
+        eventWorldContainer.onContactEnd(
+          (objA: GameObj, objB: GameObj, contact?: Contact) => {
+            if (!objA.tags.includes(tagA) && !objB.tags.includes(tagA)) return;
+            if (!objA.tags.includes(tagB) && !objB.tags.includes(tagB)) return;
+
+            action(objA, objB, contact);
+          },
+        );
       },
 
       kpCenter() {
