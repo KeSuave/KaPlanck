@@ -1,0 +1,512 @@
+# Interface: KaPlanckPluginCtx
+
+## Methods
+
+### k2pVec2()
+
+> **k2pVec2**(`vec`): `Vec2`
+
+Converts a vector from Plack Vector to KaPlay Vector.
+
+#### Parameters
+
+• **vec**: `Vec2`
+
+#### Returns
+
+`Vec2`
+
+#### Memberof
+
+KaPlanckPlugin
+
+***
+
+### kpBody()
+
+> **kpBody**(`def`?): [`KPBodyComp`](/KaPlanck/api/interfaces/KPBodyComp274)
+
+Adds a body to the physics world.
+
+Requires `kpWorld` to be set first.
+Requires `kpPos`.
+Requires `kpRotate`.
+
+#### Parameters
+
+• **def?**: `Omit`\<`BodyDef`, `"angle"` \| `"position"`\>
+
+#### Returns
+
+[`KPBodyComp`](/KaPlanck/api/interfaces/KPBodyComp520)
+
+#### Memberof
+
+KaPlanckPlugin
+
+***
+
+### kpBoxShape()
+
+> **kpBoxShape**(`opt`): [`KPBoxShapeComp`](/KaPlanck/api/interfaces/KPBoxShapeComp643)
+
+Defines the geometry of a body.
+
+#### Parameters
+
+• **opt**: [`KPBoxShapeCompOpts`](/KaPlanck/api/interfaces/KPBoxShapeCompOpts756)
+
+#### Returns
+
+[`KPBoxShapeComp`](/KaPlanck/api/interfaces/KPBoxShapeComp830)
+
+#### Memberof
+
+KaPlanckPlugin
+
+***
+
+### kpCenter()
+
+> **kpCenter**(): `Vec2`
+
+Returns the center of the canvas in unit.
+
+#### Returns
+
+`Vec2`
+
+#### Memberof
+
+KaPlanckPlugin
+
+***
+
+### kpChainShape()
+
+> **kpChainShape**(`opt`?): [`KPChainShapeComp`](/KaPlanck/api/interfaces/KPChainShapeComp1109)
+
+Defines the geometry of a body.
+
+#### Parameters
+
+• **opt?**: [`KPChainShapeCompOpt`](/KaPlanck/api/interfaces/KPChainShapeCompOpt1227)
+
+#### Returns
+
+[`KPChainShapeComp`](/KaPlanck/api/interfaces/KPChainShapeComp1303)
+
+#### Memberof
+
+KaPlanckPlugin
+
+***
+
+### kpCircleShape()
+
+> **kpCircleShape**(`opt`?): [`KPCircleShapeComp`](/KaPlanck/api/interfaces/KPCircleShapeComp1445)
+
+Defines the geometry of a body.
+
+#### Parameters
+
+• **opt?**: [`KPCircleShapeCompOpt`](/KaPlanck/api/interfaces/KPCircleShapeCompOpt1565)
+
+#### Returns
+
+[`KPCircleShapeComp`](/KaPlanck/api/interfaces/KPCircleShapeComp1643)
+
+#### Memberof
+
+KaPlanckPlugin
+
+***
+
+### kpEdgeShape()
+
+> **kpEdgeShape**(`opt`?): [`KPEdgeShapeComp`](/KaPlanck/api/interfaces/KPEdgeShapeComp1783)
+
+Defines the geometry of a body.
+
+#### Parameters
+
+• **opt?**: [`KPEdgeShapeCompOpt`](/KaPlanck/api/interfaces/KPEdgeShapeCompOpt1899)
+
+#### Returns
+
+[`KPEdgeShapeComp`](/KaPlanck/api/interfaces/KPEdgeShapeComp1973)
+
+#### Memberof
+
+KaPlanckPlugin
+
+***
+
+### kpFixture()
+
+> **kpFixture**(`def`?): [`KPFixtureComp`](/KaPlanck/api/interfaces/KPFixtureComp2105)
+
+Creates a fixture.
+
+**IMPORTANT**: cannot be added before `kpBody`
+Requires `kpBody`.
+Requires a shape
+
+#### Parameters
+
+• **def?**: [`KPFixtureDef`](/KaPlanck/api/interfaces/KPFixtureDef2288)
+
+#### Returns
+
+[`KPFixtureComp`](/KaPlanck/api/interfaces/KPFixtureComp2350)
+
+#### Memberof
+
+KaPlanckPlugin
+
+***
+
+### kpFixtures()
+
+> **kpFixtures**(`defs`): `KPFixturesComp`
+
+Adds multiple fixtures to a body.
+
+**IMPORTANT**: cannot be added before `kpBody`
+Requires `kpBody`.
+Requires `kpShapes` with the same amount of shapes as fixtures
+
+#### Parameters
+
+• **defs**: [`KPFixtureDef`](/KaPlanck/api/interfaces/KPFixtureDef2692)[]
+
+#### Returns
+
+`KPFixturesComp`
+
+#### Memberof
+
+KaPlanckPlugin
+
+***
+
+### kpMousePos()
+
+> **kpMousePos**(): `Vec2`
+
+Returns the mouse position in unit.
+
+#### Returns
+
+`Vec2`
+
+#### Memberof
+
+KaPlanckPlugin
+
+***
+
+### kpPolygonShape()
+
+> **kpPolygonShape**(`opt`?): [`KPPolygonShapeComp`](/KaPlanck/api/interfaces/KPPolygonShapeComp3003)
+
+Defines the geometry of a body.
+
+#### Parameters
+
+• **opt?**: [`KPPolygonShapeCompOpt`](/KaPlanck/api/interfaces/KPPolygonShapeCompOpt3125)
+
+#### Returns
+
+[`KPPolygonShapeComp`](/KaPlanck/api/interfaces/KPPolygonShapeComp3205)
+
+#### Memberof
+
+KaPlanckPlugin
+
+***
+
+### kpPos()
+
+#### kpPos(x, y)
+
+> **kpPos**(`x`, `y`): [`KPPosComp`](/KaPlanck/api/interfaces/KPPosComp3355)
+
+Sets the position of a body.
+
+**IMPORTANT**: use this method instead of `pos`
+
+##### Parameters
+
+• **x**: `number`
+
+• **y**: `number`
+
+##### Returns
+
+[`KPPosComp`](/KaPlanck/api/interfaces/KPPosComp3547)
+
+A position component that works with KaPlanckPlugin methods.
+
+##### Memberof
+
+KaPlanckPlugin
+
+#### kpPos(obj)
+
+> **kpPos**(`obj`): [`KPPosComp`](/KaPlanck/api/interfaces/KPPosComp3720)
+
+Sets the position of a body.
+
+**IMPORTANT**: use this method instead of `pos`
+
+##### Parameters
+
+• **obj**: `Vec2Value`
+
+##### Returns
+
+[`KPPosComp`](/KaPlanck/api/interfaces/KPPosComp3898)
+
+A position component that works with KaPlanckPlugin methods.
+
+##### Memberof
+
+KaPlanckPlugin
+
+#### kpPos(vec)
+
+> **kpPos**(`vec`): [`KPPosComp`](/KaPlanck/api/interfaces/KPPosComp4071)
+
+Sets the position of a body.
+
+**IMPORTANT**: use this method instead of `pos`, it will add pos component to the entity.
+
+##### Parameters
+
+• **vec**: `Vec2`
+
+##### Returns
+
+[`KPPosComp`](/KaPlanck/api/interfaces/KPPosComp4286)
+
+A position component that works with KaPlanckPlugin methods.
+
+##### Memberof
+
+KaPlanckPlugin
+
+***
+
+### kpRotate()
+
+> **kpRotate**(`angle`?): [`KPRotateComp`](/KaPlanck/api/interfaces/KPRotateComp4469)
+
+Sets the rotation of a body.
+
+**IMPORTANT**: use this method instead of `rotate`, it will add rotate component to the entity.
+
+#### Parameters
+
+• **angle?**: `number`
+
+#### Returns
+
+[`KPRotateComp`](/KaPlanck/api/interfaces/KPRotateComp4699)
+
+A rotation component that works with KaPlanckPlugin methods.
+
+#### Memberof
+
+KaPlanckPlugin
+
+***
+
+### kpShapes()
+
+> **kpShapes**(`defs`): `KPShapesComp`
+
+Defines multiple shapes for a body.
+
+#### Parameters
+
+• **defs**: `KPShapeDef`[]
+
+#### Returns
+
+`KPShapesComp`
+
+#### Memberof
+
+KaPlanckPlugin
+
+***
+
+### kpWorld()
+
+> **kpWorld**(`def`?): [`KPWorldComp`](/KaPlanck/api/interfaces/KPWorldComp5087)
+
+Sets the physics world.
+
+#### Parameters
+
+• **def?**: `null` \| `Vec2` \| `WorldDef`
+
+#### Returns
+
+[`KPWorldComp`](/KaPlanck/api/interfaces/KPWorldComp5233)
+
+A world component that works with KaPlanckPlugin methods.
+
+#### Memberof
+
+KaPlanckPlugin
+
+***
+
+### onKPCollide()
+
+> **onKPCollide**(`tagA`, `tagB`, `action`, `worldContainer`?): `void`
+
+Register an event that runs once when 2 game objs with certain tags collides.
+Requires an object with the `kpWorld` component.
+Requires objects with `kpFixture` or `kpFixtures` components.
+
+#### Parameters
+
+• **tagA**: `string`
+
+• **tagB**: `string`
+
+• **action**
+
+• **worldContainer?**: `GameObj`\<[`KPWorldComp`](/KaPlanck/api/interfaces/KPWorldComp5764)\>
+
+If not provided, the first object with `kpObj` will be used.
+
+#### Returns
+
+`void`
+
+#### Memberof
+
+KaPlanckPlugin
+
+***
+
+### onKPCollideEnd()
+
+> **onKPCollideEnd**(`tagA`, `tagB`, `action`, `worldContainer`?): `void`
+
+Register an event that runs once when 2 game objs with certain tags stop colliding.
+Requires an object with the `kpWorld` component.
+
+#### Parameters
+
+• **tagA**: `string`
+
+• **tagB**: `string`
+
+• **action**
+
+• **worldContainer?**: `GameObj`\<[`KPWorldComp`](/KaPlanck/api/interfaces/KPWorldComp6272)\>
+
+If not provided, the first object with `kpWorld` will be used.
+
+#### Returns
+
+`void`
+
+#### Memberof
+
+KaPlanckPlugin
+
+***
+
+### onKPCollideUpdate()
+
+> **onKPCollideUpdate**(`tagA`, `tagB`, `action`, `worldContainer`?): `void`
+
+Register an event that runs every frame when 2 game objs with certain tags collide.
+Requires an object with the `kpWorld` component.
+Requires objects with `kpFixture` or `kpFixtures` components.
+
+#### Parameters
+
+• **tagA**: `string`
+
+• **tagB**: `string`
+
+• **action**
+
+• **worldContainer?**: `GameObj`\<[`KPWorldComp`](/KaPlanck/api/interfaces/KPWorldComp6850)\>
+
+If not provided, the first object with `kpWorld` will be used.
+
+#### Returns
+
+`void`
+
+#### Memberof
+
+KaPlanckPlugin
+
+***
+
+### p2kVec2()
+
+> **p2kVec2**(`vec`): `Vec2`
+
+Converts a vector from KaPlay Vector to Plack Vector.
+
+#### Parameters
+
+• **vec**: `Vec2`
+
+#### Returns
+
+`Vec2`
+
+#### Memberof
+
+KaPlanckPlugin
+
+***
+
+### p2u()
+
+> **p2u**(`p`): `number`
+
+Converts pixel to unit.
+
+#### Parameters
+
+• **p**: `number`
+
+#### Returns
+
+`number`
+
+#### Memberof
+
+KaPlanckPlugin
+
+***
+
+### u2p()
+
+> **u2p**(`m`): `number`
+
+Converts unit to pixel.
+
+#### Parameters
+
+• **m**: `number`
+
+#### Returns
+
+`number`
+
+#### Memberof
+
+KaPlanckPlugin

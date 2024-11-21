@@ -50,7 +50,7 @@ import {
   u2p,
 } from "./utils";
 
-interface KaPlanckPlugin {
+export interface KaPlanckPluginCtx {
   // transform components
 
   /**
@@ -60,7 +60,7 @@ interface KaPlanckPlugin {
    *
    * @param {number} x
    * @param {number} y
-   * @return {*}  {KPPosComp}
+   * @return {KPPosComp} A position component that works with KaPlanckPlugin methods.
    * @memberof KaPlanckPlugin
    */
   kpPos(x: number, y: number): KPPosComp;
@@ -70,7 +70,7 @@ interface KaPlanckPlugin {
    * **IMPORTANT**: use this method instead of `pos`
    *
    * @param {Vec2Value} obj
-   * @return {*}  {KPPosComp}
+   * @return {KPPosComp} A position component that works with KaPlanckPlugin methods.
    * @memberof KaPlanckPlugin
    */
   kpPos(obj: Vec2Value): KPPosComp;
@@ -80,7 +80,7 @@ interface KaPlanckPlugin {
    * **IMPORTANT**: use this method instead of `pos`, it will add pos component to the entity.
    *
    * @param {Vec2} vec
-   * @return {*}  {KPPosComp}
+   * @return {KPPosComp} A position component that works with KaPlanckPlugin methods.
    * @memberof KaPlanckPlugin
    */
   kpPos(vec: Vec2): KPPosComp;
@@ -90,7 +90,7 @@ interface KaPlanckPlugin {
    * **IMPORTANT**: use this method instead of `rotate`, it will add rotate component to the entity.
    *
    * @param {number} [angle]
-   * @return {*}  {KPRotateComp}
+   * @return {KPRotateComp} A rotation component that works with KaPlanckPlugin methods.
    * @memberof KaPlanckPlugin
    */
   kpRotate(angle?: number): KPRotateComp;
@@ -100,7 +100,7 @@ interface KaPlanckPlugin {
    * Sets the physics world.
    *
    * @param {(WorldDef | Vec2 | null)} def
-   * @return {*}  {KPWorldComp}
+   * @return {KPWorldComp} A world component that works with KaPlanckPlugin methods.
    * @memberof KaPlanckPlugin
    */
   kpWorld(def?: WorldDef | Vec2 | null): KPWorldComp;
@@ -112,7 +112,7 @@ interface KaPlanckPlugin {
    * Requires `kpRotate`.
    *
    * @param {(Omit<BodyDef, "position" | "angle">)} [def]
-   * @return {*}  {KPBodyComp}
+   * @return {KPBodyComp}
    * @memberof KaPlanckPlugin
    */
   kpBody(def?: Omit<BodyDef, "position" | "angle">): KPBodyComp;
@@ -124,7 +124,7 @@ interface KaPlanckPlugin {
    * Requires a shape
    *
    * @param {KPFixtureDef} [def]
-   * @return {*}  {KPFixtureComp}
+   * @return {KPFixtureComp}
    * @memberof KaPlanckPlugin
    */
   kpFixture(def?: KPFixtureDef): KPFixtureComp;
@@ -136,7 +136,7 @@ interface KaPlanckPlugin {
    * Requires `kpShapes` with the same amount of shapes as fixtures
    *
    * @param {KPFixtureDef[]} defs
-   * @return {*}  {KPFixturesComp}
+   * @return {KPFixturesComp}
    * @memberof KaPlanckPlugin
    */
   kpFixtures(defs: KPFixtureDef[]): KPFixturesComp;
@@ -144,7 +144,7 @@ interface KaPlanckPlugin {
    * Defines the geometry of a body.
    *
    * @param {KPBoxShapeOpt} opt
-   * @return {*}  {KPBoxShapeComp}
+   * @return {KPBoxShapeComp}
    * @memberof KaPlanckPlugin
    */
   kpBoxShape(opt: KPBoxShapeOpt): KPBoxShapeComp;
@@ -152,7 +152,7 @@ interface KaPlanckPlugin {
    * Defines the geometry of a body.
    *
    * @param {KPChainShapeOpt} [opt]
-   * @return {*}  {KPChainShapeComp}
+   * @return {KPChainShapeComp}
    * @memberof KaPlanckPlugin
    */
   kpChainShape(opt?: KPChainShapeOpt): KPChainShapeComp;
@@ -160,7 +160,7 @@ interface KaPlanckPlugin {
    * Defines the geometry of a body.
    *
    * @param {KPCircleShapeOpt} [opt]
-   * @return {*}  {KPCircleShapeComp}
+   * @return {KPCircleShapeComp}
    * @memberof KaPlanckPlugin
    */
   kpCircleShape(opt?: KPCircleShapeOpt): KPCircleShapeComp;
@@ -168,7 +168,7 @@ interface KaPlanckPlugin {
    * Defines the geometry of a body.
    *
    * @param {KPEdgeShapeOpt} [opt]
-   * @return {*}  {KPEdgeShapeComp}
+   * @return {KPEdgeShapeComp}
    * @memberof KaPlanckPlugin
    */
   kpEdgeShape(opt?: KPEdgeShapeOpt): KPEdgeShapeComp;
@@ -176,7 +176,7 @@ interface KaPlanckPlugin {
    * Defines the geometry of a body.
    *
    * @param {KPPolygonShapeOpt} [opt]
-   * @return {*}  {KPPolygonShapeComp}
+   * @return {KPPolygonShapeComp}
    * @memberof KaPlanckPlugin
    */
   kpPolygonShape(opt?: KPPolygonShapeOpt): KPPolygonShapeComp;
@@ -184,7 +184,7 @@ interface KaPlanckPlugin {
    * Defines multiple shapes for a body.
    *
    * @param {KPShapeDef[]} defs
-   * @return {*}  {KPShapesComp}
+   * @return {KPShapesComp}
    * @memberof KaPlanckPlugin
    */
   kpShapes(defs: KPShapeDef[]): KPShapesComp;
@@ -245,14 +245,14 @@ interface KaPlanckPlugin {
   /**
    * Returns the center of the canvas in unit.
    *
-   * @return {*}  {Vec2}
+   * @return {Vec2}
    * @memberof KaPlanckPlugin
    */
   kpCenter(): Vec2;
   /**
    * Returns the mouse position in unit.
    *
-   * @return {*}  {Vec2}
+   * @return {Vec2}
    * @memberof KaPlanckPlugin
    */
   kpMousePos(): Vec2;
@@ -260,7 +260,7 @@ interface KaPlanckPlugin {
    * Converts unit to pixel.
    *
    * @param {number} m
-   * @return {*}  {number}
+   * @return {number}
    * @memberof KaPlanckPlugin
    */
   u2p(m: number): number;
@@ -268,7 +268,7 @@ interface KaPlanckPlugin {
    * Converts pixel to unit.
    *
    * @param {number} p
-   * @return {*}  {number}
+   * @return {number}
    * @memberof KaPlanckPlugin
    */
   p2u(p: number): number;
@@ -276,7 +276,7 @@ interface KaPlanckPlugin {
    * Converts a vector from Plack Vector to KaPlay Vector.
    *
    * @param {KaVec2} vec
-   * @return {*}  {Vec2}
+   * @return {Vec2}
    * @memberof KaPlanckPlugin
    */
   k2pVec2(vec: KaVec2): Vec2;
@@ -284,13 +284,13 @@ interface KaPlanckPlugin {
    * Converts a vector from KaPlay Vector to Plack Vector.
    *
    * @param {Vec2} vec
-   * @return {*}  {KaVec2}
+   * @return {KaVec2}
    * @memberof KaPlanckPlugin
    */
   p2kVec2(vec: Vec2): KaVec2;
 }
 
-interface KaPlanckPluginOpts {
+export interface KaPlanckPluginOpts {
   /**
    * The ratio of pixels per unit.
    *
@@ -316,7 +316,7 @@ interface KaPlanckPluginOpts {
  */
 const KaPlanckPlugin =
   (opt?: KaPlanckPluginOpts) =>
-  (k: KAPLAYCtx): KaPlanckPlugin => {
+  (k: KAPLAYCtx): KaPlanckPluginCtx => {
     Settings.lengthUnitsPerMeter = opt?.lengthUnitsPerMeter ?? 10;
 
     return {

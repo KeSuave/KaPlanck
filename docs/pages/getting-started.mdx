@@ -1,0 +1,150 @@
+# Get started
+
+## Installation
+
+```bash [npm]
+npm i kaplanck
+```
+
+## Example
+
+_The following assumes you already have a KaPlay project set up._
+
+Lets create our own version of "Hello World" using KaPlanck.
+
+Lets start by importing our dependencies and add a KaPlay instance:
+
+```ts showLineNumbers [example.ts]
+// 1. Import modules.
+import KaPlanckPlugin from "kaplanck";
+import kaplay from "kaplay";
+import { Vec2 } from "planck";
+
+// 2. Create a new KaPlay instance.
+const k = kaplay({
+  global: false,
+  plugins: [KaPlanckPlugin()], // [!code hl]
+});
+```
+
+As shown, adding the plugin to KaPlay is as easy as adding the highlighted line.
+
+Next, let us add a world container (a game object that holds our physics world):
+
+```ts showLineNumbers [example.ts]
+// 1. Import modules.
+import KaPlanckPlugin from "kaplanck";
+import kaplay from "kaplay";
+import { Vec2 } from "planck";
+
+// 2. Create a new KaPlay instance.
+const k = kaplay({
+  global: false,
+  plugins: [KaPlanckPlugin()],
+});
+
+// 3. Add a world container with gravity set to x: 0 y: 10. // [!code focus]
+const worldContainer = k.add([ // [!code focus]
+  k.kpWorld({ // [!code focus]
+    gravity: new Vec2(0, 10), // [!code focus]
+  }), // [!code focus]
+]); // [!code focus]
+```
+
+Note that `Vec2` is from **Planck** and not from KaPlay.
+
+Now that we have our world container set up, let's add a ground to it.
+We can do this by creating a static body with an edge shape:
+
+```ts showLineNumbers [example.ts]
+// 1. Import modules.
+import KaPlanckPlugin from "kaplanck";
+import kaplay from "kaplay";
+import { Vec2 } from "planck";
+
+// 2. Create a new KaPlay instance.
+const k = kaplay({
+  global: false,
+  plugins: [KaPlanckPlugin()],
+});
+
+// 3. Add a world container with gravity set to x: 0 y: 10.
+const worldContainer = k.add([
+  k.kpWorld({
+    gravity: new Vec2(0, 10),
+  }),
+]);
+
+// 4. Add ground by creating a static body with an edge shape. // [!code focus]
+worldContainer.add([ // [!code focus]
+  k.kpPos(k.kpCenter()), // [!code focus]
+  k.kpRotate(Math.PI * 0.1), // [!code focus]
+  k.kpEdgeShape({ // [!code focus]
+    v1: new Vec2(-10, 0), // [!code focus]
+    v2: new Vec2(10, 0), // [!code focus]
+    draw: true, // [!code focus]
+  }), // [!code focus]
+  k.kpBody({ // [!code focus]
+    type: "static", // [!code focus]
+  }), // [!code focus]
+  k.kpFixture(), // [!code focus]
+]); // [!code focus]
+```
+
+Again, note that here we are using `kpPos` and `kpRotate` instead of `pos` and `rotate`.
+
+Finally, let's add a simple ball to the world. We can do this by creating a dynamic body with a circle shape:
+
+```ts showLineNumbers [example.ts]
+// 1. Import modules.
+import KaPlanckPlugin from "kaplanck";
+import kaplay from "kaplay";
+import { Vec2 } from "planck";
+
+// 2. Create a new KaPlay instance.
+const k = kaplay({
+  global: false,
+  plugins: [KaPlanckPlugin()],
+});
+
+// 3. Add a world container with gravity set to x: 0 y: 10.
+const worldContainer = k.add([
+  k.kpWorld({
+    gravity: new Vec2(0, 10),
+  }),
+]);
+
+// 4. Add ground by creating a static body with an edge shape.
+worldContainer.add([
+  k.kpPos(k.kpCenter()),
+  k.kpRotate(Math.PI * 0.1),
+  k.kpEdgeShape({
+    v1: new Vec2(-10, 0),
+    v2: new Vec2(10, 0),
+    draw: true,
+  }),
+  k.kpBody({
+    type: "static",
+  }),
+  k.kpFixture(),
+]);
+
+// 5. Add a ball by creating a dynamic body with a circle shape. // [!code focus]
+worldContainer.add([ // [!code focus]
+  k.kpPos(k.kpCenter().sub({ x: k.rand(-10, 10), y: k.rand(10, 15) })), // [!code focus]
+  k.kpRotate(), // [!code focus]
+  k.kpCircleShape({ // [!code focus]
+    radius: 1, // [!code focus]
+    draw: true, // [!code focus]
+  }), // [!code focus]
+  k.kpBody({ type: "dynamic" }), // [!code focus]
+  k.kpFixture({ density: 1, friction: 0.3 }), // [!code focus]
+  k.offscreen({ destroy: true }), // [!code focus]
+]); // [!code focus]
+```
+
+I know this is not the most complex example, but it demonstrates a basic setup using KaPlay and Planck for creating a physics-based games.
+
+Well with that being said, hope this plugin helps you get started with building physics-based games or interactive applications!
+
+If you have any questions or need further assistance, feel free to ask. Happy coding!

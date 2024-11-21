@@ -45,7 +45,14 @@
     "preview": "vite preview",
     "prepare": "husky",
     "lint": "eslint src",
-    "format": "prettier --config .prettierrc --write \"src/**/*.ts\""
+    "format": "prettier --config .prettierrc --write \"src/**/*.ts\"",
+    "docs:dev": "vocs dev",
+    "docs:build": "vocs build",
+    "docs:preview": "vocs preview",
+    "predocs:dev": "npm run typedocs",
+    "predocs:build": "npm run typedocs && node utils/docLinks.mjs build",
+    "typedocs": "typedoc --options typedoc.json",
+    "posttypedocs": "node utils/docLinks.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
@@ -59,10 +66,14 @@
     "lint-staged": "^15.2.10",
     "prettier": "3.3.3",
     "semantic-release": "^24.2.0",
+    "typedoc": "^0.26.11",
+    "typedoc-plugin-markdown": "^4.2.10",
+    "typedoc-plugin-rename-defaults": "^0.7.1",
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.15.0",
     "vite": "^5.4.10",
-    "vite-plugin-dts": "^4.3.0"
+    "vite-plugin-dts": "^4.3.0",
+    "vocs": "^1.0.0-alpha.62"
   },
   "peerDependencies": {
     "kaplay": "^3001.0.2"

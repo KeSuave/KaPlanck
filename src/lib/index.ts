@@ -1,7 +1,12 @@
 import KaPlanckPlugin from "./plugin";
 
 // main plugin entry point
+/**
+ * @function
+ */
 export default KaPlanckPlugin;
+
+export type { KaPlanckPluginCtx } from "./plugin";
 
 // export all components' types
 export type { KPBodyComp } from "./components/Body";

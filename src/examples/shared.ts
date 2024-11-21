@@ -1,8 +1,8 @@
 import type { GameObj, KAPLAYCtx } from "kaplay";
 
-import type KaPlanckPlugin from "../lib";
+import type { KaPlanckPluginCtx } from "../lib";
 
-export type KAPLANCKCtx = KAPLAYCtx & KaPlanckPlugin;
+export type KAPLANCKCtx = KAPLAYCtx & KaPlanckPluginCtx;
 
 export function addScenesButtons(k: KAPLAYCtx, scene: GameObj) {
   const scenes = Object.keys(k._k.game.scenes);

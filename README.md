@@ -53,6 +53,7 @@ worldContainer.add([
 worldContainer.add([
   k.color(200, 200, 200),
   k.kpPos(k.kpCenter().sub({ x: k.rand(-10, 10), y: k.rand(10, 15) })),
+  k.kpRotate(),
   k.kpCircleShape({
     radius: 1,
     draw: true,

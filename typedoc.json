@@ -1,0 +1,16 @@
+{
+  "name": "API Reference",
+  "entryPoints": ["./src/lib/index.ts"],
+  "out": "./docs/pages/api/",
+  "readme": "none",
+  "plugin": ["typedoc-plugin-markdown", "typedoc-plugin-rename-defaults"],
+  "disableSources": true,
+  "excludeExternals": true,
+  "excludeInternal": true,
+  "hideBreadcrumbs": true,
+  "hidePageHeader": true,
+  "sanitizeComments": true,
+  "entryFileName": "index",
+  "fileExtension": ".mdx",
+  "publicPath": "/api"
+}

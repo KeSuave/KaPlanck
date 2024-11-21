@@ -3,7 +3,7 @@ import eightBallScene from "./examples/8-Ball";
 import addPairScene from "./examples/AddPair";
 import applyForceScene from "./examples/ApplyForce";
 import sampleScene from "./examples/Sample";
-import KaPlanckPlugin from "./lib/plugin";
+import KaPlanckPlugin from "./lib";
 
 const k = kaplay({
   global: false,
