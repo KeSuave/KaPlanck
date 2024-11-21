@@ -19,20 +19,15 @@ function getMdxFiles(dir) {
   return mdxFiles;
 }
 
-function updateLinksInFile(filePath, build) {
-  const basePrefix = build ? "/KaPlanck" : "";
-
+function updateLinksInFile(filePath) {
   let content = fs.readFileSync(filePath, "utf8");
 
-  let rx = /\[([^\]]+)]\(([^)]+)\.mdx(#\S*)?\)/g;
-
-  if (build) {
-    rx = /\[([^\]]+)]\(([^)]+)\)/g;
-  }
-
-  const updatedContent = content.replace(rx, (match, text, url, fragment) => {
-    return `[${text}](${basePrefix}${url.replace(/\.mdx$/, "")}${build ? "" : fragment || ""})`;
-  });
+  const updatedContent = content.replace(
+    /\[([^\]]+)]\(([^)]+)\.mdx(#\S*)?\)/g,
+    (match, text, url, fragment) => {
+      return `[${text}](${url.replace(/\.mdx$/, "")}${fragment || ""})`;
+    },
+  );
 
   if (updatedContent !== content) {
     fs.writeFileSync(filePath, updatedContent, "utf8");
@@ -55,7 +50,4 @@ function processMdxFiles(dir, build) {
   });
 }
 
-// eslint-disable-next-line no-undef
-const args = process.argv.slice(2);
-
-processMdxFiles("./docs/pages/api/", args.length > 0 && args[0] === "build");
+processMdxFiles("./docssrc/pages/api/");

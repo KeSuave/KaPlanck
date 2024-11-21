@@ -1,9 +1,14 @@
 {
   "name": "API Reference",
-  "entryPoints": ["./src/lib/index.ts"],
+  "entryPoints": [
+    "./src/lib/index.ts"
+  ],
   "out": "./docssrc/pages/api/",
   "readme": "none",
-  "plugin": ["typedoc-plugin-markdown", "typedoc-plugin-rename-defaults"],
+  "plugin": [
+    "typedoc-plugin-markdown",
+    "typedoc-plugin-rename-defaults"
+  ],
   "disableSources": true,
   "excludeExternals": true,
   "excludeInternal": true,
@@ -12,5 +17,5 @@
   "sanitizeComments": true,
   "entryFileName": "index",
   "fileExtension": ".mdx",
-  "publicPath": "/KaPlanck/api"
+  "publicPath": "/api"
 }

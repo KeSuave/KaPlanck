@@ -1,10 +1,10 @@
-import fs from 'fs/promises';
-import path from 'path';
+import fs from "fs/promises";
+import path from "path";
 
-const __dirname = new URL('.', import.meta.url).pathname;
+const __dirname = new URL(".", import.meta.url).pathname;
 
-const ghpdocsDir = path.join(__dirname, '../ghpdocs');
-const distDir = path.join(__dirname, '../docs/dist');
+const ghpdocsDir = path.join(__dirname, "../docs");
+const distDir = path.join(__dirname, "../docssrc/dist");
 
 async function clearDirectory(directory) {
   try {
@@ -16,9 +16,9 @@ async function clearDirectory(directory) {
 
       if (stat.isDirectory()) {
         await clearDirectory(filePath);
-        await fs.rmdir(filePath); 
+        await fs.rmdir(filePath);
       } else {
-        await fs.unlink(filePath); 
+        await fs.unlink(filePath);
       }
     }
     console.log(`Cleared the contents of ${directory}`);
@@ -50,10 +50,10 @@ async function copyDirectory(src, dest) {
 }
 
 async function createNojekyllFile(directory) {
-  const nojekyllPath = path.join(directory, '.nojekyll');
+  const nojekyllPath = path.join(directory, ".nojekyll");
   try {
     // Create an empty .nojekyll file
-    await fs.writeFile(nojekyllPath, '');
+    await fs.writeFile(nojekyllPath, "");
     console.log(`Created .nojekyll file in ${directory}`);
   } catch (err) {
     console.error(`Error creating .nojekyll file:`, err);
@@ -66,6 +66,6 @@ async function clearAndCopy() {
   createNojekyllFile(ghpdocsDir);
 }
 
-clearAndCopy().catch(err => {
-  console.error('Error in clear and copy process:', err);
+clearAndCopy().catch((err) => {
+  console.error("Error in clear and copy process:", err);
 });

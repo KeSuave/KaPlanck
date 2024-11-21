@@ -49,10 +49,9 @@
     "docs:dev": "vocs dev",
     "docs:build": "vocs build",
     "docs:preview": "vocs preview",
-    "predocs:dev": "npm run typedocs",
-    "predocs:build": "npm run typedocs && node utils/docLinks.mjs build",
     "typedocs": "typedoc --options typedoc.json",
-    "posttypedocs": "node utils/docLinks.mjs",
+    "predocs:dev": "typedoc --options typedoc.dev.json && node utils/docLinks.mjs",
+    "predocs:build": "typedoc --options typedoc.json && node utils/docLinks.mjs",
     "postdocs:build": "node utils/docsFolder.mjs"
   },
   "devDependencies": {
