@@ -12,5 +12,5 @@
   "sanitizeComments": true,
   "entryFileName": "index",
   "fileExtension": ".mdx",
-  "publicPath": "/KaPlanck/api"
+  "publicPath": "/api"
 }

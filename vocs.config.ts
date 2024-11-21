@@ -2,6 +2,8 @@ import { defineConfig } from "vocs";
 
 export default defineConfig({
   rootDir: "docssrc",
+  basePath: "/KaPlanck",
+  baseUrl: "https://kesuave.github.io/KaPlanck",
   title: "KaPlanck",
   sidebar: [
     {
