@@ -31,7 +31,7 @@ function updateLinksInFile(filePath, build) {
   }
 
   const updatedContent = content.replace(rx, (match, text, url, fragment) => {
-    return `[${text}](${basePrefix}${url.replace(/\.mdx$/, "")}${fragment || ""})`;
+    return `[${text}](${basePrefix}${url.replace(/\.mdx$/, "")}${build ? "" : fragment || ""})`;
   });
 
   if (updatedContent !== content) {
