@@ -43,7 +43,7 @@ const addPairScene = (k: KAPLANCKCtx) => () => {
   const box = worldContainer.add([
     k.kpPos(k.kpCenter().add({ x: -40, y: 0 })),
     k.kpRotate(),
-    k.kpBoxShape({ halfWidth: 1.5, halfHeight: 1.5, draw: true }),
+    k.kpBoxShape({ width: 3, height: 3, draw: true }),
     k.kpBody({ type: "dynamic", bullet: true }),
     k.kpFixture({ density: 1 }),
   ]);

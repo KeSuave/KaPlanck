@@ -136,7 +136,7 @@ const applyForceScene = (k: KAPLANCKCtx) => () => {
     const box = worldContainer.add([
       k.kpPos(k.kpCenter().add({ x: 0, y: 15 - 1.54 * i })),
       k.kpRotate(),
-      k.kpBoxShape({ halfWidth: 0.5, halfHeight: 0.5, draw: true }),
+      k.kpBoxShape({ width: 1, height: 1, draw: true }),
       k.kpBody({ type: "dynamic" }),
       k.kpFixture(boxFixtureDef),
     ]);

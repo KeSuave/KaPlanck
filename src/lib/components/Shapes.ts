@@ -50,8 +50,8 @@ export default function shapes(k: KAPLAYCtx, defs: KPShapeDef[]): KPShapesComp {
           case "box":
             this.shapes.push(
               new BoxShape(
-                def.opt.halfWidth,
-                def.opt.halfHeight,
+                def.opt.width / 2,
+                def.opt.height / 2,
                 def.opt.center,
                 def.opt.angle,
               ),

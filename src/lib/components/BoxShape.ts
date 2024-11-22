@@ -9,9 +9,33 @@ export interface KPBoxShapeComp extends KPShapeComp {
 }
 
 export interface KPBoxShapeOpt extends KPShapeOpt {
-  halfWidth: number;
-  halfHeight: number;
+  /**
+   * The width of the box shape.
+   *
+   * @type {number}
+   * @memberof KPBoxShapeOpt
+   */
+  width: number;
+  /**
+   * The height of the box shape.
+   *
+   * @type {number}
+   * @memberof KPBoxShapeOpt
+   */
+  height: number;
+  /**
+   * The center of the box relative to the body's origin.
+   *
+   * @type {Vec2Value}
+   * @memberof KPBoxShapeOpt
+   */
   center?: Vec2Value;
+  /**
+   * The angle of the box relative to the body's angle.
+   *
+   * @type {number}
+   * @memberof KPBoxShapeOpt
+   */
   angle?: number;
 }
 
@@ -23,7 +47,7 @@ export default function boxShape(
 ): KPBoxShapeComp {
   return {
     id: "kpShape",
-    shape: new BoxShape(opt.halfWidth, opt.halfHeight, opt?.center, opt?.angle),
+    shape: new BoxShape(opt.width / 2, opt.height / 2, opt?.center, opt?.angle),
 
     draw(this: BoxShapeCompThis) {
       drawBoxShape(k, opt, this);
@@ -35,8 +59,8 @@ export function drawBoxShape(k: KAPLAYCtx, opt: KPBoxShapeOpt, obj: GameObj) {
   if (!opt.draw) return;
 
   const renderingProps = getRenderProps(obj);
-  const width = u2p(opt.halfWidth) * 2;
-  const height = u2p(opt.halfHeight) * 2;
+  const width = u2p(opt.width);
+  const height = u2p(opt.height);
   const pos = k.vec2(u2p(opt.center?.x ?? 0), u2p(opt.center?.y ?? 0));
 
   k.drawRect({

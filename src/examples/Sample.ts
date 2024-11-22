@@ -104,8 +104,8 @@ function addShape(
     case "box":
       color = { r: 200, g: 0, b: 0 };
       comp = k.kpBoxShape({
-        halfWidth: Math.max(k.rand(), 0.1),
-        halfHeight: Math.max(k.rand(), 0.1),
+        width: Math.max(k.rand(), 0.1),
+        height: Math.max(k.rand(), 0.1),
         draw: true,
       });
       break;
