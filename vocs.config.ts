@@ -4,6 +4,7 @@ export default defineConfig({
   rootDir: "docssrc",
   basePath: "/KaPlanck",
   baseUrl: "https://kesuave.github.io/KaPlanck",
+  iconUrl: "/suave.png",
   title: "KaPlanck",
   sidebar: [
     {

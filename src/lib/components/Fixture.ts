@@ -4,12 +4,13 @@ import type {
   KAPLAYCtx,
   KEventController,
   MouseButton,
+  Tag,
 } from "kaplay";
 import type { Fixture, FixtureDef } from "planck";
 
+import { k2pVec2 } from "../utils";
 import type { KPBodyComp } from "./Body";
 import type { KPShapeComp } from "./Shape";
-import { k2pVec2 } from "../utils";
 
 export interface KPFixtureUserData {
   gameObj: GameObj;
@@ -21,13 +22,59 @@ export interface KPFixtureDef extends Omit<FixtureDef, "shape"> {
 }
 
 export interface KPFixtureComp extends Comp {
+  /**
+   * The underlying Fixture object.
+   *
+   * @type {(Fixture | null)}
+   */
   fixture: Fixture | null;
+  /**
+   * Tags of other components that this fixture should ignore collisions with.
+   *
+   * @type {Tag[]}
+   */
+  collisionIgnore: Tag[];
 
+  /**
+   * Check if the mouse is hovering over this fixture.
+   *
+   * @returns {boolean}
+   */
   isHovering(): boolean;
+  /**
+   * Check if the mouse has clicked on this fixture.
+   *
+   * @returns {boolean}
+   */
   isClicked(): boolean;
+  /**
+   * Add an action to be executed when the mouse starts hovering over this fixture.
+   *
+   * @param {() => void} action - The action to execute.
+   * @returns {KEventController} - A controller for managing the event.
+   */
   onHover(action: () => void): KEventController;
+  /**
+   * Add an action to be executed when the mouse updates its position while hovering over this fixture.
+   *
+   * @param {() => void} action - The action to execute.
+   * @returns {KEventController} - A controller for managing the event.
+   */
   onHoverUpdate(action: () => void): KEventController;
+  /**
+   * Add an action to be executed when the mouse stops hovering over this fixture.
+   *
+   * @param {() => void} action - The action to execute.
+   * @returns {KEventController} - A controller for managing the event.
+   */
   onHoverEnd(action: () => void): KEventController;
+  /**
+   * Add an action to be executed when this fixture is clicked.
+   *
+   * @param {() => void} action - The action to execute.
+   * @param {MouseButton} [btn] - The mouse button that was used to click (default: MouseButton.LEFT).
+   * @returns {KEventController} - A controller for managing the event.
+   */
   onClick(action: () => void, btn?: MouseButton): KEventController;
 }
 
@@ -36,11 +83,13 @@ type FixtureThis = GameObj<KPFixtureComp & KPBodyComp & KPShapeComp>;
 export default function fixture(
   k: KAPLAYCtx,
   def?: KPFixtureDef,
+  collisionIgnore?: Tag[],
 ): KPFixtureComp {
   return {
     id: "kpFixture",
     require: ["kpBody", "kpShape"],
     fixture: null,
+    collisionIgnore: collisionIgnore ?? [],
 
     isHovering() {
       if (!this.fixture) return false;
@@ -108,6 +157,20 @@ export default function fixture(
           gameObj: this,
         },
       });
+
+      this.fixture.shouldCollide = (that: Fixture) => {
+        if (this.collisionIgnore.length === 0) return true;
+
+        const userData = that.getUserData() as KPFixtureUserData;
+
+        const thatGameObj = userData.gameObj;
+
+        if (thatGameObj.tags.length === 0) return true;
+
+        return !this.collisionIgnore.some((tag) => {
+          return thatGameObj.tags.includes(tag);
+        });
+      };
     },
   };
 }

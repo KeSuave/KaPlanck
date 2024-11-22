@@ -12,5 +12,8 @@
   "sanitizeComments": true,
   "entryFileName": "index",
   "fileExtension": ".mdx",
-  "publicPath": "/api"
+  "publicPath": "/api",
+  "parametersFormat": "table",
+  "interfacePropertiesFormat": "table",
+  "propertyMembersFormat": "table"
 }

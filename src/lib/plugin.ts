@@ -58,10 +58,9 @@ export interface KaPlanckPluginCtx {
    *
    * **IMPORTANT**: use this method instead of `pos`
    *
-   * @param {number} x
-   * @param {number} y
+   * @param {number} x The x coordinate of the body's position.
+   * @param {number} y The y coordinate of the body's position.
    * @return {KPPosComp} A position component that works with KaPlanckPlugin methods.
-   * @memberof KaPlanckPlugin
    */
   kpPos(x: number, y: number): KPPosComp;
   /**
@@ -69,9 +68,8 @@ export interface KaPlanckPluginCtx {
    *
    * **IMPORTANT**: use this method instead of `pos`
    *
-   * @param {Vec2Value} obj
+   * @param {Vec2Value} obj An object containing the position values.
    * @return {KPPosComp} A position component that works with KaPlanckPlugin methods.
-   * @memberof KaPlanckPlugin
    */
   kpPos(obj: Vec2Value): KPPosComp;
   /**
@@ -79,9 +77,8 @@ export interface KaPlanckPluginCtx {
    *
    * **IMPORTANT**: use this method instead of `pos`, it will add pos component to the entity.
    *
-   * @param {Vec2} vec
+   * @param {Vec2} vec A vector containing the position values.
    * @return {KPPosComp} A position component that works with KaPlanckPlugin methods.
-   * @memberof KaPlanckPlugin
    */
   kpPos(vec: Vec2): KPPosComp;
   /**
@@ -89,9 +86,8 @@ export interface KaPlanckPluginCtx {
    *
    * **IMPORTANT**: use this method instead of `rotate`, it will add rotate component to the entity.
    *
-   * @param {number} [angle]
+   * @param {number} [angle] The angle in radians to set the rotation of the body.
    * @return {KPRotateComp} A rotation component that works with KaPlanckPlugin methods.
-   * @memberof KaPlanckPlugin
    */
   kpRotate(angle?: number): KPRotateComp;
 
@@ -99,9 +95,8 @@ export interface KaPlanckPluginCtx {
   /**
    * Sets the physics world.
    *
-   * @param {(WorldDef | Vec2 | null)} def
+   * @param {(WorldDef | Vec2 | null)} def The definition of the physics world or a vector for gravity.
    * @return {KPWorldComp} A world component that works with KaPlanckPlugin methods.
-   * @memberof KaPlanckPlugin
    */
   kpWorld(def?: WorldDef | Vec2 | null): KPWorldComp;
   /**
@@ -111,9 +106,8 @@ export interface KaPlanckPluginCtx {
    * Requires `kpPos`.
    * Requires `kpRotate`.
    *
-   * @param {(Omit<BodyDef, "position" | "angle">)} [def]
+   * @param {(Omit<BodyDef, "position" | "angle">)} [def] The definition of the body.
    * @return {KPBodyComp}
-   * @memberof KaPlanckPlugin
    */
   kpBody(def?: Omit<BodyDef, "position" | "angle">): KPBodyComp;
   /**
@@ -123,11 +117,11 @@ export interface KaPlanckPluginCtx {
    * Requires `kpBody`.
    * Requires a shape
    *
-   * @param {KPFixtureDef} [def]
+   * @param {KPFixtureDef} [def] The definition of the fixture.
+   * @param {Tag[]} [collisionIgnore] The tags to ignore collision with this fixture
    * @return {KPFixtureComp}
-   * @memberof KaPlanckPlugin
    */
-  kpFixture(def?: KPFixtureDef): KPFixtureComp;
+  kpFixture(def?: KPFixtureDef, collisionIgnore?: Tag[]): KPFixtureComp;
   /**
    * Adds multiple fixtures to a body.
    *
@@ -135,57 +129,50 @@ export interface KaPlanckPluginCtx {
    * Requires `kpBody`.
    * Requires `kpShapes` with the same amount of shapes as fixtures
    *
-   * @param {KPFixtureDef[]} defs
+   * @param {KPFixtureDef[]} defs The definitions of the fixtures.
    * @return {KPFixturesComp}
-   * @memberof KaPlanckPlugin
    */
   kpFixtures(defs: KPFixtureDef[]): KPFixturesComp;
   /**
    * Defines the geometry of a body.
    *
-   * @param {KPBoxShapeOpt} opt
+   * @param {KPBoxShapeOpt} opt The options for the box shape.
    * @return {KPBoxShapeComp}
-   * @memberof KaPlanckPlugin
    */
   kpBoxShape(opt: KPBoxShapeOpt): KPBoxShapeComp;
   /**
    * Defines the geometry of a body.
    *
-   * @param {KPChainShapeOpt} [opt]
+   * @param {KPChainShapeOpt} [opt] The options for the chain shape.
    * @return {KPChainShapeComp}
-   * @memberof KaPlanckPlugin
    */
   kpChainShape(opt?: KPChainShapeOpt): KPChainShapeComp;
   /**
    * Defines the geometry of a body.
    *
-   * @param {KPCircleShapeOpt} [opt]
+   * @param {KPCircleShapeOpt} [opt] The options for the circle shape.
    * @return {KPCircleShapeComp}
-   * @memberof KaPlanckPlugin
    */
   kpCircleShape(opt?: KPCircleShapeOpt): KPCircleShapeComp;
   /**
    * Defines the geometry of a body.
    *
-   * @param {KPEdgeShapeOpt} [opt]
+   * @param {KPEdgeShapeOpt} [opt] The options for the edge shape.
    * @return {KPEdgeShapeComp}
-   * @memberof KaPlanckPlugin
    */
   kpEdgeShape(opt?: KPEdgeShapeOpt): KPEdgeShapeComp;
   /**
    * Defines the geometry of a body.
    *
-   * @param {KPPolygonShapeOpt} [opt]
+   * @param {KPPolygonShapeOpt} [opt] The options for the polygon shape.
    * @return {KPPolygonShapeComp}
-   * @memberof KaPlanckPlugin
    */
   kpPolygonShape(opt?: KPPolygonShapeOpt): KPPolygonShapeComp;
   /**
    * Defines multiple shapes for a body.
    *
-   * @param {KPShapeDef[]} defs
+   * @param {KPShapeDef[]} defs The definitions of the shapes.
    * @return {KPShapesComp}
-   * @memberof KaPlanckPlugin
    */
   kpShapes(defs: KPShapeDef[]): KPShapesComp;
 
@@ -195,11 +182,10 @@ export interface KaPlanckPluginCtx {
    * Requires an object with the `kpWorld` component.
    * Requires objects with `kpFixture` or `kpFixtures` components.
    *
-   * @param {Tag} tagA
-   * @param {Tag} tagB
+   * @param {Tag} tagA The tag of an object to listen for collisions.
+   * @param {Tag} tagB The tag of another object to listen for collisions.
    * @param {(objA: GameObj, objB: GameObj, contact?: Contact) => void} action
    * @param {GameObj<KPWorldComp>} [worldContainer] If not provided, the first object with `kpObj` will be used.
-   * @memberof KaPlanckPlugin
    */
   onKPCollide(
     tagA: Tag,
@@ -212,11 +198,10 @@ export interface KaPlanckPluginCtx {
    * Requires an object with the `kpWorld` component.
    * Requires objects with `kpFixture` or `kpFixtures` components.
    *
-   * @param {Tag} tagA
-   * @param {Tag} tagB
+   * @param {Tag} tagA The tag of an object to listen for collisions.
+   * @param {Tag} tagB The tag of another object to listen for collisions.
    * @param {(objA: GameObj, objB: GameObj, contact?: Contact) => void} action
    * @param {GameObj<KPWorldComp>} [worldContainer] If not provided, the first object with `kpWorld` will be used.
-   * @memberof KaPlanckPlugin
    */
   onKPCollideUpdate(
     tagA: Tag,
@@ -228,11 +213,10 @@ export interface KaPlanckPluginCtx {
    * Register an event that runs once when 2 game objs with certain tags stop colliding.
    * Requires an object with the `kpWorld` component.
    *
-   * @param {Tag} tagA
-   * @param {Tag} tagB
+   * @param {Tag} tagA The tag of an object to listen for collisions.
+   * @param {Tag} tagB The tag of another object to listen for collisions.
    * @param {(objA: GameObj, objB: GameObj, contact?: Contact) => void} action
    * @param {GameObj<KPWorldComp>} [worldContainer] If not provided, the first object with `kpWorld` will be used.
-   * @memberof KaPlanckPlugin
    */
   onKPCollideEnd(
     tagA: Tag,
@@ -246,46 +230,40 @@ export interface KaPlanckPluginCtx {
    * Returns the center of the canvas in unit.
    *
    * @return {Vec2}
-   * @memberof KaPlanckPlugin
    */
   kpCenter(): Vec2;
   /**
    * Returns the mouse position in unit.
    *
    * @return {Vec2}
-   * @memberof KaPlanckPlugin
    */
   kpMousePos(): Vec2;
   /**
    * Converts unit to pixel.
    *
-   * @param {number} m
+   * @param {number} m The unit value.
    * @return {number}
-   * @memberof KaPlanckPlugin
    */
   u2p(m: number): number;
   /**
    * Converts pixel to unit.
    *
-   * @param {number} p
+   * @param {number} p The pixel value.
    * @return {number}
-   * @memberof KaPlanckPlugin
    */
   p2u(p: number): number;
   /**
-   * Converts a vector from Plack Vector to KaPlay Vector.
+   * Converts a vector from KaPlay Vector to Planck Vector.
    *
-   * @param {KaVec2} vec
+   * @param {KaVec2} vec A KaPlay vector.
    * @return {Vec2}
-   * @memberof KaPlanckPlugin
    */
   k2pVec2(vec: KaVec2): Vec2;
   /**
-   * Converts a vector from KaPlay Vector to Plack Vector.
+   * Converts a vector from Planck Vector to KaPlay Vector.
    *
-   * @param {Vec2} vec
+   * @param {Vec2} vec A Planck vector.
    * @return {KaVec2}
-   * @memberof KaPlanckPlugin
    */
   p2kVec2(vec: Vec2): KaVec2;
 }
@@ -297,7 +275,6 @@ export interface KaPlanckPluginOpts {
    * Defaults to `10`.
    *
    * @type {number}
-   * @memberof KaPlanckPluginOpts
    */
   lengthUnitsPerMeter?: number;
 }
@@ -333,8 +310,8 @@ const KaPlanckPlugin =
       kpBody(bodyDef?: BodyDef) {
         return body(bodyDef);
       },
-      kpFixture(def?: KPFixtureDef) {
-        return fixture(k, def);
+      kpFixture(def?: KPFixtureDef, collisionIgnore?: Tag[]) {
+        return fixture(k, def, collisionIgnore);
       },
       kpFixtures(defs: KPFixtureDef[]) {
         return fixtures(defs);

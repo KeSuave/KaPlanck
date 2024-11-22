@@ -6,9 +6,18 @@ import type { KPPosComp } from "./Position";
 import type { KPRotateComp } from "./Rotate";
 
 export interface KPBodyComp extends Comp {
+  /**
+   * The physics body associated with the game object.
+   *
+   * @type {(Body | null)}
+   */
   body: Body | null;
-
-  // the following are just for drawInspect and debug purposes
+  /**
+   * @internal
+   * The color to use for debugging the physics body.
+   *
+   * @type {{ r: number; g: number; b: number }}
+   */
   inspectColor: { r: number; g: number; b: number };
 }
 
