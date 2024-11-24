@@ -1,12 +1,13 @@
 import type { Comp, GameObj, KAPLAYCtx, PosComp } from "kaplay";
 import { Vec2, type Vec2Value } from "planck";
-import { p2kVec2 } from "../utils";
+import { k2pVec2, p2kVec2 } from "../utils";
+import { KPBodyComp } from "./Body";
 
 export type KPVec2Args = [number, number] | [Vec2Value] | [Vec2] | [];
 
 export interface KPPosComp extends Comp {
-  kpPos: Vec2;
-
+  getKPPosition(): Vec2;
+  setKPPosition(pos: Vec2Value): void;
   kpMove(x: number, y: number): void;
   kpMove(vel: Vec2): void;
   kpMoveBy(dx: number, dy: number): void;
@@ -15,18 +16,38 @@ export interface KPPosComp extends Comp {
   kpMoveTo(x: number, y: number, speed?: number): void;
 }
 
-type PosCompThis = GameObj<KPPosComp>;
+type PosCompThis = GameObj<KPPosComp & PosComp>;
 
 export default function pos(k: KAPLAYCtx, ...args: KPVec2Args): KPPosComp {
   return {
     id: "kpPos",
-    kpPos: vec2FromArgs(...args),
+
+    getKPPosition(this: PosCompThis) {
+      const bodyComp = this.c("kpBody") as KPBodyComp | null;
+
+      if (bodyComp && bodyComp.body) {
+        return bodyComp.body.getPosition();
+      }
+
+      return k2pVec2(this.pos);
+    },
+    setKPPosition(this: PosCompThis, pos: Vec2Value) {
+      this.pos = p2kVec2(k, pos);
+
+      const bodyComp = this.c("kpBody") as KPBodyComp | null;
+
+      if (bodyComp && bodyComp.body) {
+        bodyComp.body.setPosition(pos);
+      }
+    },
 
     kpMove(...margs: KPVec2Args) {
-      this.kpMoveBy(vec2FromArgs(...margs).mul(k.dt()));
+      this.setKPPosition(vec2FromArgs(...margs).mul(k.dt()));
     },
     kpMoveBy(...margs: KPVec2Args) {
-      this.kpPos = this.kpPos.add(vec2FromArgs(...margs));
+      const vec = vec2FromArgs(...margs);
+
+      this.setKPPosition(this.getKPPosition().add(vec));
     },
     kpMoveTo(...margs: [number | Vec2, number | undefined, unknown?]) {
       const dest = new Vec2();
@@ -52,10 +73,10 @@ export default function pos(k: KAPLAYCtx, ...args: KPVec2Args): KPPosComp {
         }
       }
 
-      const diff = dest.sub(this.kpPos);
+      const diff = dest.sub(this.getKPPosition());
 
       if (diff.length() > speed * k.dt()) {
-        this.kpPos.set(dest);
+        this.setKPPosition(dest);
 
         return;
       }
@@ -68,19 +89,7 @@ export default function pos(k: KAPLAYCtx, ...args: KPVec2Args): KPPosComp {
     add(this: PosCompThis) {
       this.use(k.pos());
 
-      const posComp = this.c("pos") as PosComp | null;
-
-      if (posComp) {
-        posComp.pos = p2kVec2(k, this.kpPos);
-      }
-    },
-
-    update(this: PosCompThis) {
-      const posComp = this.c("pos") as PosComp | null;
-
-      if (posComp) {
-        posComp.pos = p2kVec2(k, this.kpPos);
-      }
+      this.pos = p2kVec2(k, vec2FromArgs(...args));
     },
   };
 }

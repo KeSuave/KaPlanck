@@ -304,7 +304,7 @@ const eightBallScene = (k: KAPLANCKCtx) => () => {
       if (
         cueBall.shape.testPoint(
           {
-            p: { x: cueBall.kpPos.x, y: cueBall.kpPos.y },
+            p: { x: cueBall.getKPPosition().x, y: cueBall.getKPPosition().y },
             q: { c: 0, s: 0 },
           },
           k.kpMousePos(),
@@ -320,8 +320,8 @@ const eightBallScene = (k: KAPLANCKCtx) => () => {
       if (mouseDown) {
         const mousePos = k.kpMousePos();
         const force = {
-          x: (mousePos.x - cueBall.kpPos.x) * -1500,
-          y: (mousePos.y - cueBall.kpPos.y) * -1500,
+          x: (mousePos.x - cueBall.getKPPosition().x) * -1500,
+          y: (mousePos.y - cueBall.getKPPosition().y) * -1500,
         };
 
         cueBall.body?.applyForceToCenter(force, true);

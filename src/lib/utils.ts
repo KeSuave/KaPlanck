@@ -1,5 +1,5 @@
 import type { GameObj, KAPLAYCtx, Vec2 as KaVec2, RenderProps } from "kaplay";
-import { Settings, Vec2, type World } from "planck";
+import { Settings, Vec2, type Vec2Value, type World } from "planck";
 
 import type { KPWorldComp } from "./components/World";
 
@@ -22,7 +22,7 @@ export function k2pVec2(vec: KaVec2): Vec2 {
   return new Vec2(p2u(vec.x), p2u(vec.y));
 }
 
-export function p2kVec2(k: KAPLAYCtx, vec: Vec2): KaVec2 {
+export function p2kVec2(k: KAPLAYCtx, vec: Vec2Value): KaVec2 {
   return k.vec2(u2p(vec.x), u2p(vec.y));
 }
 

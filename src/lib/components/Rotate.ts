@@ -3,57 +3,49 @@ import type { Comp, GameObj, KAPLAYCtx, RotateComp } from "kaplay";
 import { KPBodyComp } from "./Body";
 
 export interface KPRotateComp extends Comp {
-  kpAngle: number;
+  getKPAngle(): number;
+  setKPAngle(angle: number): void;
 
   kpRotateBy(angle: number): void;
   kpRotateTo(angle: number): void;
 }
 
-type RotateCompThis = GameObj<KPRotateComp>;
+type RotateCompThis = GameObj<KPRotateComp & RotateComp>;
 
-export default function rotate(k: KAPLAYCtx, angle?: number): KPRotateComp {
+export default function rotate(k: KAPLAYCtx, angle = 0): KPRotateComp {
   return {
     id: "kpRotate",
-    kpAngle: angle ?? 0,
 
-    kpRotateBy(this: RotateCompThis, angle: number) {
-      this.kpAngle += angle;
+    getKPAngle(this: RotateCompThis) {
+      const bodyComp = this.c("kpBody") as KPBodyComp | null;
+
+      if (bodyComp && bodyComp.body) {
+        return bodyComp.body.getAngle();
+      }
+
+      return k.deg2rad(this.angle);
+    },
+    setKPAngle(this: RotateCompThis, angle: number) {
+      this.angle = k.rad2deg(angle);
 
       const bodyComp = this.c("kpBody") as KPBodyComp | null;
 
-      if (bodyComp) {
-        if (!bodyComp.body) return;
-
-        bodyComp.body.setTransform(bodyComp.body.getPosition(), angle);
+      if (bodyComp && bodyComp.body) {
+        bodyComp.body.setAngle(angle);
       }
     },
-    kpRotateTo(this: RotateCompThis, angle) {
-      this.kpAngle = angle;
 
-      const bodyComp = this.c("kpBody") as KPBodyComp | null;
-
-      if (bodyComp) {
-        if (!bodyComp.body) return;
-
-        bodyComp.body.setTransform(bodyComp.body.getPosition(), angle);
-      }
+    kpRotateBy(this: RotateCompThis, angle: number) {
+      this.setKPAngle(this.getKPAngle() + angle);
+    },
+    kpRotateTo(this: RotateCompThis, angle: number) {
+      this.setKPAngle(angle);
     },
 
     add(this: RotateCompThis) {
       this.use(k.rotate());
 
-      const rotateComp = this.c("rotate") as RotateComp | null;
-
-      if (rotateComp) {
-        rotateComp.angle = this.kpAngle;
-      }
-    },
-    update(this: RotateCompThis) {
-      const rotateComp = this.c("rotate") as RotateComp | null;
-
-      if (rotateComp) {
-        rotateComp.angle = k.rad2deg(this.kpAngle);
-      }
+      this.angle = k.rad2deg(angle);
     },
   };
 }
