@@ -7,6 +7,15 @@ import { KPShapesComp } from "./Shapes";
 
 export interface KPFixturesComp extends Comp {
   fixtures: Fixture[];
+
+  getDensity(index: number): number;
+  getFriction(index: number): number;
+  getRestitution(index: number): number;
+  isSensor(index: number): boolean;
+  setDensity(index: number, density: number): void;
+  setFriction(index: number, friction: number): void;
+  setRestitution(index: number, restitution: number): void;
+  setSensor(index: number, flag: boolean): void;
 }
 
 type FixturesThis = GameObj<KPFixturesComp & KPBodyComp & KPShapesComp>;
@@ -16,6 +25,31 @@ export default function fixtures(defs: KPFixtureDef[]): KPFixturesComp {
     id: "kpFixtures",
     require: ["kpBody", "kpShapes"],
     fixtures: [],
+
+    getDensity(index: number) {
+      return this.fixtures[index].getDensity();
+    },
+    getFriction(index: number) {
+      return this.fixtures[index].getFriction();
+    },
+    getRestitution(index: number) {
+      return this.fixtures[index].getRestitution();
+    },
+    isSensor(index: number) {
+      return this.fixtures[index].isSensor();
+    },
+    setDensity(index: number, density: number) {
+      return this.fixtures[index].setDensity(density);
+    },
+    setFriction(index: number, friction: number) {
+      return this.fixtures[index].setFriction(friction);
+    },
+    setRestitution(index: number, restitution: number) {
+      return this.fixtures[index].setRestitution(restitution);
+    },
+    setSensor(index: number, flag: boolean) {
+      return this.fixtures[index].setSensor(flag);
+    },
 
     add(this: FixturesThis) {
       if (!this.body) throw new Error("kpBody is required");
