@@ -33,7 +33,7 @@ import type {
   KPFixtureComp,
   KPPosComp,
 } from "../lib";
-import { addScenesButtons, type KAPLANCKCtx } from "./shared";
+import { addScenesButtons, type KAPLANCKCtx } from "../shared";
 
 interface UserData {
   gameObj: GameObj;

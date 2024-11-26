@@ -32,10 +32,6 @@ export default function fixtures(defs: KPFixtureDef[]): KPFixturesComp {
         const fixture = this.body.createFixture({
           ...def,
           shape: this.shapes[i],
-          userData: {
-            ...def.userData,
-            gameObj: this,
-          },
         });
 
         this.fixtures.push(fixture);

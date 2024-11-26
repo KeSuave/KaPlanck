@@ -1,8 +1,6 @@
+import { checks, examples } from "./shared";
+
 import kaplay from "kaplay";
-import eightBallScene from "./examples/8-Ball";
-import addPairScene from "./examples/AddPair";
-import applyForceScene from "./examples/ApplyForce";
-import sampleScene from "./examples/Sample";
 import KaPlanckPlugin from "./lib";
 
 const k = kaplay({
@@ -15,11 +13,21 @@ const k = kaplay({
   ],
   debug: true,
   debugKey: "d",
+  logTime: 30,
 });
 
-k.scene("sample", sampleScene(k));
-k.scene("eightBall", eightBallScene(k));
-k.scene("addPair", addPairScene(k));
-k.scene("applyForce", applyForceScene(k));
+examples.forEach((example) => {
+  k.scene(example[0], example[1](k));
+});
 
-k.go("sample");
+checks.forEach((check) => {
+  k.scene(check[0], check[1](k));
+});
+
+let startingScene = localStorage.getItem("KaPlanck.lastVisitedScene");
+
+if (!startingScene) {
+  startingScene = examples[0][0];
+}
+
+k.go(startingScene);

@@ -6,24 +6,996 @@
 
 ## Properties
 
-### body
+| Property | Type | Description |
+| ------ | ------ | ------ |
+| `body` | `null` \| `Body` | The physics body associated with the game object. |
+| `collisionIgnore` | `string`[] | Tags of other components that this body should ignore collisions with. |
 
-> **body**: `null` \| `Body`
+## Methods
+
+### applyAngularImpulse()
+
+> **applyAngularImpulse**(`impulse`, `wake`?): `void`
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `impulse` | `number` |
+| `wake`? | `boolean` |
+
+#### Returns
+
+`void`
 
 ***
 
-### inspectColor
+### applyForce()
 
-> **inspectColor**: `object`
+> **applyForce**(`force`, `point`, `wake`?): `void`
 
-#### b
+#### Parameters
 
-> **b**: `number`
+| Parameter | Type |
+| ------ | ------ |
+| `force` | `Vec2Value` |
+| `point` | `Vec2Value` |
+| `wake`? | `boolean` |
 
-#### g
+#### Returns
 
-> **g**: `number`
+`void`
 
-#### r
+***
 
-> **r**: `number`
+### applyForceToCenter()
+
+> **applyForceToCenter**(`force`, `wake`?): `void`
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `force` | `Vec2Value` |
+| `wake`? | `boolean` |
+
+#### Returns
+
+`void`
+
+***
+
+### applyLinearImpulse()
+
+> **applyLinearImpulse**(`impulse`, `point`, `wake`?): `void`
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `impulse` | `Vec2Value` |
+| `point` | `Vec2Value` |
+| `wake`? | `boolean` |
+
+#### Returns
+
+`void`
+
+***
+
+### applyTorque()
+
+> **applyTorque**(`torque`, `wake`?): `void`
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `torque` | `number` |
+| `wake`? | `boolean` |
+
+#### Returns
+
+`void`
+
+***
+
+### checkContact()
+
+> **checkContact**(`other`): `null` \| `Contact`
+
+Checks if this game object is colliding with another game object.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `other` | `GameObj` | The other game object to check for collision with. |
+
+#### Returns
+
+`null` \| `Contact`
+
+The contact information if colliding, otherwise null.
+
+***
+
+### getAngularDamping()
+
+> **getAngularDamping**(): `number`
+
+#### Returns
+
+`number`
+
+***
+
+### getAngularVelocity()
+
+> **getAngularVelocity**(): `number`
+
+#### Returns
+
+`number`
+
+***
+
+### getBodyType()
+
+> **getBodyType**(): `BodyType`
+
+#### Returns
+
+`BodyType`
+
+***
+
+### getContactList()
+
+> **getContactList**(): `null` \| `ContactEdge`
+
+#### Returns
+
+`null` \| `ContactEdge`
+
+***
+
+### getFixtureList()
+
+> **getFixtureList**(): `null` \| `Fixture`
+
+#### Returns
+
+`null` \| `Fixture`
+
+***
+
+### getGravityScale()
+
+> **getGravityScale**(): `number`
+
+#### Returns
+
+`number`
+
+***
+
+### getInertia()
+
+> **getInertia**(): `number`
+
+#### Returns
+
+`number`
+
+***
+
+### getJointList()
+
+> **getJointList**(): `null` \| `JointEdge`
+
+#### Returns
+
+`null` \| `JointEdge`
+
+***
+
+### getLinearDamping()
+
+> **getLinearDamping**(): `number`
+
+#### Returns
+
+`number`
+
+***
+
+### getLinearVelocity()
+
+> **getLinearVelocity**(): `Vec2`
+
+#### Returns
+
+`Vec2`
+
+***
+
+### getLinearVelocityFromLocalPoint()
+
+> **getLinearVelocityFromLocalPoint**(`localPoint`): `Vec2`
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `localPoint` | `Vec2Value` |
+
+#### Returns
+
+`Vec2`
+
+***
+
+### getLinearVelocityFromWorldPoint()
+
+> **getLinearVelocityFromWorldPoint**(`worldPoint`): `Vec2`
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `worldPoint` | `Vec2Value` |
+
+#### Returns
+
+`Vec2`
+
+***
+
+### getLocalCenter()
+
+> **getLocalCenter**(): `Vec2`
+
+#### Returns
+
+`Vec2`
+
+***
+
+### getLocalPoint()
+
+> **getLocalPoint**(`worldPoint`): `Vec2`
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `worldPoint` | `Vec2Value` |
+
+#### Returns
+
+`Vec2`
+
+***
+
+### getLocalVector()
+
+> **getLocalVector**(`worldVector`): `Vec2`
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `worldVector` | `Vec2Value` |
+
+#### Returns
+
+`Vec2`
+
+***
+
+### getMass()
+
+> **getMass**(): `number`
+
+#### Returns
+
+`number`
+
+***
+
+### getMassData()
+
+> **getMassData**(`data`): `void`
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `data` | `MassData` |
+
+#### Returns
+
+`void`
+
+***
+
+### getNextBody()
+
+> **getNextBody**(): `null` \| `Body`
+
+#### Returns
+
+`null` \| `Body`
+
+***
+
+### getTransform()
+
+> **getTransform**(): `Transform`
+
+#### Returns
+
+`Transform`
+
+***
+
+### getWorldCenter()
+
+> **getWorldCenter**(): `Vec2`
+
+#### Returns
+
+`Vec2`
+
+***
+
+### getWorldPoint()
+
+> **getWorldPoint**(`localPoint`): `Vec2`
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `localPoint` | `Vec2Value` |
+
+#### Returns
+
+`Vec2`
+
+***
+
+### getWorldVector()
+
+> **getWorldVector**(`localVector`): `Vec2`
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `localVector` | `Vec2Value` |
+
+#### Returns
+
+`Vec2`
+
+***
+
+### hasPoint()
+
+> **hasPoint**(`point`): `boolean`
+
+Checks if the body contains a specific point.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `point` | `Vec2Value` | The point to check for containment within the body. |
+
+#### Returns
+
+`boolean`
+
+True if the point is inside the body, false otherwise.
+
+***
+
+### isActive()
+
+> **isActive**(): `boolean`
+
+#### Returns
+
+`boolean`
+
+***
+
+### isAwake()
+
+> **isAwake**(): `boolean`
+
+#### Returns
+
+`boolean`
+
+***
+
+### isBullet()
+
+> **isBullet**(): `boolean`
+
+#### Returns
+
+`boolean`
+
+***
+
+### isClicked()
+
+> **isClicked**(): `boolean`
+
+Check if the mouse has clicked on this body.
+
+#### Returns
+
+`boolean`
+
+***
+
+### isColliding()
+
+> **isColliding**(`other`): `boolean`
+
+Checks if this game object is colliding with another game object.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `other` | `GameObj` | The other game object to check for collision with. |
+
+#### Returns
+
+`boolean`
+
+True if colliding, false otherwise.
+
+***
+
+### isDynamic()
+
+> **isDynamic**(): `boolean`
+
+#### Returns
+
+`boolean`
+
+***
+
+### isFixedRotation()
+
+> **isFixedRotation**(): `boolean`
+
+#### Returns
+
+`boolean`
+
+***
+
+### isHovering()
+
+> **isHovering**(): `boolean`
+
+Check if the mouse is hovering over this body.
+
+#### Returns
+
+`boolean`
+
+***
+
+### isKinematic()
+
+> **isKinematic**(): `boolean`
+
+#### Returns
+
+`boolean`
+
+***
+
+### isOverlapping()
+
+> **isOverlapping**(`other`): `boolean`
+
+Checks if this game object overlaps with another game object.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `other` | `GameObj` | The other game object to check for overlap with. |
+
+#### Returns
+
+`boolean`
+
+True if overlapping, false otherwise.
+
+***
+
+### isSleepingAllowed()
+
+> **isSleepingAllowed**(): `boolean`
+
+#### Returns
+
+`boolean`
+
+***
+
+### isStatic()
+
+> **isStatic**(): `boolean`
+
+#### Returns
+
+`boolean`
+
+***
+
+### isWorldLocked()
+
+> **isWorldLocked**(): `boolean`
+
+#### Returns
+
+`boolean`
+
+***
+
+### onClick()
+
+> **onClick**(`action`, `btn`?): `KEventController`
+
+Add an action to be executed when this body is clicked.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `action` | () => `void` | The action to execute. |
+| `btn`? | `MouseButton` | The mouse button that was used to click (default: MouseButton.LEFT). |
+
+#### Returns
+
+`KEventController`
+
+A controller for managing the event.
+
+***
+
+### onCollide()
+
+#### onCollide(tag, action)
+
+> **onCollide**(`tag`, `action`): `void`
+
+Add an action to be executed when this game object starts colliding with another game object
+containing a specific tag.
+
+##### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `tag` | `string` | The tag of the other game object to listen for collisions with. |
+| `action` | (`obj`, `col`?) => `void` | The action to execute when a collision starts. |
+
+##### Returns
+
+`void`
+
+#### onCollide(action)
+
+> **onCollide**(`action`): `void`
+
+Add an action to be executed when this game object starts colliding with another game object.
+
+##### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `action` | (`obj`, `col`?) => `void` | The action to execute when a collision starts. |
+
+##### Returns
+
+`void`
+
+***
+
+### onCollideEnd()
+
+#### onCollideEnd(tag, action)
+
+> **onCollideEnd**(`tag`, `action`): `void`
+
+Add an action to be executed when this game object ends colliding with another game object
+containing a specific tag.
+
+##### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `tag` | `string` | The tag of the other game object to listen for collisions with. |
+| `action` | (`obj`, `col`?) => `void` | The action to execute when a collision ends. |
+
+##### Returns
+
+`void`
+
+#### onCollideEnd(action)
+
+> **onCollideEnd**(`action`): `void`
+
+Add an action to be executed when this game object ends colliding with another game object
+containing a specific tag.
+
+##### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `action` | (`obj`, `col`?) => `void` | The action to execute when a collision ends. |
+
+##### Returns
+
+`void`
+
+***
+
+### onCollideUpdate()
+
+#### onCollideUpdate(tag, action)
+
+> **onCollideUpdate**(`tag`, `action`): `void`
+
+Add an action to be executed every frame when this game object starts colliding
+with another game object containing a specific tag.
+
+##### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `tag` | `string` | The tag of the other game object to listen for collisions with. |
+| `action` | (`obj`, `col`?) => `void` | The action to execute every frame. |
+
+##### Returns
+
+`void`
+
+#### onCollideUpdate(action)
+
+> **onCollideUpdate**(`action`): `void`
+
+Add an action to be executed every frame when this game object starts colliding
+with another game object.
+
+##### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `action` | (`obj`, `col`?) => `void` | The action to execute every frame. |
+
+##### Returns
+
+`void`
+
+***
+
+### onHover()
+
+> **onHover**(`action`): `KEventController`
+
+Add an action to be executed when the mouse starts hovering over this body.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `action` | () => `void` | The action to execute. |
+
+#### Returns
+
+`KEventController`
+
+A controller for managing the event.
+
+***
+
+### onHoverEnd()
+
+> **onHoverEnd**(`action`): `KEventController`
+
+Add an action to be executed when the mouse stops hovering over this body.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `action` | () => `void` | The action to execute. |
+
+#### Returns
+
+`KEventController`
+
+A controller for managing the event.
+
+***
+
+### onHoverUpdate()
+
+> **onHoverUpdate**(`action`): `KEventController`
+
+Add an action to be executed when the mouse updates its position while hovering over this body.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `action` | () => `void` | The action to execute. |
+
+#### Returns
+
+`KEventController`
+
+A controller for managing the event.
+
+***
+
+### resetMassData()
+
+> **resetMassData**(): `void`
+
+#### Returns
+
+`void`
+
+***
+
+### setActive()
+
+> **setActive**(`flag`): `void`
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `flag` | `boolean` |
+
+#### Returns
+
+`void`
+
+***
+
+### setAngularDamping()
+
+> **setAngularDamping**(`damping`): `void`
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `damping` | `number` |
+
+#### Returns
+
+`void`
+
+***
+
+### setAngularVelocity()
+
+> **setAngularVelocity**(`velocity`): `void`
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `velocity` | `number` |
+
+#### Returns
+
+`void`
+
+***
+
+### setAwake()
+
+> **setAwake**(`flag`): `void`
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `flag` | `boolean` |
+
+#### Returns
+
+`void`
+
+***
+
+### setBullet()
+
+> **setBullet**(`flag`): `void`
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `flag` | `boolean` |
+
+#### Returns
+
+`void`
+
+***
+
+### setDynamic()
+
+> **setDynamic**(): `Body`
+
+#### Returns
+
+`Body`
+
+***
+
+### setFixedRotation()
+
+> **setFixedRotation**(`flag`): `void`
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `flag` | `boolean` |
+
+#### Returns
+
+`void`
+
+***
+
+### setGravityScale()
+
+> **setGravityScale**(`scale`): `void`
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `scale` | `number` |
+
+#### Returns
+
+`void`
+
+***
+
+### setKinematic()
+
+> **setKinematic**(): `Body`
+
+#### Returns
+
+`Body`
+
+***
+
+### setLinearDamping()
+
+> **setLinearDamping**(`damping`): `void`
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `damping` | `number` |
+
+#### Returns
+
+`void`
+
+***
+
+### setLinearVelocity()
+
+> **setLinearVelocity**(`velocity`): `void`
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `velocity` | `Vec2Value` |
+
+#### Returns
+
+`void`
+
+***
+
+### setMassData()
+
+> **setMassData**(`data`): `void`
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `data` | `MassData` |
+
+#### Returns
+
+`void`
+
+***
+
+### setSleepingAllowed()
+
+> **setSleepingAllowed**(`flag`): `void`
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `flag` | `boolean` |
+
+#### Returns
+
+`void`
+
+***
+
+### setStatic()
+
+> **setStatic**(): `Body`
+
+#### Returns
+
+`Body`
+
+***
+
+### setTransform()
+
+> **setTransform**(`position`, `angle`): `void`
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `position` | `Vec2Value` |
+| `angle` | `number` |
+
+#### Returns
+
+`void`
+
+***
+
+### setType()
+
+> **setType**(`type`): `void`
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `type` | `BodyType` |
+
+#### Returns
+
+`void`

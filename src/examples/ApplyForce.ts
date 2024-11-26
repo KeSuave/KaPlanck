@@ -23,7 +23,7 @@
 
 import { FrictionJoint, Transform, Vec2 } from "planck";
 import { KPFixtureDef } from "../lib";
-import { addScenesButtons, type KAPLANCKCtx } from "./shared";
+import { addScenesButtons, type KAPLANCKCtx } from "../shared";
 
 const applyForceScene = (k: KAPLANCKCtx) => () => {
   const scene = k.add([]);

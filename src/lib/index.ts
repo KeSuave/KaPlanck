@@ -6,7 +6,7 @@ export default KaPlanckPlugin;
 export type { KaPlanckPluginCtx, KaPlanckPluginOpts } from "./plugin";
 
 // export all components' types
-export type { KPBodyComp } from "./components/Body";
+export type { KPBodyComp, KPBodyDef } from "./components/Body";
 export type {
   KPBoxShapeComp,
   KPBoxShapeOpt as KPBoxShapeCompOpts,

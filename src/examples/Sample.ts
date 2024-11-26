@@ -2,7 +2,7 @@ import type { KPShapeComp, KPWorldComp } from "../lib";
 
 import type { GameObj } from "kaplay";
 import { Vec2 } from "planck";
-import { addScenesButtons, type KAPLANCKCtx } from "./shared";
+import { addScenesButtons, type KAPLANCKCtx } from "../shared";
 
 const sampleScene = (k: KAPLANCKCtx) => () => {
   const scene = k.add([]);
@@ -43,7 +43,6 @@ const sampleScene = (k: KAPLANCKCtx) => () => {
   worldContainer.onKeyDown("c", () => addShape("circle", worldContainer, k));
   worldContainer.onKeyDown("p", () => addShape("poly", worldContainer, k));
   worldContainer.onKeyDown("r", () => addRandomShape(worldContainer, k));
-  worldContainer.onMouseDown(() => addRandomShape(worldContainer, k));
 
   scene.add([
     k.pos(10, 10),

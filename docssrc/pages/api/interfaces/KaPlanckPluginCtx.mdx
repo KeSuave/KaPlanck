@@ -6,25 +6,23 @@
 
 > **k2pVec2**(`vec`): `Vec2`
 
-Converts a vector from Plack Vector to KaPlay Vector.
+Converts a vector from KaPlay Vector to Planck Vector.
 
 #### Parameters
 
-• **vec**: `Vec2`
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `vec` | `Vec2` | A KaPlay vector. |
 
 #### Returns
 
 `Vec2`
 
-#### Memberof
-
-KaPlanckPlugin
-
 ***
 
 ### kpBody()
 
-> **kpBody**(`def`?): [`KPBodyComp`](/api/interfaces/KPBodyComp)
+> **kpBody**(`def`?, `collisionIgnore`?): [`KPBodyComp`](/api/interfaces/KPBodyComp)
 
 Adds a body to the physics world.
 
@@ -34,15 +32,14 @@ Requires `kpRotate`.
 
 #### Parameters
 
-• **def?**: `Omit`\<`BodyDef`, `"angle"` \| `"position"`\>
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `def`? | [`KPBodyDef`](/api/type-aliases/KPBodyDef) | The definition of the body. |
+| `collisionIgnore`? | `string`[] | Tags to ignore collisions with this body |
 
 #### Returns
 
 [`KPBodyComp`](/api/interfaces/KPBodyComp)
-
-#### Memberof
-
-KaPlanckPlugin
 
 ***
 
@@ -54,15 +51,13 @@ Defines the geometry of a body.
 
 #### Parameters
 
-• **opt**: [`KPBoxShapeCompOpts`](/api/interfaces/KPBoxShapeCompOpts)
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `opt` | [`KPBoxShapeCompOpts`](/api/interfaces/KPBoxShapeCompOpts) | The options for the box shape. |
 
 #### Returns
 
 [`KPBoxShapeComp`](/api/interfaces/KPBoxShapeComp)
-
-#### Memberof
-
-KaPlanckPlugin
 
 ***
 
@@ -76,10 +71,6 @@ Returns the center of the canvas in unit.
 
 `Vec2`
 
-#### Memberof
-
-KaPlanckPlugin
-
 ***
 
 ### kpChainShape()
@@ -90,15 +81,13 @@ Defines the geometry of a body.
 
 #### Parameters
 
-• **opt?**: [`KPChainShapeCompOpt`](/api/interfaces/KPChainShapeCompOpt)
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `opt`? | [`KPChainShapeCompOpt`](/api/interfaces/KPChainShapeCompOpt) | The options for the chain shape. |
 
 #### Returns
 
 [`KPChainShapeComp`](/api/interfaces/KPChainShapeComp)
-
-#### Memberof
-
-KaPlanckPlugin
 
 ***
 
@@ -110,15 +99,13 @@ Defines the geometry of a body.
 
 #### Parameters
 
-• **opt?**: [`KPCircleShapeCompOpt`](/api/interfaces/KPCircleShapeCompOpt)
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `opt`? | [`KPCircleShapeCompOpt`](/api/interfaces/KPCircleShapeCompOpt) | The options for the circle shape. |
 
 #### Returns
 
 [`KPCircleShapeComp`](/api/interfaces/KPCircleShapeComp)
-
-#### Memberof
-
-KaPlanckPlugin
 
 ***
 
@@ -130,15 +117,13 @@ Defines the geometry of a body.
 
 #### Parameters
 
-• **opt?**: [`KPEdgeShapeCompOpt`](/api/interfaces/KPEdgeShapeCompOpt)
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `opt`? | [`KPEdgeShapeCompOpt`](/api/interfaces/KPEdgeShapeCompOpt) | The options for the edge shape. |
 
 #### Returns
 
 [`KPEdgeShapeComp`](/api/interfaces/KPEdgeShapeComp)
-
-#### Memberof
-
-KaPlanckPlugin
 
 ***
 
@@ -148,21 +133,20 @@ KaPlanckPlugin
 
 Creates a fixture.
 
-**IMPORTANT**: cannot be added before `kpBody`
+**IMPORTANT**: cannot be added before `kpBody`.
+
 Requires `kpBody`.
-Requires a shape
+Requires a shape.
 
 #### Parameters
 
-• **def?**: [`KPFixtureDef`](/api/interfaces/KPFixtureDef)
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `def`? | [`KPFixtureDef`](/api/type-aliases/KPFixtureDef) | The definition of the fixture. |
 
 #### Returns
 
 [`KPFixtureComp`](/api/interfaces/KPFixtureComp)
-
-#### Memberof
-
-KaPlanckPlugin
 
 ***
 
@@ -172,21 +156,20 @@ KaPlanckPlugin
 
 Adds multiple fixtures to a body.
 
-**IMPORTANT**: cannot be added before `kpBody`
+**IMPORTANT**: cannot be added before `kpBody`.
+
 Requires `kpBody`.
-Requires `kpShapes` with the same amount of shapes as fixtures
+Requires `kpShapes` with the same amount of shapes as fixtures.
 
 #### Parameters
 
-• **defs**: [`KPFixtureDef`](/api/interfaces/KPFixtureDef)[]
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `defs` | [`KPFixtureDef`](/api/type-aliases/KPFixtureDef)[] | The definitions of the fixtures. |
 
 #### Returns
 
 `KPFixturesComp`
-
-#### Memberof
-
-KaPlanckPlugin
 
 ***
 
@@ -200,10 +183,6 @@ Returns the mouse position in unit.
 
 `Vec2`
 
-#### Memberof
-
-KaPlanckPlugin
-
 ***
 
 ### kpPolygonShape()
@@ -214,15 +193,13 @@ Defines the geometry of a body.
 
 #### Parameters
 
-• **opt?**: [`KPPolygonShapeCompOpt`](/api/interfaces/KPPolygonShapeCompOpt)
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `opt`? | [`KPPolygonShapeCompOpt`](/api/interfaces/KPPolygonShapeCompOpt) | The options for the polygon shape. |
 
 #### Returns
 
 [`KPPolygonShapeComp`](/api/interfaces/KPPolygonShapeComp)
-
-#### Memberof
-
-KaPlanckPlugin
 
 ***
 
@@ -238,19 +215,16 @@ Sets the position of a body.
 
 ##### Parameters
 
-• **x**: `number`
-
-• **y**: `number`
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `x` | `number` | The x coordinate of the body's position. |
+| `y` | `number` | The y coordinate of the body's position. |
 
 ##### Returns
 
 [`KPPosComp`](/api/interfaces/KPPosComp)
 
 A position component that works with KaPlanckPlugin methods.
-
-##### Memberof
-
-KaPlanckPlugin
 
 #### kpPos(obj)
 
@@ -262,17 +236,15 @@ Sets the position of a body.
 
 ##### Parameters
 
-• **obj**: `Vec2Value`
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `obj` | `Vec2Value` | An object containing the position values. |
 
 ##### Returns
 
 [`KPPosComp`](/api/interfaces/KPPosComp)
 
 A position component that works with KaPlanckPlugin methods.
-
-##### Memberof
-
-KaPlanckPlugin
 
 #### kpPos(vec)
 
@@ -284,17 +256,15 @@ Sets the position of a body.
 
 ##### Parameters
 
-• **vec**: `Vec2`
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `vec` | `Vec2` | A vector containing the position values. |
 
 ##### Returns
 
 [`KPPosComp`](/api/interfaces/KPPosComp)
 
 A position component that works with KaPlanckPlugin methods.
-
-##### Memberof
-
-KaPlanckPlugin
 
 ***
 
@@ -308,17 +278,15 @@ Sets the rotation of a body.
 
 #### Parameters
 
-• **angle?**: `number`
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `angle`? | `number` | The angle in radians to set the rotation of the body. |
 
 #### Returns
 
 [`KPRotateComp`](/api/interfaces/KPRotateComp)
 
 A rotation component that works with KaPlanckPlugin methods.
-
-#### Memberof
-
-KaPlanckPlugin
 
 ***
 
@@ -330,15 +298,13 @@ Defines multiple shapes for a body.
 
 #### Parameters
 
-• **defs**: `KPShapeDef`[]
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `defs` | `KPShapeDef`[] | The definitions of the shapes. |
 
 #### Returns
 
 `KPShapesComp`
-
-#### Memberof
-
-KaPlanckPlugin
 
 ***
 
@@ -350,17 +316,15 @@ Sets the physics world.
 
 #### Parameters
 
-• **def?**: `null` \| `Vec2` \| `WorldDef`
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `def`? | `null` \| `WorldDef` \| `Vec2` | The definition of the physics world or a vector for gravity. |
 
 #### Returns
 
 [`KPWorldComp`](/api/interfaces/KPWorldComp)
 
 A world component that works with KaPlanckPlugin methods.
-
-#### Memberof
-
-KaPlanckPlugin
 
 ***
 
@@ -374,23 +338,16 @@ Requires objects with `kpFixture` or `kpFixtures` components.
 
 #### Parameters
 
-• **tagA**: `string`
-
-• **tagB**: `string`
-
-• **action**
-
-• **worldContainer?**: `GameObj`\<[`KPWorldComp`](/api/interfaces/KPWorldComp)\>
-
-If not provided, the first object with `kpObj` will be used.
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `tagA` | `string` | The tag of an object to listen for collisions. |
+| `tagB` | `string` | The tag of another object to listen for collisions. |
+| `action` | (`objA`, `objB`, `contact`?) => `void` |  |
+| `worldContainer`? | `GameObj`\<[`KPWorldComp`](/api/interfaces/KPWorldComp)\> | If not provided, the first object with `kpObj` will be used. |
 
 #### Returns
 
 `void`
-
-#### Memberof
-
-KaPlanckPlugin
 
 ***
 
@@ -403,23 +360,16 @@ Requires an object with the `kpWorld` component.
 
 #### Parameters
 
-• **tagA**: `string`
-
-• **tagB**: `string`
-
-• **action**
-
-• **worldContainer?**: `GameObj`\<[`KPWorldComp`](/api/interfaces/KPWorldComp)\>
-
-If not provided, the first object with `kpWorld` will be used.
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `tagA` | `string` | The tag of an object to listen for collisions. |
+| `tagB` | `string` | The tag of another object to listen for collisions. |
+| `action` | (`objA`, `objB`, `contact`?) => `void` |  |
+| `worldContainer`? | `GameObj`\<[`KPWorldComp`](/api/interfaces/KPWorldComp)\> | If not provided, the first object with `kpWorld` will be used. |
 
 #### Returns
 
 `void`
-
-#### Memberof
-
-KaPlanckPlugin
 
 ***
 
@@ -433,23 +383,16 @@ Requires objects with `kpFixture` or `kpFixtures` components.
 
 #### Parameters
 
-• **tagA**: `string`
-
-• **tagB**: `string`
-
-• **action**
-
-• **worldContainer?**: `GameObj`\<[`KPWorldComp`](/api/interfaces/KPWorldComp)\>
-
-If not provided, the first object with `kpWorld` will be used.
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `tagA` | `string` | The tag of an object to listen for collisions. |
+| `tagB` | `string` | The tag of another object to listen for collisions. |
+| `action` | (`objA`, `objB`, `contact`?) => `void` |  |
+| `worldContainer`? | `GameObj`\<[`KPWorldComp`](/api/interfaces/KPWorldComp)\> | If not provided, the first object with `kpWorld` will be used. |
 
 #### Returns
 
 `void`
-
-#### Memberof
-
-KaPlanckPlugin
 
 ***
 
@@ -457,19 +400,17 @@ KaPlanckPlugin
 
 > **p2kVec2**(`vec`): `Vec2`
 
-Converts a vector from KaPlay Vector to Plack Vector.
+Converts a vector from Planck Vector to KaPlay Vector.
 
 #### Parameters
 
-• **vec**: `Vec2`
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `vec` | `Vec2` | A Planck vector. |
 
 #### Returns
 
 `Vec2`
-
-#### Memberof
-
-KaPlanckPlugin
 
 ***
 
@@ -481,15 +422,13 @@ Converts pixel to unit.
 
 #### Parameters
 
-• **p**: `number`
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `p` | `number` | The pixel value. |
 
 #### Returns
 
 `number`
-
-#### Memberof
-
-KaPlanckPlugin
 
 ***
 
@@ -501,12 +440,10 @@ Converts unit to pixel.
 
 #### Parameters
 
-• **m**: `number`
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `m` | `number` | The unit value. |
 
 #### Returns
 
 `number`
-
-#### Memberof
-
-KaPlanckPlugin

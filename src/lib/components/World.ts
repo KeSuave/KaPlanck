@@ -1,8 +1,8 @@
 import type { Comp, GameObj, KAPLAYCtx } from "kaplay";
 import type { Contact, Vec2, WorldDef } from "planck";
 
-import type { KPFixtureUserData } from "./Fixture";
 import { World } from "planck";
+import { KPBodyUserData } from "./Body";
 
 export interface KPWorldComp extends Comp {
   world: World;
@@ -33,29 +33,57 @@ export default function world(
 
     add(this: KPWorldCompThis) {
       this.world.on("begin-contact", (contact) => {
-        const a = contact.getFixtureA().getUserData() as KPFixtureUserData;
-        const b = contact.getFixtureB().getUserData() as KPFixtureUserData;
+        const a = contact
+          .getFixtureA()
+          .getBody()
+          .getUserData() as KPBodyUserData;
+        const b = contact
+          .getFixtureB()
+          .getBody()
+          .getUserData() as KPBodyUserData;
+
         if (a && b) {
           this.trigger("contactBegin", a.gameObj, b.gameObj, contact);
         }
       });
       this.world.on("end-contact", (contact) => {
-        const a = contact.getFixtureA().getUserData() as KPFixtureUserData;
-        const b = contact.getFixtureB().getUserData() as KPFixtureUserData;
+        const a = contact
+          .getFixtureA()
+          .getBody()
+          .getUserData() as KPBodyUserData;
+        const b = contact
+          .getFixtureB()
+          .getBody()
+          .getUserData() as KPBodyUserData;
+
         if (a && b) {
           this.trigger("contactEnd", a.gameObj, b.gameObj, contact);
         }
       });
       this.world.on("pre-solve", (contact) => {
-        const a = contact.getFixtureA().getUserData() as KPFixtureUserData;
-        const b = contact.getFixtureB().getUserData() as KPFixtureUserData;
+        const a = contact
+          .getFixtureA()
+          .getBody()
+          .getUserData() as KPBodyUserData;
+        const b = contact
+          .getFixtureB()
+          .getBody()
+          .getUserData() as KPBodyUserData;
+
         if (a && b) {
           this.trigger("contactPreSolve", a.gameObj, b.gameObj, contact);
         }
       });
       this.world.on("post-solve", (contact) => {
-        const a = contact.getFixtureA().getUserData() as KPFixtureUserData;
-        const b = contact.getFixtureB().getUserData() as KPFixtureUserData;
+        const a = contact
+          .getFixtureA()
+          .getBody()
+          .getUserData() as KPBodyUserData;
+        const b = contact
+          .getFixtureB()
+          .getBody()
+          .getUserData() as KPBodyUserData;
+
         if (a && b) {
           this.trigger("contactPostSolve", a.gameObj, b.gameObj, contact);
         }

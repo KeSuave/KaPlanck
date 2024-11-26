@@ -1,13 +1,12 @@
 import type { GameObj, KAPLAYCtx, Vec2 as KaVec2, Tag } from "kaplay";
 import {
   Settings,
-  type BodyDef,
   type Contact,
   type Vec2,
   type Vec2Value,
   type WorldDef,
 } from "planck";
-import body, { type KPBodyComp } from "./components/Body";
+import body, { type KPBodyComp, type KPBodyDef } from "./components/Body";
 import boxShape, {
   type KPBoxShapeComp,
   type KPBoxShapeOpt,
@@ -106,28 +105,30 @@ export interface KaPlanckPluginCtx {
    * Requires `kpPos`.
    * Requires `kpRotate`.
    *
-   * @param {(Omit<BodyDef, "position" | "angle">)} [def] The definition of the body.
+   * @param {(KPBodyDef)} [def] The definition of the body.
+   * @param {Tag[]} collisionIgnore - Tags to ignore collisions with this body
    * @return {KPBodyComp}
    */
-  kpBody(def?: Omit<BodyDef, "position" | "angle">): KPBodyComp;
+  kpBody(def?: KPBodyDef, collisionIgnore?: Tag[]): KPBodyComp;
   /**
    * Creates a fixture.
    *
-   * **IMPORTANT**: cannot be added before `kpBody`
+   * **IMPORTANT**: cannot be added before `kpBody`.
+   *
    * Requires `kpBody`.
-   * Requires a shape
+   * Requires a shape.
    *
    * @param {KPFixtureDef} [def] The definition of the fixture.
-   * @param {Tag[]} [collisionIgnore] The tags to ignore collision with this fixture
    * @return {KPFixtureComp}
    */
-  kpFixture(def?: KPFixtureDef, collisionIgnore?: Tag[]): KPFixtureComp;
+  kpFixture(def?: KPFixtureDef): KPFixtureComp;
   /**
    * Adds multiple fixtures to a body.
    *
-   * **IMPORTANT**: cannot be added before `kpBody`
+   * **IMPORTANT**: cannot be added before `kpBody`.
+   *
    * Requires `kpBody`.
-   * Requires `kpShapes` with the same amount of shapes as fixtures
+   * Requires `kpShapes` with the same amount of shapes as fixtures.
    *
    * @param {KPFixtureDef[]} defs The definitions of the fixtures.
    * @return {KPFixturesComp}
@@ -307,11 +308,11 @@ const KaPlanckPlugin =
       kpWorld(def?: WorldDef | Vec2 | null) {
         return world(k, def);
       },
-      kpBody(bodyDef?: BodyDef) {
-        return body(bodyDef);
+      kpBody(bodyDef?: KPBodyDef, collisionIgnore?: Tag[]) {
+        return body(k, bodyDef, collisionIgnore);
       },
-      kpFixture(def?: KPFixtureDef, collisionIgnore?: Tag[]) {
-        return fixture(k, def, collisionIgnore);
+      kpFixture(def?: KPFixtureDef) {
+        return fixture(k, def);
       },
       kpFixtures(defs: KPFixtureDef[]) {
         return fixtures(defs);
@@ -349,7 +350,7 @@ const KaPlanckPlugin =
           throw new Error("No pkWorld found");
         }
 
-        eventWorldContainer.onContactPreSolve(
+        eventWorldContainer.onContactBegin(
           (objA: GameObj, objB: GameObj, contact?: Contact) => {
             if (!objA.tags.includes(tagA) && !objB.tags.includes(tagA)) return;
             if (!objA.tags.includes(tagB) && !objB.tags.includes(tagB)) return;

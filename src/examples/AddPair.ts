@@ -21,7 +21,7 @@
  * SOFTWARE.
  */
 
-import { addScenesButtons, type KAPLANCKCtx } from "./shared";
+import { addScenesButtons, type KAPLANCKCtx } from "../shared";
 
 const addPairScene = (k: KAPLANCKCtx) => () => {
   const scene = k.add([]);
