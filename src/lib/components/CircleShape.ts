@@ -2,7 +2,7 @@ import type { GameObj, KAPLAYCtx } from "kaplay";
 import { type KPShapeComp, type KPShapeOpt } from "./Shape";
 
 import { CircleShape, Vec2 } from "planck";
-import { getRenderProps, u2p } from "../utils";
+import { getRenderProps, p2kVec2, u2p } from "../utils";
 
 export interface KPCircleShapeComp extends KPShapeComp {
   shape: CircleShape;
@@ -41,6 +41,7 @@ export function drawCircleShape(
 
   k.drawCircle({
     ...renderingProps,
+    pos: p2kVec2(k, shape.getCenter()),
     radius: u2p(shape.getRadius()),
   });
 }
