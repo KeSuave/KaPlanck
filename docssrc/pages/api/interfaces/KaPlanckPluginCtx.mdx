@@ -152,7 +152,7 @@ Requires a shape.
 
 ### kpFixtures()
 
-> **kpFixtures**(`defs`): `KPFixturesComp`
+> **kpFixtures**(`defs`): [`KPFixturesComp`](/api/interfaces/KPFixturesComp)
 
 Adds multiple fixtures to a body.
 
@@ -169,7 +169,7 @@ Requires `kpShapes` with the same amount of shapes as fixtures.
 
 #### Returns
 
-`KPFixturesComp`
+[`KPFixturesComp`](/api/interfaces/KPFixturesComp)
 
 ***
 
@@ -266,6 +266,20 @@ Sets the position of a body.
 
 A position component that works with KaPlanckPlugin methods.
 
+#### kpPos()
+
+> **kpPos**(): [`KPPosComp`](/api/interfaces/KPPosComp)
+
+Sets the position of a body.
+
+**IMPORTANT**: use this method instead of `pos`, it will add pos component to the entity.
+
+##### Returns
+
+[`KPPosComp`](/api/interfaces/KPPosComp)
+
+A position component that works with KaPlanckPlugin methods.
+
 ***
 
 ### kpRotate()
@@ -292,7 +306,7 @@ A rotation component that works with KaPlanckPlugin methods.
 
 ### kpShapes()
 
-> **kpShapes**(`defs`): `KPShapesComp`
+> **kpShapes**(`defs`): [`KPShapesComp`](/api/interfaces/KPShapesComp)
 
 Defines multiple shapes for a body.
 
@@ -300,11 +314,11 @@ Defines multiple shapes for a body.
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `defs` | `KPShapeDef`[] | The definitions of the shapes. |
+| `defs` | [`KPShapeDef`](/api/type-aliases/KPShapeDef)[] | The definitions of the shapes. |
 
 #### Returns
 
-`KPShapesComp`
+[`KPShapesComp`](/api/interfaces/KPShapesComp)
 
 ***
 
