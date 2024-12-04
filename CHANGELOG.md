@@ -1,3 +1,17 @@
+# [1.3.0](https://github.com/KeSuave/KaPlanck/compare/v1.2.0...v1.3.0) (2024-12-04)
+
+
+### Bug Fixes
+
+* circle drawn position ([bb4ef9b](https://github.com/KeSuave/KaPlanck/commit/bb4ef9bbb25d06aa1163335c506c9a14604e3384))
+* expose Fixtures and Shapes component types ([8a7e2cf](https://github.com/KeSuave/KaPlanck/commit/8a7e2cf607b0608eaf2f78ee98cea37b4a166c9b))
+* missing kpPos no args overload ([ae719ee](https://github.com/KeSuave/KaPlanck/commit/ae719ee122ee8b3ff2eab990d8533a379a6d8c31))
+
+
+### Features
+
+* added fixture functions ([b24bc13](https://github.com/KeSuave/KaPlanck/commit/b24bc13cedcbf9b17ad3938e06636bf8665325a5))
+
 # [1.2.0](https://github.com/KeSuave/KaPlanck/compare/v1.1.0...v1.2.0) (2024-11-26)
 
 
