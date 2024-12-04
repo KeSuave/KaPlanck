@@ -81,6 +81,14 @@ export interface KaPlanckPluginCtx {
    */
   kpPos(vec: Vec2): KPPosComp;
   /**
+   * Sets the position of a body.
+   *
+   * **IMPORTANT**: use this method instead of `pos`, it will add pos component to the entity.
+   *
+   * @return {KPPosComp} A position component that works with KaPlanckPlugin methods.
+   */
+  kpPos(): KPPosComp;
+  /**
    * Sets the rotation of a body.
    *
    * **IMPORTANT**: use this method instead of `rotate`, it will add rotate component to the entity.
