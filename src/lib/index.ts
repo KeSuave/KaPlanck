@@ -24,14 +24,21 @@ export type {
   KPEdgeShapeOpt as KPEdgeShapeCompOpt,
 } from "./components/EdgeShape";
 export type { KPFixtureComp, KPFixtureDef } from "./components/Fixture";
+export type { KPFixturesComp } from "./components/Fixtures";
 export type {
   KPPolygonShapeComp,
   KPPolygonShapeOpt as KPPolygonShapeCompOpt,
 } from "./components/PolygonShape";
 export type { KPPosComp } from "./components/Position";
 export type { KPRotateComp } from "./components/Rotate";
+export type { KPShapeComp, KPShapeOpt } from "./components/Shape";
 export type {
-  KPShapeComp,
-  KPShapeOpt as KPShapeCompOpt,
-} from "./components/Shape";
+  KPBoxDef,
+  KPChainDef,
+  KPCircleDef,
+  KPEdgeDef,
+  KPPolygonDef,
+  KPShapeDef,
+  KPShapesComp,
+} from "./components/Shapes";
 export type { KPWorldComp } from "./components/World";
