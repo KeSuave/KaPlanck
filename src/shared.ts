@@ -5,6 +5,7 @@ import eightBallScene from "./examples/8-Ball";
 import addPairScene from "./examples/AddPair";
 import applyForceScene from "./examples/ApplyForce";
 import sampleScene from "./examples/Sample";
+import tumblerScene from "./examples/Tumbler";
 import type { KaPlanckPluginCtx } from "./lib";
 
 export type KAPLANCKCtx = KAPLAYCtx & KaPlanckPluginCtx;
@@ -16,6 +17,7 @@ export const examples: [SceneName, ExampleCheckScene][] = [
   ["eightBall", eightBallScene],
   ["addPair", addPairScene],
   ["applyForce", applyForceScene],
+  ["tumbler", tumblerScene],
 ];
 
 export const checks: [SceneName, ExampleCheckScene][] = [["body", bodyScene]];
