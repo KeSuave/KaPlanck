@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/KeSuave/KaPlanck/compare/v1.3.0...v1.3.1) (2024-12-05)
+
+
+### Bug Fixes
+
+* docs and types ([a7f63b0](https://github.com/KeSuave/KaPlanck/commit/a7f63b0c0126a9e1dc082b879b7846732042f740))
+
 # [1.3.0](https://github.com/KeSuave/KaPlanck/compare/v1.2.0...v1.3.0) (2024-12-04)
 
 
