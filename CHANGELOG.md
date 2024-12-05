@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/KeSuave/KaPlanck/compare/v1.3.1...v1.3.2) (2024-12-05)
+
+
+### Bug Fixes
+
+* kaplay typo ([6041771](https://github.com/KeSuave/KaPlanck/commit/604177139fbcdce6881938856c36735ee07b02ea))
+
 ## [1.3.1](https://github.com/KeSuave/KaPlanck/compare/v1.3.0...v1.3.1) (2024-12-05)
 
 
