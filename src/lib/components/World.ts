@@ -25,7 +25,7 @@ type KPWorldCompThis = GameObj<KPWorldComp>;
 
 export default function world(
   k: KAPLAYCtx,
-  def?: WorldDef | Vec2 | null,
+  def?: WorldDef | Vec2,
 ): KPWorldComp {
   return {
     id: "kpWorld",

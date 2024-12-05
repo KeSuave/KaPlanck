@@ -11,10 +11,6 @@ export default defineConfig({
       text: "Getting Started",
       link: "/getting-started",
     },
-    /* {
-      text: "Example",
-      link: "/example",
-    }, */
     {
       text: "API Reference",
       link: "/api",

@@ -13,28 +13,24 @@ export interface KPBoxShapeOpt extends KPShapeOpt {
    * The width of the box shape.
    *
    * @type {number}
-   * @memberof KPBoxShapeOpt
    */
   width: number;
   /**
    * The height of the box shape.
    *
    * @type {number}
-   * @memberof KPBoxShapeOpt
    */
   height: number;
   /**
    * The center of the box relative to the body's origin.
    *
    * @type {Vec2Value}
-   * @memberof KPBoxShapeOpt
    */
   center?: Vec2Value;
   /**
    * The angle of the box relative to the body's angle.
    *
    * @type {number}
-   * @memberof KPBoxShapeOpt
    */
   angle?: number;
 }

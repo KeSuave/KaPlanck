@@ -1,9 +1,9 @@
 import type { Comp, GameObj } from "kaplay";
 
 import type { Fixture } from "planck";
-import { KPBodyComp } from "./Body";
-import { KPFixtureDef } from "./Fixture";
-import { KPShapesComp } from "./Shapes";
+import type { KPBodyComp } from "./Body";
+import type { KPFixtureDef } from "./Fixture";
+import type { KPShapesComp } from "./Shapes";
 
 export interface KPFixturesComp extends Comp {
   fixtures: Fixture[];

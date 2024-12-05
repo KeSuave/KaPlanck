@@ -6,28 +6,22 @@ export default KaPlanckPlugin;
 export type { KaPlanckPluginCtx, KaPlanckPluginOpts } from "./plugin";
 
 // export all components' types
-export type { KPBodyComp, KPBodyDef } from "./components/Body";
-export type {
-  KPBoxShapeComp,
-  KPBoxShapeOpt as KPBoxShapeCompOpts,
-} from "./components/BoxShape";
+export type { KPBodyComp, KPBodyDef, KPBodyUserData } from "./components/Body";
+export type { KPBoxShapeComp, KPBoxShapeOpt } from "./components/BoxShape";
 export type {
   KPChainShapeComp,
-  KPChainShapeOpt as KPChainShapeCompOpt,
+  KPChainShapeOpt,
 } from "./components/ChainShape";
 export type {
   KPCircleShapeComp,
-  KPCircleShapeOpt as KPCircleShapeCompOpt,
+  KPCircleShapeOpt,
 } from "./components/CircleShape";
-export type {
-  KPEdgeShapeComp,
-  KPEdgeShapeOpt as KPEdgeShapeCompOpt,
-} from "./components/EdgeShape";
+export type { KPEdgeShapeComp, KPEdgeShapeOpt } from "./components/EdgeShape";
 export type { KPFixtureComp, KPFixtureDef } from "./components/Fixture";
 export type { KPFixturesComp } from "./components/Fixtures";
 export type {
   KPPolygonShapeComp,
-  KPPolygonShapeOpt as KPPolygonShapeCompOpt,
+  KPPolygonShapeOpt,
 } from "./components/PolygonShape";
 export type { KPPosComp } from "./components/Position";
 export type { KPRotateComp } from "./components/Rotate";

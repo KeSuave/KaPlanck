@@ -9,12 +9,12 @@ import {
   Vec2,
   type Shape,
 } from "planck";
-import { KPBodyComp } from "./Body";
-import { drawBoxShape, KPBoxShapeOpt } from "./BoxShape";
-import { drawChainShape, KPChainShapeOpt } from "./ChainShape";
-import { drawCircleShape, KPCircleShapeOpt } from "./CircleShape";
-import { drawEdgeShape, KPEdgeShapeOpt } from "./EdgeShape";
-import { drawPolygonShape, KPPolygonShapeOpt } from "./PolygonShape";
+import type { KPBodyComp } from "./Body";
+import { drawBoxShape, type KPBoxShapeOpt } from "./BoxShape";
+import { drawChainShape, type KPChainShapeOpt } from "./ChainShape";
+import { drawCircleShape, type KPCircleShapeOpt } from "./CircleShape";
+import { drawEdgeShape, type KPEdgeShapeOpt } from "./EdgeShape";
+import { drawPolygonShape, type KPPolygonShapeOpt } from "./PolygonShape";
 
 export interface KPShapesComp extends Comp {
   shapes: Shape[];

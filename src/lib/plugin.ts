@@ -102,10 +102,10 @@ export interface KaPlanckPluginCtx {
   /**
    * Sets the physics world.
    *
-   * @param {(WorldDef | Vec2 | null)} def The definition of the physics world or a vector for gravity.
+   * @param {(WorldDef | Vec2)} def The definition of the physics world or a vector for gravity.
    * @return {KPWorldComp} A world component that works with KaPlanckPlugin methods.
    */
-  kpWorld(def?: WorldDef | Vec2 | null): KPWorldComp;
+  kpWorld(def?: WorldDef | Vec2): KPWorldComp;
   /**
    * Adds a body to the physics world.
    *
@@ -262,14 +262,14 @@ export interface KaPlanckPluginCtx {
    */
   p2u(p: number): number;
   /**
-   * Converts a vector from KaPlay Vector to Planck Vector.
+   * Converts a vector from KAPLAY Vector to Planck Vector.
    *
-   * @param {KaVec2} vec A KaPlay vector.
+   * @param {KaVec2} vec A KAPLAY vector.
    * @return {Vec2}
    */
   k2pVec2(vec: KaVec2): Vec2;
   /**
-   * Converts a vector from Planck Vector to KaPlay Vector.
+   * Converts a vector from Planck Vector to KAPLAY Vector.
    *
    * @param {Vec2} vec A Planck vector.
    * @return {KaVec2}
@@ -289,13 +289,13 @@ export interface KaPlanckPluginOpts {
 }
 
 /**
- * A plugin to allows to use PlanckJS seamlessly with KaPlay.
+ * A plugin to allows to use PlanckJS seamlessly with KAPLAY.
  *
  * **IMPORTANT**
  *
- * Vec2 from KaPlay and Vec2 from PlanckJS are different, please use them accordingly.
+ * Vec2 from KAPLAY and Vec2 from PlanckJS are different, please use them accordingly.
  *
- * PlanckJS uses radians for angles while KaPlay uses degrees, please make use of KaPlay's
+ * PlanckJS uses radians for angles while KAPLAY uses degrees, please make use of KAPLAY's
  * tools to convert between them.
  *
  * @param {KaPlanckPluginOpts} opt
@@ -313,7 +313,7 @@ const KaPlanckPlugin =
         return rotate(k, angle);
       },
 
-      kpWorld(def?: WorldDef | Vec2 | null) {
+      kpWorld(def?: WorldDef | Vec2) {
         return world(k, def);
       },
       kpBody(bodyDef?: KPBodyDef, collisionIgnore?: Tag[]) {

@@ -6,13 +6,13 @@
 
 > **k2pVec2**(`vec`): `Vec2`
 
-Converts a vector from KaPlay Vector to Planck Vector.
+Converts a vector from KAPLAY Vector to Planck Vector.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `vec` | `Vec2` | A KaPlay vector. |
+| `vec` | `Vec2` | A KAPLAY vector. |
 
 #### Returns
 
@@ -53,7 +53,7 @@ Defines the geometry of a body.
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `opt` | [`KPBoxShapeCompOpts`](/api/interfaces/KPBoxShapeCompOpts) | The options for the box shape. |
+| `opt` | [`KPBoxShapeOpt`](/api/interfaces/KPBoxShapeOpt) | The options for the box shape. |
 
 #### Returns
 
@@ -83,7 +83,7 @@ Defines the geometry of a body.
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `opt`? | [`KPChainShapeCompOpt`](/api/interfaces/KPChainShapeCompOpt) | The options for the chain shape. |
+| `opt`? | [`KPChainShapeOpt`](/api/interfaces/KPChainShapeOpt) | The options for the chain shape. |
 
 #### Returns
 
@@ -101,7 +101,7 @@ Defines the geometry of a body.
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `opt`? | [`KPCircleShapeCompOpt`](/api/interfaces/KPCircleShapeCompOpt) | The options for the circle shape. |
+| `opt`? | [`KPCircleShapeOpt`](/api/interfaces/KPCircleShapeOpt) | The options for the circle shape. |
 
 #### Returns
 
@@ -119,7 +119,7 @@ Defines the geometry of a body.
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `opt`? | [`KPEdgeShapeCompOpt`](/api/interfaces/KPEdgeShapeCompOpt) | The options for the edge shape. |
+| `opt`? | [`KPEdgeShapeOpt`](/api/interfaces/KPEdgeShapeOpt) | The options for the edge shape. |
 
 #### Returns
 
@@ -195,7 +195,7 @@ Defines the geometry of a body.
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `opt`? | [`KPPolygonShapeCompOpt`](/api/interfaces/KPPolygonShapeCompOpt) | The options for the polygon shape. |
+| `opt`? | [`KPPolygonShapeOpt`](/api/interfaces/KPPolygonShapeOpt) | The options for the polygon shape. |
 
 #### Returns
 
@@ -205,7 +205,7 @@ Defines the geometry of a body.
 
 ### kpPos()
 
-#### kpPos(x, y)
+#### Call Signature
 
 > **kpPos**(`x`, `y`): [`KPPosComp`](/api/interfaces/KPPosComp)
 
@@ -226,7 +226,7 @@ Sets the position of a body.
 
 A position component that works with KaPlanckPlugin methods.
 
-#### kpPos(obj)
+#### Call Signature
 
 > **kpPos**(`obj`): [`KPPosComp`](/api/interfaces/KPPosComp)
 
@@ -246,7 +246,7 @@ Sets the position of a body.
 
 A position component that works with KaPlanckPlugin methods.
 
-#### kpPos(vec)
+#### Call Signature
 
 > **kpPos**(`vec`): [`KPPosComp`](/api/interfaces/KPPosComp)
 
@@ -266,7 +266,7 @@ Sets the position of a body.
 
 A position component that works with KaPlanckPlugin methods.
 
-#### kpPos()
+#### Call Signature
 
 > **kpPos**(): [`KPPosComp`](/api/interfaces/KPPosComp)
 
@@ -332,7 +332,7 @@ Sets the physics world.
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `def`? | `null` \| `WorldDef` \| `Vec2` | The definition of the physics world or a vector for gravity. |
+| `def`? | `WorldDef` \| `Vec2` | The definition of the physics world or a vector for gravity. |
 
 #### Returns
 
@@ -414,7 +414,7 @@ Requires objects with `kpFixture` or `kpFixtures` components.
 
 > **p2kVec2**(`vec`): `Vec2`
 
-Converts a vector from Planck Vector to KaPlay Vector.
+Converts a vector from Planck Vector to KAPLAY Vector.
 
 #### Parameters
 

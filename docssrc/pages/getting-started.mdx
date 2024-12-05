@@ -8,11 +8,11 @@ npm i kaplanck
 
 ## Example
 
-_The following assumes you already have a KaPlay project set up._
+_The following assumes you already have a KAPLAY project set up._
 
 Lets create our own version of "Hello World" using KaPlanck.
 
-Lets start by importing our dependencies and add a KaPlay instance:
+Lets start by importing our dependencies and add a KAPLAY instance:
 
 ```ts showLineNumbers [example.ts]
 // 1. Import modules.
@@ -20,14 +20,14 @@ import KaPlanckPlugin from "kaplanck";
 import kaplay from "kaplay";
 import { Vec2 } from "planck";
 
-// 2. Create a new KaPlay instance.
+// 2. Create a new KAPLAY instance.
 const k = kaplay({
   global: false,
   plugins: [KaPlanckPlugin()], // [!code hl]
 });
 ```
 
-As shown, adding the plugin to KaPlay is as easy as adding the highlighted line.
+As shown, adding the plugin to KAPLAY is as easy as adding the highlighted line.
 
 Next, let us add a world container (a game object that holds our physics world):
 
@@ -37,7 +37,7 @@ import KaPlanckPlugin from "kaplanck";
 import kaplay from "kaplay";
 import { Vec2 } from "planck";
 
-// 2. Create a new KaPlay instance.
+// 2. Create a new KAPLAY instance.
 const k = kaplay({
   global: false,
   plugins: [KaPlanckPlugin()],
@@ -51,7 +51,7 @@ const worldContainer = k.add([ // [!code focus]
 ]); // [!code focus]
 ```
 
-Note that `Vec2` is from **Planck** and not from KaPlay.
+Note that `Vec2` is from **Planck** and not from KAPLAY.
 
 Now that we have our world container set up, let's add a ground to it.
 We can do this by creating a static body with an edge shape:
@@ -62,7 +62,7 @@ import KaPlanckPlugin from "kaplanck";
 import kaplay from "kaplay";
 import { Vec2 } from "planck";
 
-// 2. Create a new KaPlay instance.
+// 2. Create a new KAPLAY instance.
 const k = kaplay({
   global: false,
   plugins: [KaPlanckPlugin()],
@@ -101,7 +101,7 @@ import KaPlanckPlugin from "kaplanck";
 import kaplay from "kaplay";
 import { Vec2 } from "planck";
 
-// 2. Create a new KaPlay instance.
+// 2. Create a new KAPLAY instance.
 const k = kaplay({
   global: false,
   plugins: [KaPlanckPlugin()],
@@ -143,7 +143,7 @@ worldContainer.add([ // [!code focus]
 ]); // [!code focus]
 ```
 
-I know this is not the most complex example, but it demonstrates a basic setup using KaPlay and Planck for creating a physics-based games.
+I know this is not the most complex example, but it demonstrates a basic setup using KAPLAY and Planck for creating a physics-based games.
 
 Well with that being said, hope this plugin helps you get started with building physics-based games or interactive applications!
 

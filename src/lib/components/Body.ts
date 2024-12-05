@@ -9,11 +9,11 @@ import type {
   Tag,
 } from "kaplay";
 import {
-  Body,
-  Contact,
   testOverlap,
+  type Body,
   type BodyDef,
   type BodyType,
+  type Contact,
   type ContactEdge,
   type Fixture,
   type JointEdge,

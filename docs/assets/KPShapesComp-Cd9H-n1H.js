@@ -1,0 +1,7 @@
+import{u as r,j as e}from"./index-mwZppHIx.js";const i={title:"Interface: KPShapesComp",description:"undefined"};function d(n){const t={a:"a",code:"code",div:"div",h1:"h1",h2:"h2",header:"header",li:"li",table:"table",tbody:"tbody",td:"td",th:"th",thead:"thead",tr:"tr",ul:"ul",...r(),...n.components};return e.jsxs(e.Fragment,{children:[e.jsx(t.header,{children:e.jsxs(t.h1,{id:"interface-kpshapescomp",children:["Interface: KPShapesComp",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#interface-kpshapescomp",children:e.jsx(t.div,{"data-autolink-icon":!0})})]})}),`
+`,e.jsxs(t.h2,{id:"extends",children:["Extends",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#extends",children:e.jsx(t.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsxs(t.ul,{children:[`
+`,e.jsx(t.li,{children:e.jsx(t.code,{children:"Comp"})}),`
+`]}),`
+`,e.jsxs(t.h2,{id:"properties",children:["Properties",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#properties",children:e.jsx(t.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsxs(t.table,{children:[e.jsx(t.thead,{children:e.jsxs(t.tr,{children:[e.jsx(t.th,{children:"Property"}),e.jsx(t.th,{children:"Type"})]})}),e.jsx(t.tbody,{children:e.jsxs(t.tr,{children:[e.jsx(t.td,{children:e.jsx(t.code,{children:"shapes"})}),e.jsxs(t.td,{children:[e.jsx(t.code,{children:"Shape"}),"[]"]})]})})]})]})}function h(n={}){const{wrapper:t}={...r(),...n.components};return t?e.jsx(t,{...n,children:e.jsx(d,{...n})}):d(n)}export{h as default,i as frontmatter};

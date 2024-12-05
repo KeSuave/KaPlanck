@@ -8,7 +8,7 @@
 
 | Property | Type | Description |
 | ------ | ------ | ------ |
-| `body` | `null` \| `Body` | The physics body associated with the game object. |
+| `body` | `null` \| `Body$1` | The physics body associated with the game object. |
 | `collisionIgnore` | `string`[] | Tags of other components that this body should ignore collisions with. |
 
 ## Methods
@@ -322,11 +322,11 @@ The contact information if colliding, otherwise null.
 
 ### getNextBody()
 
-> **getNextBody**(): `null` \| `Body`
+> **getNextBody**(): `null` \| `Body$1`
 
 #### Returns
 
-`null` \| `Body`
+`null` \| `Body$1`
 
 ***
 
@@ -579,7 +579,7 @@ A controller for managing the event.
 
 ### onCollide()
 
-#### onCollide(tag, action)
+#### Call Signature
 
 > **onCollide**(`tag`, `action`): `void`
 
@@ -597,7 +597,7 @@ containing a specific tag.
 
 `void`
 
-#### onCollide(action)
+#### Call Signature
 
 > **onCollide**(`action`): `void`
 
@@ -617,7 +617,7 @@ Add an action to be executed when this game object starts colliding with another
 
 ### onCollideEnd()
 
-#### onCollideEnd(tag, action)
+#### Call Signature
 
 > **onCollideEnd**(`tag`, `action`): `void`
 
@@ -635,7 +635,7 @@ containing a specific tag.
 
 `void`
 
-#### onCollideEnd(action)
+#### Call Signature
 
 > **onCollideEnd**(`action`): `void`
 
@@ -656,7 +656,7 @@ containing a specific tag.
 
 ### onCollideUpdate()
 
-#### onCollideUpdate(tag, action)
+#### Call Signature
 
 > **onCollideUpdate**(`tag`, `action`): `void`
 
@@ -674,7 +674,7 @@ with another game object containing a specific tag.
 
 `void`
 
-#### onCollideUpdate(action)
+#### Call Signature
 
 > **onCollideUpdate**(`action`): `void`
 
@@ -845,11 +845,11 @@ A controller for managing the event.
 
 ### setDynamic()
 
-> **setDynamic**(): `Body`
+> **setDynamic**(): `Body$1`
 
 #### Returns
 
-`Body`
+`Body$1`
 
 ***
 
@@ -887,11 +887,11 @@ A controller for managing the event.
 
 ### setKinematic()
 
-> **setKinematic**(): `Body`
+> **setKinematic**(): `Body$1`
 
 #### Returns
 
-`Body`
+`Body$1`
 
 ***
 
@@ -961,11 +961,11 @@ A controller for managing the event.
 
 ### setStatic()
 
-> **setStatic**(): `Body`
+> **setStatic**(): `Body$1`
 
 #### Returns
 
-`Body`
+`Body$1`
 
 ***
 
