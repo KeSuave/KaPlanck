@@ -13,8 +13,8 @@ export default defineConfig({
       external: ["kaplay", "planck"],
       output: {
         globals: {
-          kaplay: "KaPlay",
-          planck: "Planck",
+          kaplay: "kaplay",
+          planck: "planck",
         },
       },
     },

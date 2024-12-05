@@ -1,6 +1,6 @@
 # KaPlanck
 
-A KaPlay plugin that integrates Planck, while keeping the simple/fun API of KaPlay.
+A KAPLAY plugin that integrates Planck, while keeping the simple/fun API of KAPLAY.
 
 [Read the docs to learn more](https://kesuave.github.io/KaPlanck)
 
