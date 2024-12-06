@@ -46,6 +46,7 @@
     "prepare": "husky",
     "lint": "eslint src",
     "format": "prettier --config .prettierrc --write \"src/**/*.ts\"",
+    "docs:dev:pages": "vocs dev",
     "docs:dev": "vocs dev",
     "docs:build": "vocs build",
     "docs:preview": "vocs preview",
