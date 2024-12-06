@@ -19,31 +19,37 @@ export default function edgeShape(
   k: KAPLAYCtx,
   opt?: KPEdgeShapeOpt,
 ): KPEdgeShapeComp {
+  let _shape: EdgeShape | null = null;
+
   return {
     id: "kpShape",
-    shape: new EdgeShape(opt?.v1, opt?.v2),
 
+    get shape() {
+      if (!_shape) {
+        throw new Error("kpEdgeShape not initialized");
+      }
+
+      return _shape;
+    },
+
+    add() {
+      _shape = new EdgeShape(opt?.v1, opt?.v2);
+    },
     draw(this: EdgeShapeCompThis) {
-      drawEdgeShape(k, opt, this, this.shape);
+      if (!opt?.draw) return;
+
+      const renderingProps = getRenderProps(this);
+      const p1 = p2kVec2(k, this.shape.m_vertex1);
+      const p2 = p2kVec2(k, this.shape.m_vertex2);
+
+      k.drawLine({
+        ...renderingProps,
+        p1,
+        p2,
+      });
+    },
+    destroy() {
+      _shape = null;
     },
   };
-}
-
-export function drawEdgeShape(
-  k: KAPLAYCtx,
-  opt: KPShapeOpt | undefined,
-  obj: GameObj,
-  shape: EdgeShape,
-) {
-  if (!opt?.draw) return;
-
-  const renderingProps = getRenderProps(obj);
-  const p1 = p2kVec2(k, shape.m_vertex1);
-  const p2 = p2kVec2(k, shape.m_vertex2);
-
-  k.drawLine({
-    ...renderingProps,
-    p1,
-    p2,
-  });
 }

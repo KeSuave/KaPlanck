@@ -38,47 +38,49 @@ const applyForceScene = (k: KAPLANCKCtx) => () => {
   const ground = worldContainer.add([
     k.kpPos(k.kpCenter()),
     k.kpRotate(),
-    k.kpShapes([
-      {
-        type: "edge",
-        opt: {
-          v1: { x: -20, y: -20 },
-          v2: { x: -20, y: 20 },
-          draw: true,
-        },
-      },
-      {
-        type: "edge",
-        opt: {
-          v1: { x: 20, y: -20 },
-          v2: { x: 20, y: 20 },
-          draw: true,
-        },
-      },
-      {
-        type: "edge",
-        opt: {
-          v1: { x: -20, y: 20 },
-          v2: { x: 20, y: 20 },
-          draw: true,
-        },
-      },
-      {
-        type: "edge",
-        opt: {
-          v1: { x: -20, y: -20 },
-          v2: { x: 20, y: -20 },
-          draw: true,
-        },
-      },
-    ]),
     k.kpBody(),
-    k.kpFixtures([
-      { ...wallFixtureDef },
-      { ...wallFixtureDef },
-      { ...wallFixtureDef },
-      { ...wallFixtureDef },
-    ]),
+  ]);
+
+  ground.add([
+    k.kpEdgeShape({
+      v1: { x: -20, y: -20 },
+      v2: { x: -20, y: 20 },
+      draw: true,
+    }),
+    k.kpFixture({ ...wallFixtureDef }),
+  ]);
+
+  ground.add([
+    k.kpEdgeShape({
+      v1: { x: 20, y: -20 },
+      v2: { x: 20, y: 20 },
+      draw: true,
+    }),
+    k.kpFixture({ ...wallFixtureDef }),
+  ]);
+  ground.add([
+    k.kpEdgeShape({
+      v1: { x: -20, y: 20 },
+      v2: { x: 20, y: 20 },
+      draw: true,
+    }),
+    k.kpFixture({ ...wallFixtureDef }),
+  ]);
+  ground.add([
+    k.kpEdgeShape({
+      v1: { x: -20, y: -20 },
+      v2: { x: 20, y: -20 },
+      draw: true,
+    }),
+    k.kpFixture({ ...wallFixtureDef }),
+  ]);
+  ground.add([
+    k.kpEdgeShape({
+      v1: { x: -20, y: -20 },
+      v2: { x: 20, y: -20 },
+      draw: true,
+    }),
+    k.kpFixture({ ...wallFixtureDef }),
   ]);
 
   const xf1 = new Transform();
@@ -92,37 +94,35 @@ const applyForceScene = (k: KAPLANCKCtx) => () => {
   const jet = worldContainer.add([
     k.kpPos(k.kpCenter().add({ x: 0, y: 18 })),
     k.kpRotate(),
-    k.kpShapes([
-      {
-        type: "polygon",
-        opt: {
-          vertices: [
-            new Vec2(-1.0, 0.0),
-            new Vec2(1.0, 0.0),
-            new Vec2(0.0, 0.5),
-          ].map((v) => Transform.mul(xf1, v)),
-          draw: true,
-        },
-      },
-      {
-        type: "polygon",
-        opt: {
-          vertices: [
-            new Vec2(-1.0, 0.0),
-            new Vec2(1.0, 0.0),
-            new Vec2(0.0, 0.5),
-          ].map((v) => Transform.mul(xf2, v)),
-          draw: true,
-        },
-      },
-    ]),
     k.kpBody({
       type: "dynamic",
       angularDamping: 2,
       linearDamping: 0.5,
       allowSleep: false,
     }),
-    k.kpFixtures([{ density: 2 }, { density: 2 }]),
+  ]);
+
+  jet.add([
+    k.kpPolygonShape({
+      vertices: [
+        new Vec2(-1.0, 0.0),
+        new Vec2(1.0, 0.0),
+        new Vec2(0.0, 0.5),
+      ].map((v) => Transform.mul(xf1, v)),
+      draw: true,
+    }),
+    k.kpFixture({ density: 2 }),
+  ]);
+  jet.add([
+    k.kpPolygonShape({
+      vertices: [
+        new Vec2(-1.0, 0.0),
+        new Vec2(1.0, 0.0),
+        new Vec2(0.0, 0.5),
+      ].map((v) => Transform.mul(xf2, v)),
+      draw: true,
+    }),
+    k.kpFixture({ density: 2 }),
   ]);
 
   if (!ground.body) return;

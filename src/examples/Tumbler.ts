@@ -1,68 +1,5 @@
 import { RevoluteJoint, Vec2 } from "planck";
-import type { KPFixtureDef, KPShapeDef } from "../lib";
 import { addScenesButtons, type KAPLANCKCtx } from "../shared";
-
-const CONTAINER_SHAPES: KPShapeDef[] = [
-  {
-    type: "circle",
-    opt: {
-      position: new Vec2(-10, -10),
-      radius: 2,
-      draw: true,
-    },
-  },
-  {
-    type: "circle",
-    opt: {
-      position: new Vec2(10, -10),
-      radius: 2,
-      draw: true,
-    },
-  },
-  {
-    type: "circle",
-    opt: {
-      position: new Vec2(-10, 10),
-      radius: 2,
-      draw: true,
-    },
-  },
-  {
-    type: "circle",
-    opt: {
-      position: new Vec2(10, 10),
-      radius: 2,
-      draw: true,
-    },
-  },
-  {
-    type: "box",
-    opt: { width: 1, height: 40, center: new Vec2(-20, 0), draw: true },
-  },
-  {
-    type: "box",
-    opt: { width: 1, height: 40, center: new Vec2(20, 0), draw: true },
-  },
-  {
-    type: "box",
-    opt: { width: 40, height: 1, center: new Vec2(0, -20), draw: true },
-  },
-  {
-    type: "box",
-    opt: { width: 40, height: 1, center: new Vec2(0, 20), draw: true },
-  },
-];
-
-const CONTAINER_FIXTURES: KPFixtureDef[] = [
-  { density: 5 },
-  { density: 5 },
-  { density: 5 },
-  { density: 5 },
-  { density: 5 },
-  { density: 5 },
-  { density: 5 },
-  { density: 5 },
-];
 
 const tumblerScene = (k: KAPLANCKCtx) => () => {
   const scene = k.add([]);
@@ -75,8 +12,91 @@ const tumblerScene = (k: KAPLANCKCtx) => () => {
     k.kpPos(k.kpCenter()),
     k.kpRotate(),
     k.kpBody({ type: "dynamic", allowSleep: false }),
-    k.kpShapes(CONTAINER_SHAPES),
-    k.kpFixtures(CONTAINER_FIXTURES),
+  ]);
+
+  container.add([
+    k.kpCircleShape({
+      radius: 2,
+      position: { x: -10, y: -10 },
+      draw: true,
+      fill: false,
+    }),
+    k.kpFixture({ density: 5 }),
+    k.outline(1, new k.Color(200, 200, 200)),
+  ]);
+  container.add([
+    k.kpCircleShape({
+      radius: 2,
+      position: { x: 10, y: -10 },
+      draw: true,
+      fill: false,
+    }),
+    k.kpFixture({ density: 5 }),
+    k.outline(1, new k.Color(200, 200, 200)),
+  ]);
+  container.add([
+    k.kpCircleShape({
+      radius: 2,
+      position: { x: -10, y: 10 },
+      draw: true,
+      fill: false,
+    }),
+    k.kpFixture({ density: 5 }),
+    k.outline(1, new k.Color(200, 200, 200)),
+  ]);
+  container.add([
+    k.kpCircleShape({
+      radius: 2,
+      position: { x: 10, y: 10 },
+      draw: true,
+      fill: false,
+    }),
+    k.kpFixture({ density: 5 }),
+    k.outline(1, new k.Color(200, 200, 200)),
+  ]);
+  container.add([
+    k.kpBoxShape({
+      width: 1,
+      height: 40,
+      center: { x: -20, y: 0 },
+      draw: true,
+      fill: false,
+    }),
+    k.kpFixture({ density: 5 }),
+    k.outline(1, new k.Color(200, 200, 200)),
+  ]);
+  container.add([
+    k.kpBoxShape({
+      width: 1,
+      height: 40,
+      center: { x: 20, y: 0 },
+      draw: true,
+      fill: false,
+    }),
+    k.kpFixture({ density: 5 }),
+    k.outline(1, new k.Color(200, 200, 200)),
+  ]);
+  container.add([
+    k.kpBoxShape({
+      width: 40,
+      height: 1,
+      center: { x: 0, y: -20 },
+      draw: true,
+      fill: false,
+    }),
+    k.kpFixture({ density: 5 }),
+    k.outline(1, new k.Color(200, 200, 200)),
+  ]);
+  container.add([
+    k.kpBoxShape({
+      width: 40,
+      height: 1,
+      center: { x: 0, y: 20 },
+      draw: true,
+      fill: false,
+    }),
+    k.kpFixture({ density: 5 }),
+    k.outline(1, new k.Color(200, 200, 200)),
   ]);
 
   // TODO: create a component so that the joint can be drawn/visualized on debug mode
@@ -87,8 +107,8 @@ const tumblerScene = (k: KAPLANCKCtx) => () => {
         maxMotorTorque: 1e8,
         enableMotor: true,
       },
-      ground.body!,
-      container.body!,
+      ground.body,
+      container.body,
       k.kpCenter(),
     ),
   );
@@ -104,9 +124,9 @@ const tumblerScene = (k: KAPLANCKCtx) => () => {
       ),
       k.kpRotate(),
       k.kpBody({ type: "dynamic" }),
-      k.kpBoxShape({ width: 1, height: 1, draw: true }),
+      k.kpBoxShape({ width: 1, height: 1, draw: true, fill: false }),
       k.kpFixture({ density: 1 }),
-      k.color(100, 0, 0),
+      k.outline(1, new k.Color(200, 200, 200)),
     ]);
   }
 

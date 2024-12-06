@@ -1,4 +1,4 @@
-import type { Comp, GameObj, KAPLAYCtx } from "kaplay";
+import type { Comp, GameObj } from "kaplay";
 import type { Fixture, FixtureDef } from "planck";
 import type { KPBodyComp, KPBodyUserData } from "./Body";
 
@@ -24,18 +24,14 @@ export interface KPFixtureComp extends Comp {
   setSensor(flag: boolean): void;
 }
 
-type FixtureThis = GameObj<KPFixtureComp & KPBodyComp & KPShapeComp>;
+type FixtureThis = GameObj<KPFixtureComp & KPShapeComp>;
 
-export default function fixture(
-  // TODO: check if we can remove KAPLAYCtx here
-  _k: KAPLAYCtx,
-  def?: KPFixtureDef,
-): KPFixtureComp {
+export default function fixture(def?: KPFixtureDef): KPFixtureComp {
   let _fixture: Fixture | null;
 
   return {
     id: "kpFixture",
-    require: ["kpBody", "kpShape"],
+    require: ["kpShape"],
 
     get fixture() {
       if (!_fixture) {
@@ -71,15 +67,25 @@ export default function fixture(
     },
 
     add(this: FixtureThis) {
-      if (!this.body) throw new Error("kpBody is required");
+      let gameObjWithKPBodyComp: GameObj<KPBodyComp> | null = this as GameObj<
+        KPBodyComp & KPFixtureComp & KPShapeComp
+      >;
 
-      _fixture = this.body.createFixture({
+      if (!this.c("kpBody")) {
+        gameObjWithKPBodyComp = this.parent as GameObj<KPBodyComp>;
+      }
+
+      if (!gameObjWithKPBodyComp.c("kpBody")) {
+        throw new Error("A body is required");
+      }
+
+      _fixture = gameObjWithKPBodyComp.body.createFixture({
         ...def,
         shape: this.shape,
       });
 
       this.fixture.shouldCollide = (that: Fixture) => {
-        if (this.collisionIgnore.length === 0) return true;
+        if (gameObjWithKPBodyComp.collisionIgnore.length === 0) return true;
 
         const userData = that.getBody().getUserData() as KPBodyUserData;
 
@@ -87,10 +93,16 @@ export default function fixture(
 
         if (thatGameObj.tags.length === 0) return true;
 
-        return !this.collisionIgnore.some((tag) => {
+        return !gameObjWithKPBodyComp.collisionIgnore.some((tag) => {
           return thatGameObj.tags.includes(tag);
         });
       };
+    },
+
+    destroy(this: FixtureThis) {
+      this.fixture.getBody().destroyFixture(this.fixture);
+
+      _fixture = null;
     },
   };
 }

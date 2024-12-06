@@ -19,42 +19,48 @@ export default function chainShape(
   k: KAPLAYCtx,
   opt?: KPChainShapeOpt,
 ): KPChainShapeComp {
+  let _shape: ChainShape | null = null;
+
   return {
     id: "kpShape",
-    shape: new ChainShape(opt?.vertices, opt?.loop),
 
+    get shape() {
+      if (!_shape) {
+        throw new Error("kpChainShape not initialized");
+      }
+
+      return _shape;
+    },
+
+    add() {
+      _shape = new ChainShape(opt?.vertices, opt?.loop);
+    },
     draw(this: ChainShapeCompThis) {
-      drawChainShape(k, opt, this, this.shape);
+      if (!opt?.draw) return;
+
+      const renderingProps = getRenderProps(this);
+      const vertices = this.shape.m_vertices;
+
+      const pts: KaVec2[] = [];
+      for (let i = 0; i < vertices.length - 1; i++) {
+        pts.push(p2kVec2(k, vertices[i]));
+
+        if (i === vertices.length - 2) {
+          pts.push(p2kVec2(k, vertices[i + 1]));
+        }
+      }
+
+      if (opt?.loop) {
+        pts.push(pts[0]);
+      }
+
+      k.drawLines({
+        ...renderingProps,
+        pts,
+      });
+    },
+    destroy() {
+      _shape = null;
     },
   };
-}
-
-export function drawChainShape(
-  k: KAPLAYCtx,
-  opt: KPChainShapeOpt | undefined,
-  obj: GameObj,
-  shape: ChainShape,
-) {
-  if (!opt?.draw) return;
-
-  const renderingProps = getRenderProps(obj);
-  const vertices = shape.m_vertices;
-
-  const pts: KaVec2[] = [];
-  for (let i = 0; i < vertices.length - 1; i++) {
-    pts.push(p2kVec2(k, vertices[i]));
-
-    if (i === vertices.length - 2) {
-      pts.push(p2kVec2(k, vertices[i + 1]));
-    }
-  }
-
-  if (opt?.loop) {
-    pts.push(pts[0]);
-  }
-
-  k.drawLines({
-    ...renderingProps,
-    pts,
-  });
 }

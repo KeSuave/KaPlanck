@@ -81,7 +81,6 @@ export interface KPBodyComp extends Comp {
   getLocalVector(worldVector: Vec2Value): Vec2;
   getMass(): number;
   getMassData(data: MassData): void;
-  getNextBody(): Body | null;
   getTransform(): Transform;
   getBodyType(): BodyType;
   getWorldCenter(): Vec2;
@@ -326,9 +325,6 @@ export default function body(
     },
     getMassData(data: MassData) {
       return this.body.getMassData(data);
-    },
-    getNextBody() {
-      return this.body.getNext();
     },
     getTransform() {
       return this.body.getTransform();
@@ -643,6 +639,8 @@ export default function body(
       const world = this.body.getWorld();
 
       world.destroyBody(this.body);
+
+      _body = null;
     },
 
     get inspectColor() {

@@ -34,12 +34,7 @@ import polygonShape, {
 import pos, { type KPPosComp, type KPVec2Args } from "./components/Position";
 import world, { type KPWorldComp } from "./components/World";
 
-import fixtures, { type KPFixturesComp } from "./components/Fixtures";
 import rotate, { type KPRotateComp } from "./components/Rotate";
-import shapes, {
-  type KPShapeDef,
-  type KPShapesComp,
-} from "./components/Shapes";
 import {
   center,
   findWorldContainer,
@@ -109,7 +104,7 @@ export interface KaPlanckPluginCtx {
   /**
    * Adds a body to the physics world.
    *
-   * Requires `kpWorld` to be set first.
+   * Requires to be a child of an object with the `kpWorld` component.
    * Requires `kpPos`.
    * Requires `kpRotate`.
    *
@@ -121,27 +116,15 @@ export interface KaPlanckPluginCtx {
   /**
    * Creates a fixture.
    *
-   * **IMPORTANT**: cannot be added before `kpBody`.
+   * **IMPORTANT**: Cannot be added before `kpBody` if `kpBody` is used in the same game object.
+   *                Otherwise, it requires to be a child of an object with the `kpBody` component.
    *
-   * Requires `kpBody`.
    * Requires a shape.
    *
    * @param {KPFixtureDef} [def] The definition of the fixture.
    * @return {KPFixtureComp}
    */
   kpFixture(def?: KPFixtureDef): KPFixtureComp;
-  /**
-   * Adds multiple fixtures to a body.
-   *
-   * **IMPORTANT**: cannot be added before `kpBody`.
-   *
-   * Requires `kpBody`.
-   * Requires `kpShapes` with the same amount of shapes as fixtures.
-   *
-   * @param {KPFixtureDef[]} defs The definitions of the fixtures.
-   * @return {KPFixturesComp}
-   */
-  kpFixtures(defs: KPFixtureDef[]): KPFixturesComp;
   /**
    * Defines the geometry of a body.
    *
@@ -177,13 +160,6 @@ export interface KaPlanckPluginCtx {
    * @return {KPPolygonShapeComp}
    */
   kpPolygonShape(opt?: KPPolygonShapeOpt): KPPolygonShapeComp;
-  /**
-   * Defines multiple shapes for a body.
-   *
-   * @param {KPShapeDef[]} defs The definitions of the shapes.
-   * @return {KPShapesComp}
-   */
-  kpShapes(defs: KPShapeDef[]): KPShapesComp;
 
   // events
   /**
@@ -320,10 +296,7 @@ const KaPlanckPlugin =
         return body(k, bodyDef, collisionIgnore);
       },
       kpFixture(def?: KPFixtureDef) {
-        return fixture(k, def);
-      },
-      kpFixtures(defs: KPFixtureDef[]) {
-        return fixtures(defs);
+        return fixture(def);
       },
       kpBoxShape(opt: KPBoxShapeOpt) {
         return boxShape(k, opt);
@@ -339,9 +312,6 @@ const KaPlanckPlugin =
       },
       kpPolygonShape(opt?: KPPolygonShapeOpt) {
         return polygonShape(k, opt);
-      },
-      kpShapes(defs: KPShapeDef[]) {
-        return shapes(k, defs);
       },
 
       onKPCollide(
