@@ -1,11 +1,36 @@
 import type { Comp, GameObj, KAPLAYCtx } from "kaplay";
-import type { Contact, Vec2, WorldDef } from "planck";
+import type { Body, Contact, Joint, Vec2, Vec2Value, WorldDef } from "planck";
 
 import { World } from "planck";
-import { KPBodyUserData } from "./Body";
+import type { KPBodyUserData } from "./Body";
 
 export interface KPWorldComp extends Comp {
   world: World;
+
+  clearForces(): void;
+  getAllowSleeping(): boolean;
+  getAutoClearForces(): boolean;
+  getBodyCount(): number;
+  getBodyList(): Body | null;
+  getContactCount(): number;
+  getGravity(): Vec2;
+  getJointCount(): number;
+  getJointList(): Joint | null;
+  isLocked(): boolean;
+  rayCast(
+    point1: Vec2,
+    point2: Vec2,
+    action: (
+      gameObj: GameObj,
+      point: Vec2,
+      normal: Vec2,
+      fraction: number,
+    ) => number,
+  ): void;
+  setAllowSleeping(flag: boolean): void;
+  setAutoClearForces(flag: boolean): void;
+  setGravity(gravity: Vec2Value): void;
+  shiftOrigin(newOrigin: Vec2Value): void;
 
   onContactBegin(
     action: (objA: GameObj, objB: GameObj, contact?: Contact) => void,
@@ -30,6 +55,95 @@ export default function world(
   return {
     id: "kpWorld",
     world: new World(def),
+
+    clearForces() {
+      this.world.clearForces();
+    },
+    getAllowSleeping() {
+      return this.world.getAllowSleeping();
+    },
+    getAutoClearForces() {
+      return this.world.getAutoClearForces();
+    },
+    getBodyCount() {
+      return this.world.getBodyCount();
+    },
+    getBodyList() {
+      return this.world.getBodyList();
+    },
+    getContactCount() {
+      return this.world.getContactCount();
+    },
+    getGravity() {
+      return this.world.getGravity();
+    },
+    getJointCount() {
+      return this.world.getJointCount();
+    },
+    getJointList() {
+      return this.world.getJointList();
+    },
+    isLocked() {
+      return this.world.isLocked();
+    },
+    rayCast(
+      point1: Vec2,
+      point2: Vec2,
+      action: (
+        gameObj: GameObj,
+        point: Vec2,
+        normal: Vec2,
+        fraction: number,
+      ) => number,
+    ) {
+      this.world.rayCast(point1, point2, (fixture, point, normal, fraction) => {
+        const kpGameObj = (fixture.getBody().getUserData() as KPBodyUserData)
+          .gameObj;
+
+        return action(kpGameObj, point, normal, fraction);
+      });
+    },
+    setAllowSleeping(flag: boolean) {
+      this.world.setAllowSleeping(flag);
+    },
+    setAutoClearForces(flag: boolean) {
+      this.world.setAutoClearForces(flag);
+    },
+    setGravity(gravity: Vec2Value) {
+      this.world.setGravity(gravity);
+    },
+    shiftOrigin(newOrigin: Vec2Value) {
+      this.world.shiftOrigin(newOrigin);
+    },
+
+    onContactBegin(
+      this: KPWorldCompThis,
+      action: (objA: GameObj, objB: GameObj, contact: Contact) => void,
+    ) {
+      this.on("contactBegin", action);
+    },
+    onContactEnd(
+      this: KPWorldCompThis,
+      action: (objA: GameObj, objB: GameObj, contact: Contact) => void,
+    ) {
+      this.on("contactEnd", action);
+    },
+    onContactPreSolve(
+      this: KPWorldCompThis,
+      action: (objA: GameObj, objB: GameObj, contact: Contact) => void,
+    ) {
+      this.on("contactPreSolve", action);
+    },
+    onContactPostSolve(
+      this: KPWorldCompThis,
+      action: (objA: GameObj, objB: GameObj, contact: Contact) => void,
+    ) {
+      this.on("contactPostSolve", action);
+    },
+
+    fixedUpdate() {
+      this.world.step(k.fixedDt());
+    },
 
     add(this: KPWorldCompThis) {
       this.world.on("begin-contact", (contact) => {
@@ -88,35 +202,6 @@ export default function world(
           this.trigger("contactPostSolve", a.gameObj, b.gameObj, contact);
         }
       });
-    },
-
-    onContactBegin(
-      this: KPWorldCompThis,
-      action: (objA: GameObj, objB: GameObj, contact: Contact) => void,
-    ) {
-      this.on("contactBegin", action);
-    },
-    onContactEnd(
-      this: KPWorldCompThis,
-      action: (objA: GameObj, objB: GameObj, contact: Contact) => void,
-    ) {
-      this.on("contactEnd", action);
-    },
-    onContactPreSolve(
-      this: KPWorldCompThis,
-      action: (objA: GameObj, objB: GameObj, contact: Contact) => void,
-    ) {
-      this.on("contactPreSolve", action);
-    },
-    onContactPostSolve(
-      this: KPWorldCompThis,
-      action: (objA: GameObj, objB: GameObj, contact: Contact) => void,
-    ) {
-      this.on("contactPostSolve", action);
-    },
-
-    fixedUpdate() {
-      this.world.step(k.fixedDt());
     },
   };
 }
