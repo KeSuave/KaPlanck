@@ -10,9 +10,9 @@ export interface KPFixtureComp extends Comp {
   /**
    * The underlying Fixture object.
    *
-   * @type {(Fixture | null)}
+   * @type {(Fixture)}
    */
-  fixture: Fixture | null;
+  fixture: Fixture;
 
   getDensity(): number;
   getFriction(): number;
@@ -31,72 +31,49 @@ export default function fixture(
   _k: KAPLAYCtx,
   def?: KPFixtureDef,
 ): KPFixtureComp {
+  let _fixture: Fixture | null;
+
   return {
     id: "kpFixture",
     require: ["kpBody", "kpShape"],
-    fixture: null,
 
-    getDensity() {
-      if (!this.fixture) {
+    get fixture() {
+      if (!_fixture) {
         throw new Error("kpFixture is not initialized");
       }
 
+      return _fixture;
+    },
+
+    getDensity() {
       return this.fixture.getDensity();
     },
     getFriction() {
-      if (!this.fixture) {
-        throw new Error("kpFixture is not initialized");
-      }
-
       return this.fixture.getFriction();
     },
     getRestitution() {
-      if (!this.fixture) {
-        throw new Error("kpFixture is not initialized");
-      }
-
       return this.fixture.getRestitution();
     },
     isSensor() {
-      if (!this.fixture) {
-        throw new Error("kpFixture is not initialized");
-      }
-
       return this.fixture.isSensor();
     },
     setDensity(density: number) {
-      if (!this.fixture) {
-        throw new Error("kpFixture is not initialized");
-      }
-
       return this.fixture.setDensity(density);
     },
     setFriction(friction: number) {
-      if (!this.fixture) {
-        throw new Error("kpFixture is not initialized");
-      }
-
       return this.fixture.setFriction(friction);
     },
     setRestitution(restitution: number) {
-      if (!this.fixture) {
-        throw new Error("kpFixture is not initialized");
-      }
-
       return this.fixture.setRestitution(restitution);
     },
     setSensor(flag: boolean) {
-      if (!this.fixture) {
-        throw new Error("kpFixture is not initialized");
-      }
-
       return this.fixture.setSensor(flag);
     },
 
     add(this: FixtureThis) {
       if (!this.body) throw new Error("kpBody is required");
 
-      this.fixture = this.body.createFixture({
+      _fixture = this.body.createFixture({
         ...def,
         shape: this.shape,
       });

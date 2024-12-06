@@ -58,8 +58,6 @@ export default function fixtures(defs: KPFixtureDef[]): KPFixturesComp {
         throw new Error("each fixture needs a shape");
       }
 
-      this.fixtures = [];
-
       for (let i = 0; i < defs.length; i++) {
         const def = defs[i];
 

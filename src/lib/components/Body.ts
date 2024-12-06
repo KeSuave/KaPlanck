@@ -37,9 +37,9 @@ export interface KPBodyComp extends Comp {
   /**
    * The physics body associated with the game object.
    *
-   * @type {(Body | null)}
+   * @type {(Body)}
    */
-  body: Body | null;
+  body: Body;
   /**
    * Tags of other components that this body should ignore collisions with.
    *
@@ -249,382 +249,179 @@ export default function body(
   def?: KPBodyDef,
   collisionIgnore?: Tag[],
 ): KPBodyComp {
+  let _body: Body | null = null;
+
   return {
     id: "kpBody",
     require: ["kpPos", "kpRotate"],
-    body: null,
     collisionIgnore: collisionIgnore ?? [],
 
-    applyAngularImpulse(impulse: number, wake = true): void {
-      if (!this.body) {
+    get body(): Body {
+      if (!_body) {
         throw new Error("kpBody is not initialized");
       }
 
+      return _body;
+    },
+
+    applyAngularImpulse(impulse: number, wake = true): void {
       this.body.applyAngularImpulse(impulse, wake);
     },
     applyForce(force: Vec2Value, point: Vec2Value, wake?: boolean) {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       this.body.applyForce(force, point, wake);
     },
     applyForceToCenter(force: Vec2Value, wake?: boolean) {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       this.body.applyForceToCenter(force, wake);
     },
     applyLinearImpulse(impulse: Vec2Value, point: Vec2Value, wake?: boolean) {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       this.body.applyLinearImpulse(impulse, point, wake);
     },
     applyTorque(torque: number, wake?: boolean) {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       this.body.applyTorque(torque, wake);
     },
     getAngularDamping() {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       return this.body.getAngularDamping();
     },
     getAngularVelocity() {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       return this.body.getAngularVelocity();
     },
     getContactList() {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       return this.body.getContactList();
     },
     getFixtureList() {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       return this.body.getFixtureList();
     },
     getGravityScale() {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       return this.body.getGravityScale();
     },
     getInertia() {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       return this.body.getInertia();
     },
     getJointList() {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       return this.body.getJointList();
     },
     getLinearDamping() {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       return this.body.getLinearDamping();
     },
     getLinearVelocity() {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       return this.body.getLinearVelocity();
     },
     getLinearVelocityFromLocalPoint(localPoint: Vec2Value) {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       return this.body.getLinearVelocityFromLocalPoint(localPoint);
     },
     getLinearVelocityFromWorldPoint(worldPoint: Vec2Value) {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       return this.body.getLinearVelocityFromWorldPoint(worldPoint);
     },
     getLocalCenter() {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       return this.body.getLocalCenter();
     },
     getLocalPoint(worldPoint: Vec2Value) {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       return this.body.getLocalPoint(worldPoint);
     },
     getLocalVector(worldVector: Vec2Value) {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       return this.body.getLocalVector(worldVector);
     },
     getMass() {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       return this.body.getMass();
     },
     getMassData(data: MassData) {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       return this.body.getMassData(data);
     },
     getNextBody() {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       return this.body.getNext();
     },
     getTransform() {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       return this.body.getTransform();
     },
     getBodyType() {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       return this.body.getType();
     },
     getWorldCenter() {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       return this.body.getWorldCenter();
     },
     getWorldPoint(localPoint: Vec2Value) {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       return this.body.getWorldPoint(localPoint);
     },
     getWorldVector(localVector: Vec2Value) {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       return this.body.getWorldVector(localVector);
     },
     isActive() {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       return this.body.isActive();
     },
     isAwake() {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       return this.body.isAwake();
     },
     isBullet() {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       return this.body.isBullet();
     },
     isDynamic() {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       return this.body.isDynamic();
     },
     isFixedRotation() {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       return this.body.isFixedRotation();
     },
     isKinematic() {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       return this.body.isKinematic();
     },
     isSleepingAllowed() {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       return this.body.isSleepingAllowed();
     },
     isStatic() {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       return this.body.isStatic();
     },
     isWorldLocked() {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       return this.body.isWorldLocked();
     },
     resetMassData() {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       this.body.resetMassData();
     },
     setActive(flag: boolean) {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       this.body.setActive(flag);
     },
     setAngularDamping(damping: number) {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       this.body.setAngularDamping(damping);
     },
     setAngularVelocity(velocity: number) {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       this.body.setAngularVelocity(velocity);
     },
     setAwake(flag: boolean) {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       this.body.setAwake(flag);
     },
     setBullet(flag: boolean) {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       this.body.setBullet(flag);
     },
     setDynamic() {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       return this.body.setDynamic();
     },
     setFixedRotation(flag: boolean) {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       this.body.setFixedRotation(flag);
     },
     setGravityScale(scale: number) {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       this.body.setGravityScale(scale);
     },
     setKinematic() {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       return this.body.setKinematic();
     },
     setLinearDamping(damping: number) {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       this.body.setLinearDamping(damping);
     },
     setLinearVelocity(velocity: Vec2Value) {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       this.body.setLinearVelocity(velocity);
     },
     setMassData(data: MassData) {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       this.body.setMassData(data);
     },
     setSleepingAllowed(flag: boolean) {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       this.body.setSleepingAllowed(flag);
     },
     setStatic() {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       return this.body.setStatic();
     },
     setTransform(this: BodyCompThis, position: Vec2Value, angle: number) {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       this.setKPPosition(position);
       this.setKPAngle(angle);
     },
     setType(type: BodyType) {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       this.body.setType(type);
     },
 
@@ -632,17 +429,9 @@ export default function body(
       return k.isMousePressed() && this.isHovering();
     },
     isHovering(this: BodyCompThis) {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       return this.hasPoint(k2pVec2(k.toWorld(k.mousePos())));
     },
     checkContact(this: BodyCompThis, other: GameObj) {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       for (let edge = this.body.getContactList(); edge; edge = edge.next) {
         const gameObjA = (
           edge.contact.getFixtureA().getBody().getUserData() as KPBodyUserData
@@ -665,10 +454,6 @@ export default function body(
       return this.checkContact(other) !== null;
     },
     isOverlapping(other: GameObj) {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       for (
         let thisFixture = this.body.getFixtureList();
         thisFixture;
@@ -746,10 +531,6 @@ export default function body(
       });
     },
     onCollide(this: BodyCompThis, ...args: CollideArgs) {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       let tag: Tag | null = null;
       let cb: ActionCB = () => {};
 
@@ -765,10 +546,6 @@ export default function body(
       });
     },
     onCollideUpdate(this: BodyCompThis, ...args: CollideArgs) {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       const world = this.body.getWorld();
 
       let isColliding = false;
@@ -811,10 +588,6 @@ export default function body(
       });
     },
     onCollideEnd(this: BodyCompThis, ...args: CollideArgs) {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       let tag: Tag | null = null;
       let cb: ActionCB = () => {};
 
@@ -830,10 +603,6 @@ export default function body(
       });
     },
     hasPoint(point: Vec2Value) {
-      if (!this.body) {
-        throw new Error("kpBody is not initialized");
-      }
-
       for (
         let fixture = this.body.getFixtureList();
         fixture;
@@ -856,7 +625,7 @@ export default function body(
 
       const userData = def?.userData ?? {};
 
-      this.body = world.createBody({
+      _body = world.createBody({
         ...def,
         position: k2pVec2(this.pos),
         angle: k.deg2rad(this.angle),
@@ -867,14 +636,10 @@ export default function body(
       });
     },
     fixedUpdate(this: BodyCompThis) {
-      if (!this.body) return;
-
       this.setKPPosition(this.body.getPosition());
       this.setKPAngle(this.body.getAngle());
     },
     destroy(this: BodyCompThis) {
-      if (!this.body) return;
-
       const world = this.body.getWorld();
 
       world.destroyBody(this.body);
