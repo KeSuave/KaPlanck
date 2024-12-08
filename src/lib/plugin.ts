@@ -165,7 +165,10 @@ export interface KaPlanckPluginCtx {
   /**
    * Register an event that runs once when 2 game objs with certain tags collides.
    * Requires an object with the `kpWorld` component.
-   * Requires objects with `kpFixture` or `kpFixtures` components.
+   * Requires objects with `kpFixture` component.
+   *
+   * **IMPORTANT**: Please do not destroy the objects that are listening to this event.
+   *                If you would like to destroy them, please consider using `addToDestroyList` from `kpWorld` or `kpBody`.
    *
    * @param {Tag} tagA The tag of an object to listen for collisions.
    * @param {Tag} tagB The tag of another object to listen for collisions.
@@ -181,7 +184,10 @@ export interface KaPlanckPluginCtx {
   /**
    * Register an event that runs every frame when 2 game objs with certain tags collide.
    * Requires an object with the `kpWorld` component.
-   * Requires objects with `kpFixture` or `kpFixtures` components.
+   * Requires objects with `kpFixture` component.
+   *
+   * **IMPORTANT**: Please do not destroy the objects that are listening to this event.
+   *                If you would like to destroy them, please consider using `addToDestroyList` from `kpWorld` or `kpBody`.
    *
    * @param {Tag} tagA The tag of an object to listen for collisions.
    * @param {Tag} tagB The tag of another object to listen for collisions.
@@ -197,6 +203,9 @@ export interface KaPlanckPluginCtx {
   /**
    * Register an event that runs once when 2 game objs with certain tags stop colliding.
    * Requires an object with the `kpWorld` component.
+   *
+   * **IMPORTANT**: Please do not destroy the objects that are listening to this event.
+   *                If you would like to destroy them, please consider using `addToDestroyList` from `kpWorld` or `kpBody`.
    *
    * @param {Tag} tagA The tag of an object to listen for collisions.
    * @param {Tag} tagB The tag of another object to listen for collisions.
@@ -333,7 +342,15 @@ const KaPlanckPlugin =
             if (!objA.tags.includes(tagA) && !objB.tags.includes(tagA)) return;
             if (!objA.tags.includes(tagB) && !objB.tags.includes(tagB)) return;
 
-            action(objA, objB, contact);
+            let objWithTagA = objA;
+            let objWithTagB = objB;
+
+            if (!objA.tags.includes(tagA)) {
+              objWithTagA = objB;
+              objWithTagB = objA;
+            }
+
+            action(objWithTagA, objWithTagB, contact);
           },
         );
       },
@@ -383,7 +400,15 @@ const KaPlanckPlugin =
             return;
           }
 
-          action(currentObjA, currentObjB, currentContact);
+          let objWithTagA = currentObjA;
+          let objWithTagB = currentObjB;
+
+          if (!currentObjA.tags.includes(tagA)) {
+            objWithTagA = currentObjB;
+            objWithTagB = currentObjA;
+          }
+
+          action(objWithTagA, objWithTagB, currentContact);
         });
       },
       onKPCollideEnd(
@@ -405,7 +430,15 @@ const KaPlanckPlugin =
             if (!objA.tags.includes(tagA) && !objB.tags.includes(tagA)) return;
             if (!objA.tags.includes(tagB) && !objB.tags.includes(tagB)) return;
 
-            action(objA, objB, contact);
+            let objWithTagA = objA;
+            let objWithTagB = objB;
+
+            if (!objA.tags.includes(tagA)) {
+              objWithTagA = objB;
+              objWithTagB = objA;
+            }
+
+            action(objWithTagA, objWithTagB, contact);
           },
         );
       },

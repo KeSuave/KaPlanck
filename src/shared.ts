@@ -12,6 +12,8 @@ export type KAPLANCKCtx = KAPLAYCtx & KaPlanckPluginCtx;
 
 type ExampleCheckScene = (k: KAPLANCKCtx) => SceneDef;
 
+export const checks: [SceneName, ExampleCheckScene][] = [["body", bodyScene]];
+
 export const examples: [SceneName, ExampleCheckScene][] = [
   ["sample", sampleScene],
   ["eightBall", eightBallScene],
@@ -19,8 +21,6 @@ export const examples: [SceneName, ExampleCheckScene][] = [
   ["applyForce", applyForceScene],
   ["tumbler", tumblerScene],
 ];
-
-export const checks: [SceneName, ExampleCheckScene][] = [["body", bodyScene]];
 
 export function addScenesButtons(k: KAPLAYCtx, scene: GameObj) {
   const spacing = 10;
@@ -62,6 +62,8 @@ export function addScenesButtons(k: KAPLAYCtx, scene: GameObj) {
     });
 
     button.onClick(() => {
+      if (checksContainer.hidden) return;
+
       goToScene(k, sceneName);
     });
 

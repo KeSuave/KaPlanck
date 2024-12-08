@@ -24,24 +24,25 @@ SOFTWARE.
 
 */
 
-import { type BodyDef, Settings, Vec2, type Vec2Value } from "planck";
+import { Settings, Vec2, type Vec2Value } from "planck";
 
 import type { ColorComp, GameObj } from "kaplay";
 import type {
   KPBodyComp,
+  KPBodyDef,
   KPCircleShapeComp,
   KPFixtureComp,
+  KPFixtureDef,
   KPPosComp,
 } from "../lib";
 import { addScenesButtons, type KAPLANCKCtx } from "../shared";
 
-interface UserData {
-  gameObj: GameObj;
-  tag: string;
-}
+type Ball = GameObj<
+  ColorComp | KPPosComp | KPBodyComp | KPFixtureComp | KPCircleShapeComp
+>;
 
 const eightBallScene = (k: KAPLANCKCtx) => () => {
-  const scene = k.add([]);
+  const scene = k.add(["scene"]);
 
   Settings.velocityThreshold = 0;
 
@@ -87,20 +88,20 @@ const eightBallScene = (k: KAPLANCKCtx) => () => {
   const pocketFixDef = {
     userData: { tag: "pocket" },
   };
-  const ballFixDef = {
+  const ballFixDef: KPFixtureDef = {
     friction: 0.1,
     restitution: 0.99,
     density: 1,
     userData: { tag: "ball" },
   };
-  const ballBodyDef: BodyDef = {
+  const ballBodyDef: KPBodyDef = {
     type: "dynamic",
     bullet: true,
     linearDamping: 1.5,
     angularDamping: 1,
   };
 
-  const worldContainer = scene.add([k.kpWorld()]);
+  const worldContainer = scene.add([k.kpWorld(), "world"]);
 
   // vertical rails
   worldContainer.add([
@@ -113,6 +114,7 @@ const eightBallScene = (k: KAPLANCKCtx) => () => {
     }),
     k.kpBody(),
     k.kpFixture(railFixDef),
+    "rail",
   ]);
   worldContainer.add([
     k.color(40, 40, 40),
@@ -124,6 +126,7 @@ const eightBallScene = (k: KAPLANCKCtx) => () => {
     }),
     k.kpBody(),
     k.kpFixture(railFixDef),
+    "rail",
   ]);
 
   // horizontal rails
@@ -137,6 +140,7 @@ const eightBallScene = (k: KAPLANCKCtx) => () => {
     }),
     k.kpBody(),
     k.kpFixture(railFixDef),
+    "rail",
   ]);
   worldContainer.add([
     k.color(40, 40, 40),
@@ -148,6 +152,7 @@ const eightBallScene = (k: KAPLANCKCtx) => () => {
     }),
     k.kpBody(),
     k.kpFixture(railFixDef),
+    "rail",
   ]);
   worldContainer.add([
     k.color(40, 40, 40),
@@ -159,6 +164,7 @@ const eightBallScene = (k: KAPLANCKCtx) => () => {
     }),
     k.kpBody(),
     k.kpFixture(railFixDef),
+    "rail",
   ]);
   worldContainer.add([
     k.color(40, 40, 40),
@@ -170,6 +176,7 @@ const eightBallScene = (k: KAPLANCKCtx) => () => {
     }),
     k.kpBody(),
     k.kpFixture(railFixDef),
+    "rail",
   ]);
 
   // pockets
@@ -180,6 +187,7 @@ const eightBallScene = (k: KAPLANCKCtx) => () => {
     k.kpCircleShape({ radius: pocketRadius, draw: true }),
     k.kpBody(),
     k.kpFixture(pocketFixDef),
+    "pocket",
   ]);
   worldContainer.add([
     k.color(60, 60, 60),
@@ -188,6 +196,7 @@ const eightBallScene = (k: KAPLANCKCtx) => () => {
     k.kpCircleShape({ radius: pocketRadius, draw: true }),
     k.kpBody(),
     k.kpFixture(pocketFixDef),
+    "pocket",
   ]);
   worldContainer.add([
     k.color(60, 60, 60),
@@ -201,6 +210,7 @@ const eightBallScene = (k: KAPLANCKCtx) => () => {
     k.kpCircleShape({ radius: pocketRadius, draw: true }),
     k.kpBody(),
     k.kpFixture(pocketFixDef),
+    "pocket",
   ]);
   worldContainer.add([
     k.color(60, 60, 60),
@@ -214,6 +224,7 @@ const eightBallScene = (k: KAPLANCKCtx) => () => {
     k.kpCircleShape({ radius: pocketRadius, draw: true }),
     k.kpBody(),
     k.kpFixture(pocketFixDef),
+    "pocket",
   ]);
   worldContainer.add([
     k.color(60, 60, 60),
@@ -227,6 +238,7 @@ const eightBallScene = (k: KAPLANCKCtx) => () => {
     k.kpCircleShape({ radius: pocketRadius, draw: true }),
     k.kpBody(),
     k.kpFixture(pocketFixDef),
+    "pocket",
   ]);
   worldContainer.add([
     k.color(60, 60, 60),
@@ -240,59 +252,64 @@ const eightBallScene = (k: KAPLANCKCtx) => () => {
     k.kpCircleShape({ radius: pocketRadius, draw: true }),
     k.kpBody(),
     k.kpFixture(pocketFixDef),
+    "pocket",
   ]);
 
   // balls
   const balls = rack(ballRadius, width / 4, 0);
+  const cueBallPos = { x: -width / 4, y: 0 };
+  const cueBallColor = [200, 200, 200];
 
-  balls.push({ x: -width / 4, y: 0 });
+  balls.push(cueBallPos);
 
   const ballColors = [
     [200, 0, 0],
     [0, 0, 200],
   ];
 
-  let cueBall: GameObj<
-    ColorComp | KPPosComp | KPBodyComp | KPFixtureComp | KPCircleShapeComp
-  >;
+  let cueBall: Ball | null = null;
 
   for (let i = 0; i < balls.length; i++) {
     let color = ballColors[i % ballColors.length];
 
-    if (i === 15) color = [200, 200, 200];
+    if (i === 15) color = cueBallColor;
     if (i === 4) color = [80, 80, 80];
 
-    const ball = worldContainer.add([
-      k.color(color[0], color[1], color[2]),
-      k.kpPos(k.kpCenter().add(balls[i])),
-      k.kpRotate(),
-      k.kpCircleShape({ radius: ballRadius, draw: true }),
-      k.kpBody(ballBodyDef),
-      k.kpFixture(ballFixDef),
-    ]);
+    const ball = addBall(
+      k,
+      worldContainer,
+      color,
+      balls[i],
+      ballRadius,
+      ballBodyDef,
+      ballFixDef,
+    );
 
     if (i === 15) {
       cueBall = ball;
+
+      cueBall.use("cue");
     }
   }
 
-  worldContainer.world.on("post-solve", (contact) => {
-    const userDataA = contact.getFixtureA().getUserData() as UserData;
-    const userDataB = contact.getFixtureB().getUserData() as UserData;
+  k.onKPCollideEnd("ball", "pocket", (objA) => {
+    worldContainer.addToDestroyList(objA);
+  });
 
-    let pocket = userDataA;
-    let ball = userDataB;
+  k.onDestroy("cue", () => {
+    cueBall = null;
 
-    if (userDataA.tag !== "pocket") {
-      pocket = userDataB;
-      ball = userDataA;
-    }
-
-    if (pocket.tag === "pocket" && ball.tag === "ball") {
-      k.wait(0.001, () => {
-        ball.gameObj.destroy();
-      });
-    }
+    k.wait(1, () => {
+      cueBall = addBall(
+        k,
+        worldContainer,
+        cueBallColor,
+        cueBallPos,
+        ballRadius,
+        ballBodyDef,
+        ballFixDef,
+      );
+    });
   });
 
   addScenesButtons(k, scene);
@@ -302,6 +319,7 @@ const eightBallScene = (k: KAPLANCKCtx) => () => {
   scene.onMousePress((button) => {
     if (button === "left") {
       if (
+        cueBall &&
         cueBall.shape.testPoint(
           {
             p: { x: cueBall.getKPPosition().x, y: cueBall.getKPPosition().y },
@@ -317,7 +335,7 @@ const eightBallScene = (k: KAPLANCKCtx) => () => {
 
   scene.onMouseRelease((button) => {
     if (button === "left") {
-      if (mouseDown) {
+      if (mouseDown && cueBall) {
         const mousePos = k.kpMousePos();
         const force = {
           x: (mousePos.x - cueBall.getKPPosition().x) * -1500,
@@ -362,6 +380,26 @@ function rack(radius: number, xOffset: number, yOffset: number) {
     }
   }
   return balls;
+}
+
+function addBall(
+  k: KAPLANCKCtx,
+  container: GameObj,
+  color: number[],
+  position: Vec2Value,
+  radius: number,
+  bodyDef: KPBodyDef,
+  fixtureDef: KPFixtureDef,
+) {
+  return container.add([
+    k.color(color[0], color[1], color[2]),
+    k.kpPos(k.kpCenter().add(position)),
+    k.kpRotate(),
+    k.kpCircleShape({ radius, draw: true }),
+    k.kpBody(bodyDef),
+    k.kpFixture(fixtureDef),
+    "ball",
+  ]);
 }
 
 export default eightBallScene;

@@ -23,7 +23,11 @@ import {
   type Vec2Value,
 } from "planck";
 
-import { getWorldFromGameObj, k2pVec2 } from "../utils";
+import {
+  getWorldContainerFromGameObj,
+  getWorldFromGameObj,
+  k2pVec2,
+} from "../utils";
 import type { KPPosComp } from "./Position";
 import type { KPRotateComp } from "./Rotate";
 
@@ -229,6 +233,13 @@ export interface KPBodyComp extends Comp {
    * @returns {boolean} True if the point is inside the body, false otherwise.
    */
   hasPoint(point: Vec2Value): boolean;
+  /**
+   * Adds the game object to a list of objects that will be destroyed when the world is not locked.
+   *
+   * _Please consider using `addToDestroyList` from `kpWorld` instead of this method, as this will
+   * require to lookup the parent game object with `kpWorld` component._
+   */
+  addToDestroyList(): void;
 }
 
 type BodyCompThis = GameObj<
@@ -610,6 +621,15 @@ export default function body(
       }
 
       return false;
+    },
+    addToDestroyList(this: BodyCompThis) {
+      const worldContainer = getWorldContainerFromGameObj(this);
+
+      if (!worldContainer) {
+        throw new Error("kpBody requires to be a descendant of kpWorld");
+      }
+
+      worldContainer.addToDestroyList(this);
     },
 
     add(this: BodyCompThis) {

@@ -26,23 +26,36 @@ export function p2kVec2(k: KAPLAYCtx, vec: Vec2Value): KaVec2 {
   return k.vec2(u2p(vec.x), u2p(vec.y));
 }
 
-export function getWorldFromGameObj(obj: GameObj) {
+export function getWorldFromGameObj(obj: GameObj): World | null {
   let world: World | null = null;
 
-  let parent = obj.parent;
+  const container = getWorldContainerFromGameObj(obj);
+  if (container) {
+    world = container.world;
+  }
+
+  return world;
+}
+
+export function getWorldContainerFromGameObj(
+  obj: GameObj,
+): GameObj<KPWorldComp> | null {
+  let container: GameObj<KPWorldComp> | null = null;
+
+  let parent = obj.parent as GameObj<KPWorldComp> | null;
   while (parent) {
     const worldComp = parent.c("kpWorld") as KPWorldComp | null;
 
     if (worldComp) {
-      world = worldComp.world;
+      container = parent;
 
       break;
     }
 
-    parent = parent.parent;
+    parent = parent.parent as GameObj<KPWorldComp> | null;
   }
 
-  return world;
+  return container;
 }
 
 export function getRenderProps(obj: GameObj): RenderProps {
@@ -58,7 +71,7 @@ export function getRenderProps(obj: GameObj): RenderProps {
 export function findWorldContainer(k: KAPLAYCtx): GameObj<KPWorldComp> | null {
   let obj: GameObj<KPWorldComp> | null = null;
 
-  const objs = k.get("*");
+  const objs = k.get("*", { recursive: true });
 
   for (const currentObj of objs) {
     const possibleWorldComp = currentObj.c("kpWorld") as KPWorldComp | null;

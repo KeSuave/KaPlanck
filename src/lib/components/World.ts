@@ -1,13 +1,12 @@
-import type { Comp, GameObj, KAPLAYCtx } from "kaplay";
 import type { Body, Contact, Joint, Vec2, Vec2Value, WorldDef } from "planck";
+import type { Comp, GameObj, KAPLAYCtx } from "kaplay";
 
-import { World } from "planck";
 import type { KPBodyUserData } from "./Body";
+import { World } from "planck";
 
 export interface KPWorldComp extends Comp {
   world: World;
 
-  clearForces(): void;
   getAllowSleeping(): boolean;
   getAutoClearForces(): boolean;
   getBodyCount(): number;
@@ -44,6 +43,14 @@ export interface KPWorldComp extends Comp {
   onContactPostSolve(
     action: (objA: GameObj, objB: GameObj, contact?: Contact) => void,
   ): void;
+
+  /**
+   * Add a GameObj to the destroy list, which will be destroyed once the world is not locked.
+   *
+   * @param {GameObj} obj The GameObj to add to the destroy list.
+   * @memberof KPWorldComp
+   */
+  addToDestroyList(obj: GameObj): void;
 }
 
 type KPWorldCompThis = GameObj<KPWorldComp>;
@@ -52,13 +59,12 @@ export default function world(
   k: KAPLAYCtx,
   def?: WorldDef | Vec2,
 ): KPWorldComp {
+  const _destroyList: GameObj[] = [];
+
   return {
     id: "kpWorld",
     world: new World(def),
 
-    clearForces() {
-      this.world.clearForces();
-    },
     getAllowSleeping() {
       return this.world.getAllowSleeping();
     },
@@ -140,9 +146,8 @@ export default function world(
     ) {
       this.on("contactPostSolve", action);
     },
-
-    fixedUpdate() {
-      this.world.step(k.fixedDt());
+    addToDestroyList(obj: GameObj) {
+      _destroyList.push(obj);
     },
 
     add(this: KPWorldCompThis) {
@@ -202,6 +207,20 @@ export default function world(
           this.trigger("contactPostSolve", a.gameObj, b.gameObj, contact);
         }
       });
+    },
+    fixedUpdate() {
+      this.world.step(k.fixedDt());
+    },
+    update() {
+      if (this.world.isLocked()) return;
+
+      while (_destroyList.length > 0) {
+        const obj = _destroyList.pop();
+
+        if (!obj) continue;
+
+        obj.destroy();
+      }
     },
   };
 }
