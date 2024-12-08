@@ -1,3 +1,16 @@
+# [1.4.0](https://github.com/KeSuave/KaPlanck/compare/v1.3.2...v1.4.0) (2024-12-08)
+
+
+### Bug Fixes
+
+* body component and fixture components no longer return null body or fixture ([ca2d538](https://github.com/KeSuave/KaPlanck/commit/ca2d53895717aa18af21b803fe43ef5df1a68f8b))
+
+
+### Features
+
+* addToDestroyList on both world and body components ([1c14389](https://github.com/KeSuave/KaPlanck/commit/1c14389528c6c66a203e743c8ac896c13ffa001c))
+* world functions from planck to component ([aee309e](https://github.com/KeSuave/KaPlanck/commit/aee309ebf0144ac2ac5a74ac683da87d5d22a274))
+
 ## [1.3.2](https://github.com/KeSuave/KaPlanck/compare/v1.3.1...v1.3.2) (2024-12-05)
 
 
