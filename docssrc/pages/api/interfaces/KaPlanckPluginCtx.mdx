@@ -26,7 +26,7 @@ Converts a vector from KAPLAY Vector to Planck Vector.
 
 Adds a body to the physics world.
 
-Requires `kpWorld` to be set first.
+Requires to be a child of an object with the `kpWorld` component.
 Requires `kpPos`.
 Requires `kpRotate`.
 
@@ -133,9 +133,9 @@ Defines the geometry of a body.
 
 Creates a fixture.
 
-**IMPORTANT**: cannot be added before `kpBody`.
+**IMPORTANT**: Cannot be added before `kpBody` if `kpBody` is used in the same game object.
+               Otherwise, it requires to be a child of an object with the `kpBody` component.
 
-Requires `kpBody`.
 Requires a shape.
 
 #### Parameters
@@ -147,29 +147,6 @@ Requires a shape.
 #### Returns
 
 [`KPFixtureComp`](/api/interfaces/KPFixtureComp)
-
-***
-
-### kpFixtures()
-
-> **kpFixtures**(`defs`): [`KPFixturesComp`](/api/interfaces/KPFixturesComp)
-
-Adds multiple fixtures to a body.
-
-**IMPORTANT**: cannot be added before `kpBody`.
-
-Requires `kpBody`.
-Requires `kpShapes` with the same amount of shapes as fixtures.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| ------ | ------ | ------ |
-| `defs` | [`KPFixtureDef`](/api/type-aliases/KPFixtureDef)[] | The definitions of the fixtures. |
-
-#### Returns
-
-[`KPFixturesComp`](/api/interfaces/KPFixturesComp)
 
 ***
 
@@ -304,24 +281,6 @@ A rotation component that works with KaPlanckPlugin methods.
 
 ***
 
-### kpShapes()
-
-> **kpShapes**(`defs`): [`KPShapesComp`](/api/interfaces/KPShapesComp)
-
-Defines multiple shapes for a body.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| ------ | ------ | ------ |
-| `defs` | [`KPShapeDef`](/api/type-aliases/KPShapeDef)[] | The definitions of the shapes. |
-
-#### Returns
-
-[`KPShapesComp`](/api/interfaces/KPShapesComp)
-
-***
-
 ### kpWorld()
 
 > **kpWorld**(`def`?): [`KPWorldComp`](/api/interfaces/KPWorldComp)
@@ -348,7 +307,10 @@ A world component that works with KaPlanckPlugin methods.
 
 Register an event that runs once when 2 game objs with certain tags collides.
 Requires an object with the `kpWorld` component.
-Requires objects with `kpFixture` or `kpFixtures` components.
+Requires objects with `kpFixture` component.
+
+**IMPORTANT**: Please do not destroy the objects that are listening to this event.
+               If you would like to destroy them, please consider using `addToDestroyList` from `kpWorld` or `kpBody`.
 
 #### Parameters
 
@@ -372,6 +334,9 @@ Requires objects with `kpFixture` or `kpFixtures` components.
 Register an event that runs once when 2 game objs with certain tags stop colliding.
 Requires an object with the `kpWorld` component.
 
+**IMPORTANT**: Please do not destroy the objects that are listening to this event.
+               If you would like to destroy them, please consider using `addToDestroyList` from `kpWorld` or `kpBody`.
+
 #### Parameters
 
 | Parameter | Type | Description |
@@ -393,7 +358,10 @@ Requires an object with the `kpWorld` component.
 
 Register an event that runs every frame when 2 game objs with certain tags collide.
 Requires an object with the `kpWorld` component.
-Requires objects with `kpFixture` or `kpFixtures` components.
+Requires objects with `kpFixture` component.
+
+**IMPORTANT**: Please do not destroy the objects that are listening to this event.
+               If you would like to destroy them, please consider using `addToDestroyList` from `kpWorld` or `kpBody`.
 
 #### Parameters
 

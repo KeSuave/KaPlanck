@@ -8,6 +8,10 @@ export default defineConfig({
   title: "KaPlanck",
   sidebar: [
     {
+      text: "Introduction",
+      link: "/introduction",
+    },
+    {
       text: "Getting Started",
       link: "/getting-started",
     },
@@ -23,7 +27,7 @@ export default defineConfig({
     },
   ],
   topNav: [
-    { text: "Guide & API", link: "/getting-started", match: "/" },
+    { text: "API Reference", link: "/api", match: "/" },
     /* { text: "Blog", link: "/blog" }, */
   ],
 });

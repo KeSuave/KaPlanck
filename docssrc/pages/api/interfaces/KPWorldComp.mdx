@@ -12,6 +12,118 @@
 
 ## Methods
 
+### addToDestroyList()
+
+> **addToDestroyList**(`obj`): `void`
+
+Add a GameObj to the destroy list, which will be destroyed once the world is not locked.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `obj` | `GameObj` | The GameObj to add to the destroy list. |
+
+#### Returns
+
+`void`
+
+#### Memberof
+
+KPWorldComp
+
+***
+
+### getAllowSleeping()
+
+> **getAllowSleeping**(): `boolean`
+
+#### Returns
+
+`boolean`
+
+***
+
+### getAutoClearForces()
+
+> **getAutoClearForces**(): `boolean`
+
+#### Returns
+
+`boolean`
+
+***
+
+### getBodyCount()
+
+> **getBodyCount**(): `number`
+
+#### Returns
+
+`number`
+
+***
+
+### getBodyList()
+
+> **getBodyList**(): `null` \| `Body$1`
+
+#### Returns
+
+`null` \| `Body$1`
+
+***
+
+### getContactCount()
+
+> **getContactCount**(): `number`
+
+#### Returns
+
+`number`
+
+***
+
+### getGravity()
+
+> **getGravity**(): `Vec2`
+
+#### Returns
+
+`Vec2`
+
+***
+
+### getJointCount()
+
+> **getJointCount**(): `number`
+
+#### Returns
+
+`number`
+
+***
+
+### getJointList()
+
+> **getJointList**(): `null` \| `Joint`
+
+#### Returns
+
+`null` \| `Joint`
+
+***
+
+### isLocked()
+
+> **isLocked**(): `boolean`
+
+#### Returns
+
+`boolean`
+
+***
+
 ### onContactBegin()
 
 > **onContactBegin**(`action`): `void`
@@ -69,6 +181,88 @@
 | Parameter | Type |
 | ------ | ------ |
 | `action` | (`objA`, `objB`, `contact`?) => `void` |
+
+#### Returns
+
+`void`
+
+***
+
+### rayCast()
+
+> **rayCast**(`point1`, `point2`, `action`): `void`
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `point1` | `Vec2` |
+| `point2` | `Vec2` |
+| `action` | (`gameObj`, `point`, `normal`, `fraction`) => `number` |
+
+#### Returns
+
+`void`
+
+***
+
+### setAllowSleeping()
+
+> **setAllowSleeping**(`flag`): `void`
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `flag` | `boolean` |
+
+#### Returns
+
+`void`
+
+***
+
+### setAutoClearForces()
+
+> **setAutoClearForces**(`flag`): `void`
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `flag` | `boolean` |
+
+#### Returns
+
+`void`
+
+***
+
+### setGravity()
+
+> **setGravity**(`gravity`): `void`
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `gravity` | `Vec2Value` |
+
+#### Returns
+
+`void`
+
+***
+
+### shiftOrigin()
+
+> **shiftOrigin**(`newOrigin`): `void`
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `newOrigin` | `Vec2Value` |
 
 #### Returns
 

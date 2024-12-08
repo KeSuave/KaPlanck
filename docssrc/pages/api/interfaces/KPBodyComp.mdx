@@ -8,10 +8,25 @@
 
 | Property | Type | Description |
 | ------ | ------ | ------ |
-| `body` | `null` \| `Body$1` | The physics body associated with the game object. |
+| `body` | `Body$1` | The physics body associated with the game object. |
 | `collisionIgnore` | `string`[] | Tags of other components that this body should ignore collisions with. |
 
 ## Methods
+
+### addToDestroyList()
+
+> **addToDestroyList**(): `void`
+
+Adds the game object to a list of objects that will be destroyed when the world is not locked.
+
+_Please consider using `addToDestroyList` from `kpWorld` instead of this method, as this will
+require to lookup the parent game object with `kpWorld` component._
+
+#### Returns
+
+`void`
+
+***
 
 ### applyAngularImpulse()
 
@@ -317,16 +332,6 @@ The contact information if colliding, otherwise null.
 #### Returns
 
 `void`
-
-***
-
-### getNextBody()
-
-> **getNextBody**(): `null` \| `Body$1`
-
-#### Returns
-
-`null` \| `Body$1`
 
 ***
 
