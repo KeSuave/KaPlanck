@@ -21,7 +21,7 @@
  * SOFTWARE.
  */
 
-import { FrictionJoint, Transform, Vec2 } from "planck";
+import { Transform, Vec2 } from "planck";
 import { KPFixtureDef } from "../lib";
 import { addScenesButtons, type KAPLANCKCtx } from "../shared";
 
@@ -86,14 +86,14 @@ const applyForceScene = (k: KAPLANCKCtx) => () => {
   const xf1 = new Transform();
   const xf2 = new Transform();
 
-  xf1.q.set(0.3524 * Math.PI);
+  xf1.q.set(-0.3524 * Math.PI);
   xf1.p.set(xf1.q.getXAxis());
-  xf2.q.set(-0.3524 * Math.PI);
+  xf2.q.set(0.3524 * Math.PI);
   xf2.p.set(Vec2.neg(xf2.q.getXAxis()));
 
   const jet = worldContainer.add([
     k.kpPos(k.kpCenter().add({ x: 0, y: 18 })),
-    k.kpRotate(),
+    k.kpRotate(Math.PI),
     k.kpBody({
       type: "dynamic",
       angularDamping: 2,
@@ -107,22 +107,26 @@ const applyForceScene = (k: KAPLANCKCtx) => () => {
       vertices: [
         new Vec2(-1.0, 0.0),
         new Vec2(1.0, 0.0),
-        new Vec2(0.0, 0.5),
+        new Vec2(0.0, -0.5),
       ].map((v) => Transform.mul(xf1, v)),
       draw: true,
+      fill: false,
     }),
     k.kpFixture({ density: 2 }),
+    k.outline(1, new k.Color(255, 255, 255)),
   ]);
   jet.add([
     k.kpPolygonShape({
       vertices: [
         new Vec2(-1.0, 0.0),
         new Vec2(1.0, 0.0),
-        new Vec2(0.0, 0.5),
+        new Vec2(0.0, -0.5),
       ].map((v) => Transform.mul(xf2, v)),
       draw: true,
+      fill: false,
     }),
     k.kpFixture({ density: 2 }),
+    k.outline(1, new k.Color(255, 255, 255)),
   ]);
 
   if (!ground.body) return;
@@ -136,9 +140,10 @@ const applyForceScene = (k: KAPLANCKCtx) => () => {
     const box = worldContainer.add([
       k.kpPos(k.kpCenter().add({ x: 0, y: 15 - 1.54 * i })),
       k.kpRotate(),
-      k.kpBoxShape({ width: 1, height: 1, draw: true }),
+      k.kpBoxShape({ width: 1, height: 1, draw: true, fill: false }),
       k.kpBody({ type: "dynamic" }),
       k.kpFixture(boxFixtureDef),
+      k.outline(1, new k.Color(255, 255, 255)),
     ]);
 
     if (!box.body) return;
@@ -148,19 +153,21 @@ const applyForceScene = (k: KAPLANCKCtx) => () => {
     const mass = box.body.getMass();
     const radius = Math.sqrt((2 * I) / mass);
 
-    // TODO: create a component so that the joint can be drawn/visualized on debug mode
-    worldContainer.world.createJoint(
-      new FrictionJoint(
+    worldContainer.add([
+      k.kpFrictionJoint(
         {
           collideConnected: true,
           maxForce: mass * gravity,
           maxTorque: mass * radius * gravity,
+          localAnchorA: Vec2.zero(),
+          localAnchorB: Vec2.zero(),
+          draw: true,
         },
-        ground.body,
-        box.body,
-        Vec2.zero(),
+        ground,
+        box,
+        worldContainer,
       ),
-    );
+    ]);
   }
 
   scene.onUpdate(() => {
@@ -173,8 +180,8 @@ const applyForceScene = (k: KAPLANCKCtx) => () => {
     if (k.isKeyDown("up")) {
       if (!jet.body) return;
 
-      const f = jet.body.getWorldVector(new Vec2(0, -1));
-      const p = jet.body.getWorldPoint(new Vec2(0, 2));
+      const f = jet.body.getWorldVector(new Vec2(0, 1));
+      const p = jet.body.getWorldPoint(new Vec2(0, -2));
 
       jet.body?.applyLinearImpulse(f, p, true);
     }

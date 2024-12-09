@@ -23,6 +23,7 @@ import {
   type Vec2Value,
 } from "planck";
 
+import { KPUserData } from "../types";
 import {
   getWorldContainerFromGameObj,
   getWorldFromGameObj,
@@ -32,10 +33,6 @@ import type { KPPosComp } from "./Position";
 import type { KPRotateComp } from "./Rotate";
 
 export type KPBodyDef = Omit<BodyDef, "position" | "angle">;
-
-export interface KPBodyUserData {
-  gameObj: GameObj;
-}
 
 export interface KPBodyComp extends Comp {
   /**
@@ -441,10 +438,10 @@ export default function body(
     checkContact(this: BodyCompThis, other: GameObj) {
       for (let edge = this.body.getContactList(); edge; edge = edge.next) {
         const gameObjA = (
-          edge.contact.getFixtureA().getBody().getUserData() as KPBodyUserData
+          edge.contact.getFixtureA().getUserData() as KPUserData
         ).gameObj;
         const gameObjB = (
-          edge.contact.getFixtureB().getBody().getUserData() as KPBodyUserData
+          edge.contact.getFixtureB().getUserData() as KPUserData
         ).gameObj;
 
         if (
@@ -683,12 +680,8 @@ function handleCollisionEvent(
   tag: Tag | null,
   cb: ActionCB,
 ) {
-  const gameObjA = (
-    contact.getFixtureA().getBody().getUserData() as KPBodyUserData
-  ).gameObj;
-  const gameObjB = (
-    contact.getFixtureB().getBody().getUserData() as KPBodyUserData
-  ).gameObj;
+  const gameObjA = (contact.getFixtureA().getUserData() as KPUserData).gameObj;
+  const gameObjB = (contact.getFixtureB().getUserData() as KPUserData).gameObj;
 
   let thatGameObj = gameObjA;
 

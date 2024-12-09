@@ -4,8 +4,10 @@ import bodyScene from "./checks/body";
 import eightBallScene from "./examples/8-Ball";
 import addPairScene from "./examples/AddPair";
 import applyForceScene from "./examples/ApplyForce";
+import motorJointScene from "./examples/MotorJoint";
 import sampleScene from "./examples/Sample";
 import tumblerScene from "./examples/Tumbler";
+import webScene from "./examples/Web";
 import type { KaPlanckPluginCtx } from "./lib";
 
 export type KAPLANCKCtx = KAPLAYCtx & KaPlanckPluginCtx;
@@ -19,7 +21,9 @@ export const examples: [SceneName, ExampleCheckScene][] = [
   ["eightBall", eightBallScene],
   ["addPair", addPairScene],
   ["applyForce", applyForceScene],
+  ["motorJoint", motorJointScene],
   ["tumbler", tumblerScene],
+  ["web", webScene],
 ];
 
 export function addScenesButtons(k: KAPLAYCtx, scene: GameObj) {

@@ -1,7 +1,8 @@
 import type { Comp, GameObj } from "kaplay";
 import type { Fixture, FixtureDef } from "planck";
-import type { KPBodyComp, KPBodyUserData } from "./Body";
 
+import type { KPUserData } from "../types";
+import type { KPBodyComp } from "./Body";
 import type { KPShapeComp } from "./Shape";
 
 export type KPFixtureDef = Omit<FixtureDef, "shape">;
@@ -79,15 +80,21 @@ export default function fixture(def?: KPFixtureDef): KPFixtureComp {
         throw new Error("A body is required");
       }
 
+      const userData = def?.userData ?? {};
+
       _fixture = gameObjWithKPBodyComp.body.createFixture({
         ...def,
         shape: this.shape,
+        userData: {
+          ...userData,
+          gameObj: this,
+        },
       });
 
       this.fixture.shouldCollide = (that: Fixture) => {
         if (gameObjWithKPBodyComp.collisionIgnore.length === 0) return true;
 
-        const userData = that.getBody().getUserData() as KPBodyUserData;
+        const userData = that.getUserData() as KPUserData;
 
         const thatGameObj = userData.gameObj;
 

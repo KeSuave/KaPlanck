@@ -21,36 +21,68 @@
  * SOFTWARE.
  */
 
+import { Vec2 } from "planck";
 import { addScenesButtons, type KAPLANCKCtx } from "../shared";
 
-const addPairScene = (k: KAPLANCKCtx) => () => {
+const motorJointScene = (k: KAPLANCKCtx) => () => {
   const scene = k.add([]);
 
-  const worldContainer = scene.add([k.kpWorld()]);
+  const worldContainer = scene.add([k.kpWorld(new Vec2(0, 10))]);
 
-  for (let i = 0; i < 50; i++) {
-    worldContainer.add([
-      k.kpPos(
-        k.kpCenter().add({ x: Math.random() * -6, y: Math.random() * 2 - 1 }),
-      ),
-      k.kpRotate(),
-      k.kpCircleShape({ radius: 0.1, draw: true }),
-      k.kpBody({ type: "dynamic" }),
-      k.kpFixture(),
-    ]);
-  }
-
-  const box = worldContainer.add([
-    k.kpPos(k.kpCenter().add({ x: -40, y: 0 })),
+  const ground = worldContainer.add([
+    k.kpPos(k.kpCenter()),
     k.kpRotate(),
-    k.kpBoxShape({ width: 3, height: 3, draw: true }),
-    k.kpBody({ type: "dynamic", bullet: true }),
-    k.kpFixture({ density: 1 }),
+    k.kpBody(),
+    k.kpEdgeShape({
+      v1: new Vec2(-20, 0),
+      v2: new Vec2(20, 0),
+      draw: true,
+    }),
+    k.kpFixture(),
   ]);
 
-  box.setLinearVelocity({ x: 100, y: 0 });
+  const box = worldContainer.add([
+    k.kpPos(k.kpCenter().add({ x: 0, y: -8 })),
+    k.kpRotate(),
+    k.kpBody({ type: "dynamic" }),
+    k.kpBoxShape({
+      width: 4,
+      height: 1,
+      draw: true,
+      fill: false,
+    }),
+    k.kpFixture({
+      friction: 0.6,
+      density: 2,
+    }),
+    k.outline(1, new k.Color(255, 255, 255)),
+  ]);
+
+  const joint = worldContainer.add([
+    k.kpMotorJoint(
+      {
+        maxForce: 1000,
+        maxTorque: 1000,
+        draw: true,
+      },
+      ground,
+      box,
+      worldContainer,
+    ),
+  ]);
+
+  let time = 0;
+
+  worldContainer.onUpdate(() => {
+    time += k.dt();
+
+    joint.setLinearOffset(
+      new Vec2(6 * Math.sin(2 * time), -8 + 4 * Math.sin(time)),
+    );
+    joint.setAngularOffset(4 * time);
+  });
 
   addScenesButtons(k, scene);
 };
 
-export default addPairScene;
+export default motorJointScene;

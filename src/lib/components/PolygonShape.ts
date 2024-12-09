@@ -11,6 +11,7 @@ export interface KPPolygonShapeComp extends KPShapeComp {
 
 export interface KPPolygonShapeOpt extends KPShapeOpt {
   vertices?: Vec2Value[];
+  fill?: boolean;
 }
 
 type PolygonShapeCompThis = GameObj<KPPolygonShapeComp>;
@@ -44,6 +45,7 @@ export default function polygonShape(
       k.drawPolygon({
         ...renderingProps,
         pts,
+        fill: opt?.fill,
       });
     },
     destroy() {

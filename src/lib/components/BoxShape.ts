@@ -2,7 +2,7 @@ import type { GameObj, KAPLAYCtx } from "kaplay";
 import { type KPShapeComp, type KPShapeOpt } from "./Shape";
 
 import { BoxShape, type Vec2Value } from "planck";
-import { getRenderProps, p2kVec2, u2p } from "../utils";
+import { getRenderProps, m2p, p2kVec2 } from "../utils";
 
 export interface KPBoxShapeComp extends KPShapeComp {
   shape: BoxShape;
@@ -72,8 +72,8 @@ export default function boxShape(
       if (!opt.draw) return;
 
       const renderingProps = getRenderProps(this);
-      const width = u2p(opt.width);
-      const height = u2p(opt.height);
+      const width = m2p(opt.width);
+      const height = m2p(opt.height);
       const pos = k.vec2(p2kVec2(k, this.shape.m_centroid));
 
       k.drawRect({

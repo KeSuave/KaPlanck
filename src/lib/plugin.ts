@@ -34,19 +34,62 @@ import polygonShape, {
 import pos, { type KPPosComp, type KPVec2Args } from "./components/Position";
 import world, { type KPWorldComp } from "./components/World";
 
+import distanceJoint, {
+  type KPDistanceJointComp,
+  type KPDistanceJointDef,
+} from "./components/DistanceJoint";
+import frictionJoint, {
+  type KPFrictionJointComp,
+  type KPFrictionJointDef,
+} from "./components/FrictionJoint";
+import gearJoint, {
+  type KPGearJointComp,
+  type KPGearJointDef,
+} from "./components/GearJoint";
+import motorJoint, {
+  type KPMotorJointComp,
+  type KPMotorJointDef,
+} from "./components/MotorJoint";
+import mouseJoint, {
+  type KPMouseJointComp,
+  type KPMouseJointDef,
+} from "./components/MouseJoint";
+import prismaticJoint, {
+  type KPPrismaticJointComp,
+  type KPPrismaticJointDef,
+} from "./components/PrismaticJoint";
+import pulleyJoint, {
+  type KPPulleyJointComp,
+  type KPPulleyJointDef,
+} from "./components/PulleyJoint";
+import revoluteJoint, {
+  type KPRevoluteJointComp,
+  type KPRevoluteJointDef,
+} from "./components/RevoluteJoint";
+import ropeJoint, {
+  type KPRopeJointComp,
+  type KPRopeJointDef,
+} from "./components/RopeJoint";
 import rotate, { type KPRotateComp } from "./components/Rotate";
+import weldJoint, {
+  type KPWeldJointComp,
+  type KPWeldJointDef,
+} from "./components/WeldJoint";
+import wheelJoint, {
+  type KPWheelJointComp,
+  type KPWheelJointDef,
+} from "./components/WheelJoint";
 import {
   center,
   findWorldContainer,
   k2pVec2,
+  m2p,
   p2kVec2,
-  p2u,
-  u2p,
+  p2m,
 } from "./utils";
 
 export interface KaPlanckPluginCtx {
   // transform components
-
   /**
    * Sets the position of a body.
    *
@@ -160,6 +203,175 @@ export interface KaPlanckPluginCtx {
    * @return {KPPolygonShapeComp}
    */
   kpPolygonShape(opt?: KPPolygonShapeOpt): KPPolygonShapeComp;
+  /**
+   * Defines a distance joint.
+   *
+   * @param {KPDistanceJointDef} def The definition for the distance joint.
+   * @param {GameObj<KPBodyComp & KPPosComp & KPRotateComp>} gameObjA The first body to connect with the joint.
+   * @param {GameObj<KPBodyComp & KPPosComp & KPRotateComp>} gameObjB The second body to connect with the joint.
+   * @param {GameObj<KPWorldComp>} [worldContainer] The game object with `kpWorld` component.
+   * @return {KPDistanceJointComp}
+   */
+  kpDistanceJoint(
+    def: KPDistanceJointDef,
+    gameObjA: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+    gameObjB: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+    worldContainer?: GameObj<KPWorldComp>,
+  ): KPDistanceJointComp;
+  /**
+   * Defines a friction joint.
+   *
+   * @param {KPFrictionJointDef} def The definition for the friction joint.
+   * @param {(GameObj<KPBodyComp & KPPosComp & KPRotateComp>)} gameObjA The first body to connect with the joint.
+   * @param {(GameObj<KPBodyComp & KPPosComp & KPRotateComp>)} gameObjB The second body to connect with the joint.
+   * @param {GameObj<KPWorldComp>} [worldContainer] The game object with `kpWorld` component.
+   * @return {KPFrictionJointComp}
+   */
+  kpFrictionJoint(
+    def: KPFrictionJointDef,
+    gameObjA: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+    gameObjB: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+    worldContainer?: GameObj<KPWorldComp>,
+  ): KPFrictionJointComp;
+  /**
+   * Defines a gear joint.
+   *
+   * @param {KPGearJointDef} def The definition for the gear joint.
+   * @param {(GameObj<KPBodyComp & KPPosComp & KPRotateComp>)} gameObjA The first body to connect with the joint.
+   * @param {(GameObj<KPBodyComp & KPPosComp & KPRotateComp>)} gameObjB The second body to connect with the joint.
+   * @param {(GameObj<KPRevoluteJointComp> | GameObj<KPPrismaticJointComp>)} jointGameObj1 The first joint to connect with the gear.
+   * @param {(GameObj<KPRevoluteJointComp> | GameObj<KPPrismaticJointComp>)} jointGameObj2 The second joint to connect with the gear.
+   * @param {GameObj<KPWorldComp>} [worldContainer] The game object with `kpWorld` component.
+   * @return {KPGearJointComp}
+   */
+  kpGearJoint(
+    def: KPGearJointDef,
+    gameObjA: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+    gameObjB: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+    jointGameObj1: GameObj<KPRevoluteJointComp> | GameObj<KPPrismaticJointComp>,
+    jointGameObj2: GameObj<KPRevoluteJointComp> | GameObj<KPPrismaticJointComp>,
+    worldContainer?: GameObj<KPWorldComp>,
+  ): KPGearJointComp;
+  /**
+   * Defines a motor joint.
+   *
+   * @param {KPMotorJointDef} def The definition for the motor joint.
+   * @param {(GameObj<KPBodyComp & KPPosComp & KPRotateComp>)} gameObjA The first body to connect with the joint.
+   * @param {(GameObj<KPBodyComp & KPPosComp & KPRotateComp>)} gameObjB The second body to connect with the joint.
+   * @param {GameObj<KPWorldComp>} [worldContainer] The game object with `kpWorld` component.
+   * @return {KPMotorJointComp}
+   */
+  kpMotorJoint(
+    def: KPMotorJointDef,
+    gameObjA: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+    gameObjB: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+    worldContainer?: GameObj<KPWorldComp>,
+  ): KPMotorJointComp;
+  /**
+   * Defines a mouse joint.
+   *
+   * @param {KPMouseJointDef} def The definition for the mouse joint.
+   * @param {(GameObj<KPBodyComp & KPPosComp & KPRotateComp>)} gameObjA The first body to connect with the joint.
+   * @param {(GameObj<KPBodyComp & KPPosComp & KPRotateComp>)} gameObjB The second body to connect with the joint.
+   * @param {GameObj<KPWorldComp>} [worldContainer] The game object with `kpWorld` component.
+   * @return {KPMouseJointComp}
+   */
+  kpMouseJoint(
+    def: KPMouseJointDef,
+    gameObjA: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+    gameObjB: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+    worldContainer?: GameObj<KPWorldComp>,
+  ): KPMouseJointComp;
+  /**
+   * Defines a prismatic joint.
+   *
+   * @param {KPPrismaticJointDef} def The definition for the prismatic joint.
+   * @param {(GameObj<KPBodyComp & KPPosComp & KPRotateComp>)} gameObjA The first body to connect with the joint.
+   * @param {(GameObj<KPBodyComp & KPPosComp & KPRotateComp>)} gameObjB The second body to connect with the joint.
+   * @param {GameObj<KPWorldComp>} [worldContainer] The game object with `kpWorld` component.
+   * @return {KPPrismaticJointComp}
+   */
+  kpPrismaticJoint(
+    def: KPPrismaticJointDef,
+    gameObjA: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+    gameObjB: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+    worldContainer?: GameObj<KPWorldComp>,
+  ): KPPrismaticJointComp;
+  /**
+   * Defines a pulley joint.
+   *
+   * @param {KPPulleyJointDef} def The definition for the pulley joint.
+   * @param {(GameObj<KPBodyComp & KPPosComp & KPRotateComp>)} gameObjA The first body to connect with the joint.
+   * @param {(GameObj<KPBodyComp & KPPosComp & KPRotateComp>)} gameObjB The second body to connect with the joint.
+   * @param {GameObj<KPWorldComp>} [worldContainer] The game object with `kpWorld` component.
+   * @return {KPPulleyJointComp}
+   */
+  kpPulleyJoint(
+    def: KPPulleyJointDef,
+    gameObjA: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+    gameObjB: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+    worldContainer?: GameObj<KPWorldComp>,
+  ): KPPulleyJointComp;
+  /**
+   * Defines a revolute joint.
+   *
+   * @param {KPRevoluteJointDef} def The definition for the revolute joint.
+   * @param {(GameObj<KPBodyComp & KPPosComp & KPRotateComp>)} gameObjA The first body to connect with the joint.
+   * @param {(GameObj<KPBodyComp & KPPosComp & KPRotateComp>)} gameObjB The second body to connect with the joint.
+   * @param {GameObj<KPWorldComp>} [worldContainer] The game object with `kpWorld` component.
+   * @return {KPRevoluteJointComp}
+   */
+  kpRevoluteJoint(
+    def: KPRevoluteJointDef,
+    gameObjA: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+    gameObjB: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+    worldContainer?: GameObj<KPWorldComp>,
+  ): KPRevoluteJointComp;
+  /**
+   * Defines a distance joint.
+   *
+   * @param {KPRopeJointDef} def The definition for the distance joint.
+   * @param {(GameObj<KPBodyComp & KPPosComp & KPRotateComp>)} gameObjA The first body to connect with the joint.
+   * @param {(GameObj<KPBodyComp & KPPosComp & KPRotateComp>)} gameObjB The second body to connect with the joint.
+   * @param {GameObj<KPWorldComp>} [worldContainer] The game object with `kpWorld` component.
+   * @return {KPRopeJointComp}
+   */
+  kpRopeJoint(
+    def: KPRopeJointDef,
+    gameObjA: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+    gameObjB: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+    worldContainer?: GameObj<KPWorldComp>,
+  ): KPRopeJointComp;
+  /**
+   * Defines a weld joint.
+   *
+   * @param {KPWeldJointDef} def The definition for the weld joint.
+   * @param {(GameObj<KPBodyComp & KPPosComp & KPRotateComp>)} gameObjA The first body to connect with the joint.
+   * @param {(GameObj<KPBodyComp & KPPosComp & KPRotateComp>)} gameObjB The second body to connect with the joint.
+   * @param {GameObj<KPWorldComp>} [worldContainer] The world container to add the joint.
+   * @return {KPWeldJointComp}
+   */
+  kpWeldJoint(
+    def: KPWeldJointDef,
+    gameObjA: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+    gameObjB: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+    worldContainer?: GameObj<KPWorldComp>,
+  ): KPWeldJointComp;
+  /**
+   * Defines a distance joint.
+   *
+   * @param {KPWheelJointDef} def The definition for the distance joint.
+   * @param {(GameObj<KPBodyComp & KPPosComp & KPRotateComp>)} gameObjA The first body to connect with the joint.
+   * @param {(GameObj<KPBodyComp & KPPosComp & KPRotateComp>)} gameObjB The second body to connect with the joint.
+   * @param {GameObj<KPWorldComp>} [worldContainer] The world container to add the joint.
+   * @return {KPWheelJointComp}
+   */
+  kpWheelJoint(
+    def: KPWheelJointDef,
+    gameObjA: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+    gameObjB: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+    worldContainer?: GameObj<KPWorldComp>,
+  ): KPWheelJointComp;
 
   // events
   /**
@@ -233,19 +445,19 @@ export interface KaPlanckPluginCtx {
    */
   kpMousePos(): Vec2;
   /**
-   * Converts unit to pixel.
+   * Converts meter to pixel.
    *
-   * @param {number} m The unit value.
+   * @param {number} m The meter value.
    * @return {number}
    */
-  u2p(m: number): number;
+  m2p(m: number): number;
   /**
    * Converts pixel to unit.
    *
    * @param {number} p The pixel value.
    * @return {number}
    */
-  p2u(p: number): number;
+  p2m(p: number): number;
   /**
    * Converts a vector from KAPLAY Vector to Planck Vector.
    *
@@ -264,7 +476,7 @@ export interface KaPlanckPluginCtx {
 
 export interface KaPlanckPluginOpts {
   /**
-   * The ratio of pixels per unit.
+   * The ratio of pixels per meter.
    *
    * Defaults to `10`.
    *
@@ -321,6 +533,108 @@ const KaPlanckPlugin =
       },
       kpPolygonShape(opt?: KPPolygonShapeOpt) {
         return polygonShape(k, opt);
+      },
+      kpDistanceJoint(
+        def: KPDistanceJointDef,
+        gameObjA: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+        gameObjB: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+        worldContainer?: GameObj<KPWorldComp>,
+      ) {
+        return distanceJoint(k, def, gameObjA, gameObjB, worldContainer);
+      },
+      kpFrictionJoint(
+        def: KPFrictionJointDef,
+        gameObjA: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+        gameObjB: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+        worldContainer?: GameObj<KPWorldComp>,
+      ) {
+        return frictionJoint(k, def, gameObjA, gameObjB, worldContainer);
+      },
+      kpGearJoint(
+        def: KPGearJointDef,
+        gameObjA: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+        gameObjB: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+        jointGameObj1:
+          | GameObj<KPRevoluteJointComp>
+          | GameObj<KPPrismaticJointComp>,
+        jointGameObj2:
+          | GameObj<KPRevoluteJointComp>
+          | GameObj<KPPrismaticJointComp>,
+        worldContainer?: GameObj<KPWorldComp>,
+      ) {
+        return gearJoint(
+          k,
+          def,
+          gameObjA,
+          gameObjB,
+          jointGameObj1,
+          jointGameObj2,
+          worldContainer,
+        );
+      },
+      kpMotorJoint(
+        def: KPMotorJointDef,
+        gameObjA: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+        gameObjB: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+        worldContainer?: GameObj<KPWorldComp>,
+      ) {
+        return motorJoint(k, def, gameObjA, gameObjB, worldContainer);
+      },
+      kpMouseJoint(
+        def: KPMouseJointDef,
+        gameObjA: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+        gameObjB: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+        worldContainer?: GameObj<KPWorldComp>,
+      ) {
+        return mouseJoint(k, def, gameObjA, gameObjB, worldContainer);
+      },
+      kpPrismaticJoint(
+        def: KPPrismaticJointDef,
+        gameObjA: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+        gameObjB: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+        worldContainer?: GameObj<KPWorldComp>,
+      ) {
+        return prismaticJoint(k, def, gameObjA, gameObjB, worldContainer);
+      },
+      kpPulleyJoint(
+        def: KPPulleyJointDef,
+        gameObjA: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+        gameObjB: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+        worldContainer?: GameObj<KPWorldComp>,
+      ) {
+        return pulleyJoint(k, def, gameObjA, gameObjB, worldContainer);
+      },
+      kpRevoluteJoint(
+        def: KPRevoluteJointDef,
+        gameObjA: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+        gameObjB: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+        worldContainer?: GameObj<KPWorldComp>,
+      ) {
+        return revoluteJoint(k, def, gameObjA, gameObjB, worldContainer);
+      },
+      kpRopeJoint(
+        def: KPRopeJointDef,
+        gameObjA: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+        gameObjB: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+        worldContainer?: GameObj<KPWorldComp>,
+      ) {
+        return ropeJoint(k, def, gameObjA, gameObjB, worldContainer);
+      },
+      kpWeldJoint(
+        def: KPWeldJointDef,
+        gameObjA: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+        gameObjB: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+        worldContainer?: GameObj<KPWorldComp>,
+      ) {
+        return weldJoint(k, def, gameObjA, gameObjB, worldContainer);
+      },
+      kpWheelJoint(
+        def: KPWheelJointDef,
+        gameObjA: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+        gameObjB: GameObj<KPBodyComp & KPPosComp & KPRotateComp>,
+        worldContainer?: GameObj<KPWorldComp>,
+      ) {
+        return wheelJoint(k, def, gameObjA, gameObjB, worldContainer);
       },
 
       onKPCollide(
@@ -449,8 +763,8 @@ const KaPlanckPlugin =
       kpMousePos() {
         return k2pVec2(k.mousePos());
       },
-      u2p,
-      p2u,
+      m2p,
+      p2m,
       k2pVec2,
       p2kVec2(vec: Vec2) {
         return p2kVec2(k, vec);

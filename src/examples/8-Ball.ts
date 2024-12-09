@@ -54,8 +54,8 @@ const eightBallScene = (k: KAPLANCKCtx) => () => {
   const ballRadius = 1;
   const pocketRadius = 1.6;
 
-  const width = k.p2u(k.width() - 200);
-  const height = k.p2u(k.height() - 200);
+  const width = k.p2m(k.width() - 200);
+  const height = k.p2m(k.height() - 200);
 
   const railH = [
     new Vec2(pocketRadius, height * 0.5),
@@ -81,18 +81,12 @@ const eightBallScene = (k: KAPLANCKCtx) => () => {
   const railFixDef = {
     friction: 0.1,
     restitution: 0.9,
-    userData: {
-      tag: "rail",
-    },
   };
-  const pocketFixDef = {
-    userData: { tag: "pocket" },
-  };
+  const pocketFixDef = {};
   const ballFixDef: KPFixtureDef = {
     friction: 0.1,
     restitution: 0.99,
     density: 1,
-    userData: { tag: "ball" },
   };
   const ballBodyDef: KPBodyDef = {
     type: "dynamic",
