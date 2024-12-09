@@ -1,8 +1,11 @@
-import type { Body, Contact, Joint, Vec2, Vec2Value, WorldDef } from "planck";
 import type { Comp, GameObj, KAPLAYCtx } from "kaplay";
+import type { Body, Contact, Joint, Vec2, Vec2Value, WorldDef } from "planck";
 
-import type { KPBodyUserData } from "./Body";
 import { World } from "planck";
+import type { KPUserData } from "../types";
+import type { KPBodyComp } from "./Body";
+import type { KPFixtureComp } from "./Fixture";
+import type { KPJointComp } from "./Joint";
 
 export interface KPWorldComp extends Comp {
   world: World;
@@ -43,6 +46,11 @@ export interface KPWorldComp extends Comp {
   onContactPostSolve(
     action: (objA: GameObj, objB: GameObj, contact?: Contact) => void,
   ): void;
+  onRemoveBody(action: (bodyGameObj: GameObj<KPBodyComp>) => void): void;
+  onRemoveFixture(
+    action: (fixtureGameObj: GameObj<KPFixtureComp>) => void,
+  ): void;
+  onRemoveJoint(action: (jointGameObj: GameObj<KPJointComp>) => void): void;
 
   /**
    * Add a GameObj to the destroy list, which will be destroyed once the world is not locked.
@@ -103,8 +111,7 @@ export default function world(
       ) => number,
     ) {
       this.world.rayCast(point1, point2, (fixture, point, normal, fraction) => {
-        const kpGameObj = (fixture.getBody().getUserData() as KPBodyUserData)
-          .gameObj;
+        const kpGameObj = (fixture.getUserData() as KPUserData).gameObj;
 
         return action(kpGameObj, point, normal, fraction);
       });
@@ -146,65 +153,82 @@ export default function world(
     ) {
       this.on("contactPostSolve", action);
     },
+    onRemoveBody(
+      this: KPWorldCompThis,
+      action: (bodyGameObj: GameObj<KPBodyComp>) => void,
+    ) {
+      this.on("removeBody", action);
+    },
+    onRemoveFixture(
+      this: KPWorldCompThis,
+      action: (fixtureGameObj: GameObj<KPFixtureComp>) => void,
+    ) {
+      this.on("removeFixture", action);
+    },
+    onRemoveJoint(
+      this: KPWorldCompThis,
+      action: (jointGameObj: GameObj<KPJointComp>) => void,
+    ) {
+      this.on("removeJoint", action);
+    },
+
     addToDestroyList(obj: GameObj) {
       _destroyList.push(obj);
     },
 
     add(this: KPWorldCompThis) {
       this.world.on("begin-contact", (contact) => {
-        const a = contact
-          .getFixtureA()
-          .getBody()
-          .getUserData() as KPBodyUserData;
-        const b = contact
-          .getFixtureB()
-          .getBody()
-          .getUserData() as KPBodyUserData;
+        const a = contact.getFixtureA().getUserData() as KPUserData;
+        const b = contact.getFixtureB().getUserData() as KPUserData;
 
         if (a && b) {
           this.trigger("contactBegin", a.gameObj, b.gameObj, contact);
         }
       });
       this.world.on("end-contact", (contact) => {
-        const a = contact
-          .getFixtureA()
-          .getBody()
-          .getUserData() as KPBodyUserData;
-        const b = contact
-          .getFixtureB()
-          .getBody()
-          .getUserData() as KPBodyUserData;
+        const a = contact.getFixtureA().getUserData() as KPUserData;
+        const b = contact.getFixtureB().getUserData() as KPUserData;
 
         if (a && b) {
           this.trigger("contactEnd", a.gameObj, b.gameObj, contact);
         }
       });
       this.world.on("pre-solve", (contact) => {
-        const a = contact
-          .getFixtureA()
-          .getBody()
-          .getUserData() as KPBodyUserData;
-        const b = contact
-          .getFixtureB()
-          .getBody()
-          .getUserData() as KPBodyUserData;
+        const a = contact.getFixtureA().getUserData() as KPUserData;
+        const b = contact.getFixtureB().getUserData() as KPUserData;
 
         if (a && b) {
           this.trigger("contactPreSolve", a.gameObj, b.gameObj, contact);
         }
       });
       this.world.on("post-solve", (contact) => {
-        const a = contact
-          .getFixtureA()
-          .getBody()
-          .getUserData() as KPBodyUserData;
-        const b = contact
-          .getFixtureB()
-          .getBody()
-          .getUserData() as KPBodyUserData;
+        const a = contact.getFixtureA().getUserData() as KPUserData;
+        const b = contact.getFixtureB().getUserData() as KPUserData;
 
         if (a && b) {
           this.trigger("contactPostSolve", a.gameObj, b.gameObj, contact);
+        }
+      });
+
+      this.world.on("remove-body", (body) => {
+        const data = body.getUserData() as KPUserData;
+
+        if (data) {
+          this.trigger("removeBody", data.gameObj);
+        }
+      });
+      this.world.on("remove-fixture", (fixture) => {
+        const data = fixture.getUserData() as KPUserData;
+
+        if (data) {
+          this.trigger("removeFixture", data.gameObj);
+        }
+      });
+      this.world.on("remove-joint", (joint) => {
+        const data = joint.getUserData() as KPUserData;
+
+        if (data) {
+          this.trigger("removeJoint", data.gameObj);
         }
       });
     },
