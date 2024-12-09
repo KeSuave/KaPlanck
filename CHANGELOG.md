@@ -1,3 +1,11 @@
+# [1.5.0](https://github.com/KeSuave/KaPlanck/compare/v1.4.0...v1.5.0) (2024-12-09)
+
+
+### Features
+
+* added joints ([cb35089](https://github.com/KeSuave/KaPlanck/commit/cb350899479dd59ad64e40e7bb123320b676b047))
+* added onRemoveBody, onRemoveFixture, onRemoveJoint ([e7b1ab0](https://github.com/KeSuave/KaPlanck/commit/e7b1ab087af3e56cedc028365173c7dc08b7b974))
+
 # [1.4.0](https://github.com/KeSuave/KaPlanck/compare/v1.3.2...v1.4.0) (2024-12-08)
 
 
