@@ -42,7 +42,7 @@ export default function pos(k: KAPLAYCtx, ...args: KPVec2Args): KPPosComp {
     },
 
     kpMove(...margs: KPVec2Args) {
-      this.setKPPosition(vec2FromArgs(...margs).mul(k.dt()));
+      this.kpMoveBy(vec2FromArgs(...margs).mul(k.dt()));
     },
     kpMoveBy(...margs: KPVec2Args) {
       const vec = vec2FromArgs(...margs);
