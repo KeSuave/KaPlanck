@@ -63,3 +63,10 @@ export type {
 } from "./components/WheelJoint";
 export type { KPWorldComp } from "./components/World";
 export type { KPUserData } from "./types";
+
+// utilities
+export {
+  findWorldContainer,
+  getWorldContainerFromGameObj,
+  getWorldFromGameObj,
+} from "./utils";
