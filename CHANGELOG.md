@@ -1,3 +1,16 @@
+# [1.6.0](https://github.com/KeSuave/KaPlanck/compare/v1.5.0...v1.6.0) (2024-12-14)
+
+
+### Bug Fixes
+
+* kpPos use kpMoveBy to match pos comp ([fe17f10](https://github.com/KeSuave/KaPlanck/commit/fe17f10808a6d725d8228ee467e60642a5875ce8))
+
+
+### Features
+
+* an extended vec2 of Planck to match KAPLAY's ([2e7073d](https://github.com/KeSuave/KaPlanck/commit/2e7073d1f79adbf63db0dfeb7f956e34b341d4ee))
+* exposes utilities to find world and game obj with world component ([db496f8](https://github.com/KeSuave/KaPlanck/commit/db496f837b30da644fdec94af1a1d42dcbd02919))
+
 # [1.5.0](https://github.com/KeSuave/KaPlanck/compare/v1.4.0...v1.5.0) (2024-12-09)
 
 
