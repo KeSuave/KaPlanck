@@ -70,3 +70,4 @@ export {
   getWorldContainerFromGameObj,
   getWorldFromGameObj,
 } from "./utils";
+export { Vec2 } from "./vec2";
