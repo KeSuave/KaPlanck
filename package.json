@@ -81,7 +81,7 @@
     "kaplay": "^3001.0.2"
   },
   "dependencies": {
-    "planck": "^1.0.6"
+    "planck": "^1.1.2"
   },
   "lint-staged": {
     "**/*.ts": [
