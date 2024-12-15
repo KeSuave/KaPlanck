@@ -13,8 +13,9 @@ export interface KPRotateComp extends Comp {
    * Sets the rotation angle of the object in radians.
    *
    * @param {number} angle
+   * @param {boolean} fromBody This is an internal flag that states it was updated by the body
    */
-  setKPAngle(angle: number): void;
+  setKPAngle(angle: number, fromBody?: boolean): void;
 
   /**
    * Rotates the object by a given angle in radians.
@@ -45,13 +46,15 @@ export default function rotate(k: KAPLAYCtx, angle = 0): KPRotateComp {
 
       return k.deg2rad(this.angle);
     },
-    setKPAngle(this: RotateCompThis, angle: number) {
+    setKPAngle(this: RotateCompThis, angle: number, fromBody = false) {
       this.angle = k.rad2deg(angle);
 
-      const bodyComp = this.c("kpBody") as KPBodyComp | null;
+      if (!fromBody) {
+        const bodyComp = this.c("kpBody") as KPBodyComp | null;
 
-      if (bodyComp && bodyComp.body) {
-        bodyComp.body.setAngle(angle);
+        if (bodyComp && bodyComp.body) {
+          bodyComp.body.setAngle(angle);
+        }
       }
     },
 

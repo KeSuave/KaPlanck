@@ -16,8 +16,9 @@ export interface KPPosComp extends Comp {
    * Sets the position of the object.
    *
    * @param {Vec2Value} pos
+   * @param {boolean} fromBody This is an internal flag that states it was updated by the body
    */
-  setKPPosition(pos: Vec2Value): void;
+  setKPPosition(pos: Vec2Value, fromBody?: boolean): void;
   /**
    * Moves the object by a given amount.
    *
@@ -76,13 +77,15 @@ export default function pos(k: KAPLAYCtx, ...args: KPVec2Args): KPPosComp {
 
       return k2pVec2(this.pos);
     },
-    setKPPosition(this: PosCompThis, pos: Vec2Value) {
+    setKPPosition(this: PosCompThis, pos: Vec2Value, fromBody = false) {
       this.pos = p2kVec2(k, pos);
 
-      const bodyComp = this.c("kpBody") as KPBodyComp | null;
+      if (!fromBody) {
+        const bodyComp = this.c("kpBody") as KPBodyComp | null;
 
-      if (bodyComp && bodyComp.body) {
-        bodyComp.body.setPosition(pos);
+        if (bodyComp && bodyComp.body) {
+          bodyComp.body.setPosition(pos);
+        }
       }
     },
 

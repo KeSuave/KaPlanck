@@ -44,15 +44,6 @@ export interface KPBodyComp extends Comp {
    * @type {Tag[]}
    */
   collisionIgnore: Tag[];
-
-  /**
-   * @internal
-   * The color to use for debugging the physics body.
-   *
-   * @type {{ r: number; g: number; b: number }}
-   */
-  inspectColor: { r: number; g: number; b: number };
-
   /**
    * Applies an angular impulse to the body.
    *
@@ -919,8 +910,8 @@ export default function body(
       });
     },
     fixedUpdate(this: BodyCompThis) {
-      this.setKPPosition(this.body.getPosition());
-      this.setKPAngle(this.body.getAngle());
+      this.setKPPosition(this.body.getPosition(), true);
+      this.setKPAngle(this.body.getAngle(), true);
     },
     destroy(this: BodyCompThis) {
       const world = this.body.getWorld();
@@ -928,18 +919,6 @@ export default function body(
       world.destroyBody(this.body);
 
       _body = null;
-    },
-
-    get inspectColor() {
-      if (!this.body) return { r: 0, g: 0, b: 0 };
-
-      if (this.body.isDynamic()) {
-        return { r: 0, g: 191, b: 255 };
-      } else if (this.body.isKinematic()) {
-        return { r: 238, g: 130, b: 238 };
-      }
-
-      return { r: 255, g: 255, b: 255 };
     },
   };
 }
