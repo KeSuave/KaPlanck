@@ -6,6 +6,7 @@ import addPairScene from "./examples/AddPair";
 import applyForceScene from "./examples/ApplyForce";
 import motorJointScene from "./examples/MotorJoint";
 import sampleScene from "./examples/Sample";
+import sphereStackScene from "./examples/SphereStack";
 import tumblerScene from "./examples/Tumbler";
 import webScene from "./examples/Web";
 import type { KaPlanckPluginCtx } from "./lib";
@@ -22,6 +23,7 @@ export const examples: [SceneName, ExampleCheckScene][] = [
   ["addPair", addPairScene],
   ["applyForce", applyForceScene],
   ["motorJoint", motorJointScene],
+  ["sphereStack", sphereStackScene],
   ["tumbler", tumblerScene],
   ["web", webScene],
 ];

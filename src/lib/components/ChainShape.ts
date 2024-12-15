@@ -1,5 +1,5 @@
 import type { GameObj, KAPLAYCtx, Vec2 as KaVec2 } from "kaplay";
-import { type KPShapeComp, type KPShapeOpt } from "./Shape";
+import type { KPShapeColor, KPShapeComp, KPShapeOpt } from "./Shape";
 
 import { ChainShape, type Vec2Value } from "planck";
 import { getRenderProps, p2kVec2 } from "../internals";
@@ -36,6 +36,29 @@ export default function chainShape(
       }
 
       return _shape;
+    },
+
+    kpDrawInspect(color: KPShapeColor) {
+      const vertices = this.shape.m_vertices;
+
+      const pts: KaVec2[] = [];
+      for (let i = 0; i < vertices.length - 1; i++) {
+        pts.push(p2kVec2(k, vertices[i]));
+
+        if (i === vertices.length - 2) {
+          pts.push(p2kVec2(k, vertices[i + 1]));
+        }
+      }
+
+      if (opt?.loop) {
+        pts.push(pts[0]);
+      }
+
+      k.drawLines({
+        pts,
+        color: k.rgb(color.r, color.g, color.b),
+        opacity: color.a,
+      });
     },
 
     add() {

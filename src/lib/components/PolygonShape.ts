@@ -1,6 +1,6 @@
 import type { GameObj, KAPLAYCtx } from "kaplay";
 import { getRenderProps, p2kVec2 } from "../internals";
-import { KPShapeComp, KPShapeOpt } from "./Shape";
+import type { KPShapeColor, KPShapeComp, KPShapeOpt } from "./Shape";
 
 import type { Vec2Value } from "planck";
 import { PolygonShape } from "planck";
@@ -37,6 +37,17 @@ export default function polygonShape(
       }
 
       return _shape;
+    },
+
+    kpDrawInspect(color: KPShapeColor) {
+      const pts = this.shape.m_vertices.map((v) => p2kVec2(k, v));
+
+      k.drawPolygon({
+        pts,
+        fill: true,
+        color: k.rgb(color.r, color.g, color.b),
+        opacity: color.a,
+      });
     },
 
     add() {

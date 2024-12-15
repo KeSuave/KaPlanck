@@ -1,5 +1,5 @@
 import type { GameObj, KAPLAYCtx } from "kaplay";
-import { type KPShapeComp, type KPShapeOpt } from "./Shape";
+import type { KPShapeColor, KPShapeComp, KPShapeOpt } from "./Shape";
 
 import { EdgeShape, type Vec2Value } from "planck";
 import { getRenderProps, p2kVec2 } from "../internals";
@@ -36,6 +36,19 @@ export default function edgeShape(
       }
 
       return _shape;
+    },
+
+    kpDrawInspect(color: KPShapeColor) {
+      const p1 = p2kVec2(k, this.shape.m_vertex1);
+      const p2 = p2kVec2(k, this.shape.m_vertex2);
+
+      k.drawLine({
+        p1,
+        p2,
+        color: k.rgb(color.r, color.g, color.b),
+        opacity: color.a,
+        width: 1,
+      });
     },
 
     add() {

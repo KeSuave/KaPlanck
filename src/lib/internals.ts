@@ -1,5 +1,6 @@
 import type { GameObj, KAPLAYCtx, Vec2 as KaVec2, RenderProps } from "kaplay";
 import { Settings, Vec2, type Vec2Value } from "planck";
+import { KPBodyComp } from "./components/Body";
 
 export function m2p(m: number) {
   return m * Settings.lengthUnitsPerMeter;
@@ -32,4 +33,16 @@ export function getRenderProps(obj: GameObj): RenderProps {
     shader: obj.shader,
     uniform: obj.uniform,
   };
+}
+
+export function hasKPBody(obj: GameObj): GameObj<KPBodyComp> | null {
+  if (obj.c("kpBody")) {
+    return obj as unknown as GameObj<KPBodyComp>;
+  }
+
+  if (obj.parent && obj.parent.c("kpBody")) {
+    return obj.parent as unknown as GameObj<KPBodyComp>;
+  }
+
+  return null;
 }

@@ -1,5 +1,5 @@
 import type { GameObj, KAPLAYCtx } from "kaplay";
-import { type KPShapeComp, type KPShapeOpt } from "./Shape";
+import type { KPShapeColor, KPShapeComp, KPShapeOpt } from "./Shape";
 
 import { BoxShape, type Vec2Value } from "planck";
 import { getRenderProps, m2p, p2kVec2 } from "../internals";
@@ -63,6 +63,22 @@ export default function boxShape(
       }
 
       return _shape;
+    },
+
+    kpDrawInspect(color: KPShapeColor) {
+      const width = m2p(opt.width);
+      const height = m2p(opt.height);
+      const pos = k.vec2(p2kVec2(k, this.shape.m_centroid));
+
+      k.drawRect({
+        width,
+        height,
+        pos,
+        anchor: "center",
+        fill: true,
+        color: k.rgb(color.r, color.g, color.b),
+        opacity: color.a,
+      });
     },
 
     add(this: BoxShapeCompThis) {

@@ -1,9 +1,9 @@
 import type { Comp, GameObj } from "kaplay";
 import type { Fixture, FixtureDef } from "planck";
+import type { KPShapeColor, KPShapeComp } from "./Shape";
 
 import type { KPUserData } from "../types";
 import type { KPBodyComp } from "./Body";
-import type { KPShapeComp } from "./Shape";
 
 export type KPFixtureDef = Omit<FixtureDef, "shape">;
 
@@ -145,7 +145,32 @@ export default function fixture(def?: KPFixtureDef): KPFixtureComp {
         });
       };
     },
+    drawInspect(this: FixtureThis) {
+      const body = this.fixture.getBody();
 
+      const color: KPShapeColor = {
+        r: 200,
+        g: 200,
+        b: 200,
+        a: 1,
+      };
+
+      if (body.isDynamic()) {
+        color.r = 0;
+        color.g = 191;
+        color.b = 255;
+      } else if (body.isKinematic()) {
+        color.r = 238;
+        color.g = 130;
+        color.b = 238;
+      }
+
+      if (!body.isAwake()) {
+        color.a = 0.5;
+      }
+
+      this.kpDrawInspect(color);
+    },
     destroy(this: FixtureThis) {
       this.fixture.getBody().destroyFixture(this.fixture);
 

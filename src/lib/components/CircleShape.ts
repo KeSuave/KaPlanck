@@ -1,5 +1,5 @@
 import type { GameObj, KAPLAYCtx } from "kaplay";
-import { type KPShapeComp, type KPShapeOpt } from "./Shape";
+import type { KPShapeColor, KPShapeComp, KPShapeOpt } from "./Shape";
 
 import { CircleShape, Vec2, type Vec2Value } from "planck";
 import { getRenderProps, m2p, p2kVec2 } from "../internals";
@@ -39,6 +39,22 @@ export default function circleShape(
       return _shape;
     },
 
+    kpDrawInspect(color: KPShapeColor) {
+      k.drawCircle({
+        pos: p2kVec2(k, this.shape.getCenter()),
+        radius: m2p(this.shape.getRadius()),
+        fill: true,
+        color: k.rgb(color.r, color.g, color.b),
+        opacity: color.a,
+      });
+
+      k.drawLine({
+        p1: k.vec2(),
+        p2: k.vec2(m2p(this.shape.getRadius()), 0),
+        color: k.rgb(color.r, color.g, color.b),
+      });
+    },
+
     add() {
       _shape = new CircleShape(opt?.position ?? Vec2.zero(), opt?.radius);
     },
@@ -52,6 +68,11 @@ export default function circleShape(
         pos: p2kVec2(k, this.shape.getCenter()),
         radius: m2p(this.shape.getRadius()),
         fill: opt?.fill,
+      });
+
+      k.drawLine({
+        p1: k.vec2(),
+        p2: k.vec2(m2p(this.shape.getRadius()), 0),
       });
     },
     destroy() {
