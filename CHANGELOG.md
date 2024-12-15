@@ -1,3 +1,15 @@
+# [1.7.0](https://github.com/KeSuave/KaPlanck/compare/v1.6.0...v1.7.0) (2024-12-15)
+
+
+### Bug Fixes
+
+* bodies are now able to sleep (removed circular angle and pos updating) ([b5db27d](https://github.com/KeSuave/KaPlanck/commit/b5db27dfc35e61d5db364be3d2ecb2ca1f8898bd))
+
+
+### Features
+
+* inspect drawing for fixtures ([cf28b9a](https://github.com/KeSuave/KaPlanck/commit/cf28b9a59096ad23f96cb940f54837c82573476a))
+
 # [1.6.0](https://github.com/KeSuave/KaPlanck/compare/v1.5.0...v1.6.0) (2024-12-14)
 
 

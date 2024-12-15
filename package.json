@@ -1,6 +1,6 @@
 {
   "name": "kaplanck",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "A KAPLAY plugin that integrates Planck, while keeping the simple/fun API of KAPLAY.",
   "homepage": "https://kesuave.github.io/KaPlanck/",
   "keywords": [
