@@ -1,11 +1,17 @@
 import type { GameObj, KAPLAYCtx } from "kaplay";
-import { getRenderProps, p2kVec2 } from "../utils";
+import { getRenderProps, p2kVec2 } from "../internals";
 import { KPShapeComp, KPShapeOpt } from "./Shape";
 
 import type { Vec2Value } from "planck";
 import { PolygonShape } from "planck";
 
 export interface KPPolygonShapeComp extends KPShapeComp {
+  /**
+   * The PolygonShape
+   *
+   * @type {PolygonShape}
+   * @memberof KPPolygonShapeComp
+   */
   shape: PolygonShape;
 }
 

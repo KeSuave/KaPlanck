@@ -18,17 +18,72 @@ export interface KPMotorJointDef
 }
 
 export interface KPMotorJointComp extends KPJointComp {
+  /**
+   * The MotorJoint
+   *
+   * @type {MotorJoint}
+   */
   joint: MotorJoint;
 
+  /**
+   * Returns the angular offset of this joint.
+   *
+   * @return {number}
+   */
   getAngularOffset(): number;
+  /**
+   * Returns the correction factor for this joint.
+   *
+   * @return {number}
+   */
   getCorrectionFactor(): number;
+  /**
+   * Returns the linear offset of this joint.
+   *
+   * @return {Vec2}
+   */
   getLinearOffset(): Vec2;
+  /**
+   * Returns the maximum force of this joint.
+   *
+   * @return {number}
+   */
   getMaxForce(): number;
+  /**
+   * Returns the maximum torque of this joint.
+   *
+   * @return {number}
+   */
   getMaxTorque(): number;
+  /**
+   * Sets the angular offset of this joint.
+   *
+   * @param {number} angularOffset
+   */
   setAngularOffset(angularOffset: number): void;
+  /**
+   * Sets the correction factor for this joint.
+   *
+   * @param {number} factor
+   */
   setCorrectionFactor(factor: number): void;
+  /**
+   * Sets the linear offset of this joint.
+   *
+   * @param {Vec2Value} linearOffset
+   */
   setLinearOffset(linearOffset: Vec2Value): void;
+  /**
+   * Sets the maximum force of this joint.
+   *
+   * @param {number} force
+   */
   setMaxForce(force: number): void;
+  /**
+   * Sets the maximum torque of this joint.
+   *
+   * @param {number} torque
+   */
   setMaxTorque(torque: number): void;
 }
 

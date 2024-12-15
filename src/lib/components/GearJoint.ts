@@ -15,11 +15,37 @@ export interface KPGearJointDef
 }
 
 export interface KPGearJointComp extends KPJointComp {
+  /**
+   * The GearJoint
+   *
+   * @type {GearJoint}
+   */
   joint: GearJoint;
 
+  /**
+   * Returns the joint1 game object.
+   *
+   * @return {(GameObj<KPRevoluteJointComp> | GameObj<KPPrismaticJointComp>)}
+   * @memberof KPGearJointComp
+   */
   getJoint1(): GameObj<KPRevoluteJointComp> | GameObj<KPPrismaticJointComp>;
+  /**
+   * Returns the joint2 game object.
+   *
+   * @return {(GameObj<KPRevoluteJointComp> | GameObj<KPPrismaticJointComp>)}
+   */
   getJoint2(): GameObj<KPRevoluteJointComp> | GameObj<KPPrismaticJointComp>;
+  /**
+   * Returns the ratio of the gear joint.
+   *
+   * @return {number}
+   */
   getRatio(): number;
+  /**
+   * Sets the ratio of the gear joint.
+   *
+   * @param {number} ratio
+   */
   setRatio(ratio: number): void;
 }
 

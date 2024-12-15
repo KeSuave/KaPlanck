@@ -6,9 +6,9 @@
 
 ## Properties
 
-| Property | Type |
-| ------ | ------ |
-| `world` | `World` |
+| Property | Type | Description |
+| ------ | ------ | ------ |
+| `world` | `World` | The World |
 
 ## Methods
 
@@ -28,25 +28,13 @@ Add a GameObj to the destroy list, which will be destroyed once the world is not
 
 `void`
 
-#### Memberof
-
-KPWorldComp
-
 ***
 
 ### getAllowSleeping()
 
 > **getAllowSleeping**(): `boolean`
 
-#### Returns
-
-`boolean`
-
-***
-
-### getAutoClearForces()
-
-> **getAutoClearForces**(): `boolean`
+Returns true if world allows sleeping.
 
 #### Returns
 
@@ -58,6 +46,8 @@ KPWorldComp
 
 > **getBodyCount**(): `number`
 
+Returns the number of bodies in the world.
+
 #### Returns
 
 `number`
@@ -67,6 +57,8 @@ KPWorldComp
 ### getBodyList()
 
 > **getBodyList**(): `null` \| `Body$1`
+
+Returns the first body in the list, or null if there are no bodies.
 
 #### Returns
 
@@ -78,6 +70,8 @@ KPWorldComp
 
 > **getContactCount**(): `number`
 
+Returns the number of contacts in the world.
+
 #### Returns
 
 `number`
@@ -87,6 +81,8 @@ KPWorldComp
 ### getGravity()
 
 > **getGravity**(): `Vec2`
+
+Returns the gravity vector of the world.
 
 #### Returns
 
@@ -98,6 +94,8 @@ KPWorldComp
 
 > **getJointCount**(): `number`
 
+Returns the joint count in the world.
+
 #### Returns
 
 `number`
@@ -107,6 +105,8 @@ KPWorldComp
 ### getJointList()
 
 > **getJointList**(): `null` \| `Joint`
+
+Returns the first joint in the list, or null if there are no joints.
 
 #### Returns
 
@@ -118,6 +118,8 @@ KPWorldComp
 
 > **isLocked**(): `boolean`
 
+Returns true if the world is locked, false otherwise.
+
 #### Returns
 
 `boolean`
@@ -128,11 +130,13 @@ KPWorldComp
 
 > **onContactBegin**(`action`): `void`
 
+An event listener for when two objects begin to touch.
+
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `action` | (`objA`, `objB`, `contact`?) => `void` |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `action` | (`objA`, `objB`, `contact`?) => `void` |  |
 
 #### Returns
 
@@ -144,11 +148,13 @@ KPWorldComp
 
 > **onContactEnd**(`action`): `void`
 
+An event listener for when two objects stop touching.
+
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `action` | (`objA`, `objB`, `contact`?) => `void` |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `action` | (`objA`, `objB`, `contact`?) => `void` |  |
 
 #### Returns
 
@@ -160,11 +166,13 @@ KPWorldComp
 
 > **onContactPostSolve**(`action`): `void`
 
+An event listener for when two objects are touching and a contact has been solved.
+
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `action` | (`objA`, `objB`, `contact`?) => `void` |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `action` | (`objA`, `objB`, `contact`?) => `void` |  |
 
 #### Returns
 
@@ -176,11 +184,67 @@ KPWorldComp
 
 > **onContactPreSolve**(`action`): `void`
 
+An event listener for when two objects are touching and a contact is being solved.
+
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `action` | (`objA`, `objB`, `contact`?) => `void` |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `action` | (`objA`, `objB`, `contact`?) => `void` |  |
+
+#### Returns
+
+`void`
+
+***
+
+### onRemoveBody()
+
+> **onRemoveBody**(`action`): `void`
+
+An event listener for when a body is removed from the world.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `action` | (`bodyGameObj`) => `void` |  |
+
+#### Returns
+
+`void`
+
+***
+
+### onRemoveFixture()
+
+> **onRemoveFixture**(`action`): `void`
+
+An event listener for when a fixture is removed from the body.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `action` | (`fixtureGameObj`) => `void` |  |
+
+#### Returns
+
+`void`
+
+***
+
+### onRemoveJoint()
+
+> **onRemoveJoint**(`action`): `void`
+
+An event listener for when a joint is removed from the world.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `action` | (`jointGameObj`) => `void` |  |
 
 #### Returns
 
@@ -192,13 +256,15 @@ KPWorldComp
 
 > **rayCast**(`point1`, `point2`, `action`): `void`
 
+Casts a ray from point1 to point2 in the world and calls an action function for each body hit.
+
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `point1` | `Vec2` |
-| `point2` | `Vec2` |
-| `action` | (`gameObj`, `point`, `normal`, `fraction`) => `number` |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `point1` | `Vec2` |  |
+| `point2` | `Vec2` |  |
+| `action` | (`gameObj`, `point`, `normal`, `fraction`) => `number` |  |
 
 #### Returns
 
@@ -210,27 +276,13 @@ KPWorldComp
 
 > **setAllowSleeping**(`flag`): `void`
 
-#### Parameters
-
-| Parameter | Type |
-| ------ | ------ |
-| `flag` | `boolean` |
-
-#### Returns
-
-`void`
-
-***
-
-### setAutoClearForces()
-
-> **setAutoClearForces**(`flag`): `void`
+Sets the state of allowing sleeping in the world.
 
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `flag` | `boolean` |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `flag` | `boolean` |  |
 
 #### Returns
 
@@ -242,11 +294,13 @@ KPWorldComp
 
 > **setGravity**(`gravity`): `void`
 
+Sets the gravity of the world.
+
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `gravity` | `Vec2Value` |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `gravity` | `Vec2Value` |  |
 
 #### Returns
 
@@ -258,11 +312,13 @@ KPWorldComp
 
 > **shiftOrigin**(`newOrigin`): `void`
 
+Sets the position of the world origin.
+
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `newOrigin` | `Vec2Value` |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `newOrigin` | `Vec2Value` |  |
 
 #### Returns
 

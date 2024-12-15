@@ -15,15 +15,60 @@ export interface KPDistanceJointDef
 }
 
 export interface KPDistanceJointComp extends KPJointComp {
+  /**
+   * The DistanceJoint
+   *
+   * @type {DistanceJoint}
+   */
   joint: DistanceJoint;
 
+  /**
+   * Returns the damping ratio of the joint.
+   *
+   * @return {number}
+   */
   getDampingRatio(): number;
+  /**
+   * Returns the frequency of the joint.
+   *
+   * @return {number}
+   */
   getFrequency(): number;
+  /**
+   * Returns the length of the joint.
+   *
+   * @return {number}
+   */
   getLength(): number;
+  /**
+   * Returns the local anchor A of the joint.
+   *
+   * @return {Vec2}
+   */
   getLocalAnchorA(): Vec2;
+  /**
+   * Returns the local anchor B of the joint.
+   *
+   * @return {Vec2}
+   */
   getLocalAnchorB(): Vec2;
+  /**
+   * Sets the damping ratio of the joint.
+   *
+   * @param {number} damping_ratio.
+   */
   setDampingRatio(damping_ratio: number): void;
+  /**
+   * Sets the frequency of the joint.
+   *
+   * @param {number} frequency
+   */
   setFrequency(frequency: number): void;
+  /**
+   * Sets the length of the joint.
+   *
+   * @param {number} length
+   */
   setLength(length: number): void;
 }
 

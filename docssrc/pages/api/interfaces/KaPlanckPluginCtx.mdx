@@ -109,6 +109,27 @@ Defines the geometry of a body.
 
 ***
 
+### kpDistanceJoint()
+
+> **kpDistanceJoint**(`def`, `gameObjA`, `gameObjB`, `worldContainer`?): [`KPDistanceJointComp`](/api/interfaces/KPDistanceJointComp)
+
+Defines a distance joint.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `def` | [`KPDistanceJointDef`](/api/interfaces/KPDistanceJointDef) | The definition for the distance joint. |
+| `gameObjA` | `GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\> | The first body to connect with the joint. |
+| `gameObjB` | `GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\> | The second body to connect with the joint. |
+| `worldContainer`? | `GameObj`\<[`KPWorldComp`](/api/interfaces/KPWorldComp)\> | The game object with `kpWorld` component. |
+
+#### Returns
+
+[`KPDistanceJointComp`](/api/interfaces/KPDistanceJointComp)
+
+***
+
 ### kpEdgeShape()
 
 > **kpEdgeShape**(`opt`?): [`KPEdgeShapeComp`](/api/interfaces/KPEdgeShapeComp)
@@ -147,6 +168,92 @@ Requires a shape.
 #### Returns
 
 [`KPFixtureComp`](/api/interfaces/KPFixtureComp)
+
+***
+
+### kpFrictionJoint()
+
+> **kpFrictionJoint**(`def`, `gameObjA`, `gameObjB`, `worldContainer`?): [`KPFrictionJointComp`](/api/interfaces/KPFrictionJointComp)
+
+Defines a friction joint.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `def` | [`KPFrictionJointDef`](/api/interfaces/KPFrictionJointDef) | The definition for the friction joint. |
+| `gameObjA` | `GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\> | The first body to connect with the joint. |
+| `gameObjB` | `GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\> | The second body to connect with the joint. |
+| `worldContainer`? | `GameObj`\<[`KPWorldComp`](/api/interfaces/KPWorldComp)\> | The game object with `kpWorld` component. |
+
+#### Returns
+
+[`KPFrictionJointComp`](/api/interfaces/KPFrictionJointComp)
+
+***
+
+### kpGearJoint()
+
+> **kpGearJoint**(`def`, `gameObjA`, `gameObjB`, `jointGameObj1`, `jointGameObj2`, `worldContainer`?): [`KPGearJointComp`](/api/interfaces/KPGearJointComp)
+
+Defines a gear joint.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `def` | [`KPGearJointDef`](/api/interfaces/KPGearJointDef) | The definition for the gear joint. |
+| `gameObjA` | `GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\> | The first body to connect with the joint. |
+| `gameObjB` | `GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\> | The second body to connect with the joint. |
+| `jointGameObj1` | `GameObj`\<[`KPRevoluteJointComp`](/api/interfaces/KPRevoluteJointComp)\> \| `GameObj`\<[`KPPrismaticJointComp`](/api/interfaces/KPPrismaticJointComp)\> | The first joint to connect with the gear. |
+| `jointGameObj2` | `GameObj`\<[`KPRevoluteJointComp`](/api/interfaces/KPRevoluteJointComp)\> \| `GameObj`\<[`KPPrismaticJointComp`](/api/interfaces/KPPrismaticJointComp)\> | The second joint to connect with the gear. |
+| `worldContainer`? | `GameObj`\<[`KPWorldComp`](/api/interfaces/KPWorldComp)\> | The game object with `kpWorld` component. |
+
+#### Returns
+
+[`KPGearJointComp`](/api/interfaces/KPGearJointComp)
+
+***
+
+### kpMotorJoint()
+
+> **kpMotorJoint**(`def`, `gameObjA`, `gameObjB`, `worldContainer`?): [`KPMotorJointComp`](/api/interfaces/KPMotorJointComp)
+
+Defines a motor joint.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `def` | [`KPMotorJointDef`](/api/interfaces/KPMotorJointDef) | The definition for the motor joint. |
+| `gameObjA` | `GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\> | The first body to connect with the joint. |
+| `gameObjB` | `GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\> | The second body to connect with the joint. |
+| `worldContainer`? | `GameObj`\<[`KPWorldComp`](/api/interfaces/KPWorldComp)\> | The game object with `kpWorld` component. |
+
+#### Returns
+
+[`KPMotorJointComp`](/api/interfaces/KPMotorJointComp)
+
+***
+
+### kpMouseJoint()
+
+> **kpMouseJoint**(`def`, `gameObjA`, `gameObjB`, `worldContainer`?): [`KPMouseJointComp`](/api/interfaces/KPMouseJointComp)
+
+Defines a mouse joint.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `def` | [`KPMouseJointDef`](/api/interfaces/KPMouseJointDef) | The definition for the mouse joint. |
+| `gameObjA` | `GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\> | The first body to connect with the joint. |
+| `gameObjB` | `GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\> | The second body to connect with the joint. |
+| `worldContainer`? | `GameObj`\<[`KPWorldComp`](/api/interfaces/KPWorldComp)\> | The game object with `kpWorld` component. |
+
+#### Returns
+
+[`KPMouseJointComp`](/api/interfaces/KPMouseJointComp)
 
 ***
 
@@ -259,6 +366,90 @@ A position component that works with KaPlanckPlugin methods.
 
 ***
 
+### kpPrismaticJoint()
+
+> **kpPrismaticJoint**(`def`, `gameObjA`, `gameObjB`, `worldContainer`?): [`KPPrismaticJointComp`](/api/interfaces/KPPrismaticJointComp)
+
+Defines a prismatic joint.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `def` | [`KPPrismaticJointDef`](/api/interfaces/KPPrismaticJointDef) | The definition for the prismatic joint. |
+| `gameObjA` | `GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\> | The first body to connect with the joint. |
+| `gameObjB` | `GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\> | The second body to connect with the joint. |
+| `worldContainer`? | `GameObj`\<[`KPWorldComp`](/api/interfaces/KPWorldComp)\> | The game object with `kpWorld` component. |
+
+#### Returns
+
+[`KPPrismaticJointComp`](/api/interfaces/KPPrismaticJointComp)
+
+***
+
+### kpPulleyJoint()
+
+> **kpPulleyJoint**(`def`, `gameObjA`, `gameObjB`, `worldContainer`?): [`KPPulleyJointComp`](/api/interfaces/KPPulleyJointComp)
+
+Defines a pulley joint.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `def` | [`KPPulleyJointDef`](/api/interfaces/KPPulleyJointDef) | The definition for the pulley joint. |
+| `gameObjA` | `GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\> | The first body to connect with the joint. |
+| `gameObjB` | `GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\> | The second body to connect with the joint. |
+| `worldContainer`? | `GameObj`\<[`KPWorldComp`](/api/interfaces/KPWorldComp)\> | The game object with `kpWorld` component. |
+
+#### Returns
+
+[`KPPulleyJointComp`](/api/interfaces/KPPulleyJointComp)
+
+***
+
+### kpRevoluteJoint()
+
+> **kpRevoluteJoint**(`def`, `gameObjA`, `gameObjB`, `worldContainer`?): [`KPRevoluteJointComp`](/api/interfaces/KPRevoluteJointComp)
+
+Defines a revolute joint.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `def` | [`KPRevoluteJointDef`](/api/interfaces/KPRevoluteJointDef) | The definition for the revolute joint. |
+| `gameObjA` | `GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\> | The first body to connect with the joint. |
+| `gameObjB` | `GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\> | The second body to connect with the joint. |
+| `worldContainer`? | `GameObj`\<[`KPWorldComp`](/api/interfaces/KPWorldComp)\> | The game object with `kpWorld` component. |
+
+#### Returns
+
+[`KPRevoluteJointComp`](/api/interfaces/KPRevoluteJointComp)
+
+***
+
+### kpRopeJoint()
+
+> **kpRopeJoint**(`def`, `gameObjA`, `gameObjB`, `worldContainer`?): [`KPRopeJointComp`](/api/interfaces/KPRopeJointComp)
+
+Defines a distance joint.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `def` | [`KPRopeJointDef`](/api/interfaces/KPRopeJointDef) | The definition for the distance joint. |
+| `gameObjA` | `GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\> | The first body to connect with the joint. |
+| `gameObjB` | `GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\> | The second body to connect with the joint. |
+| `worldContainer`? | `GameObj`\<[`KPWorldComp`](/api/interfaces/KPWorldComp)\> | The game object with `kpWorld` component. |
+
+#### Returns
+
+[`KPRopeJointComp`](/api/interfaces/KPRopeJointComp)
+
+***
+
 ### kpRotate()
 
 > **kpRotate**(`angle`?): [`KPRotateComp`](/api/interfaces/KPRotateComp)
@@ -281,6 +472,48 @@ A rotation component that works with KaPlanckPlugin methods.
 
 ***
 
+### kpWeldJoint()
+
+> **kpWeldJoint**(`def`, `gameObjA`, `gameObjB`, `worldContainer`?): [`KPWeldJointComp`](/api/interfaces/KPWeldJointComp)
+
+Defines a weld joint.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `def` | [`KPWeldJointDef`](/api/interfaces/KPWeldJointDef) | The definition for the weld joint. |
+| `gameObjA` | `GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\> | The first body to connect with the joint. |
+| `gameObjB` | `GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\> | The second body to connect with the joint. |
+| `worldContainer`? | `GameObj`\<[`KPWorldComp`](/api/interfaces/KPWorldComp)\> | The world container to add the joint. |
+
+#### Returns
+
+[`KPWeldJointComp`](/api/interfaces/KPWeldJointComp)
+
+***
+
+### kpWheelJoint()
+
+> **kpWheelJoint**(`def`, `gameObjA`, `gameObjB`, `worldContainer`?): [`KPWheelJointComp`](/api/interfaces/KPWheelJointComp)
+
+Defines a distance joint.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `def` | [`KPWheelJointDef`](/api/interfaces/KPWheelJointDef) | The definition for the distance joint. |
+| `gameObjA` | `GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\> | The first body to connect with the joint. |
+| `gameObjB` | `GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\> | The second body to connect with the joint. |
+| `worldContainer`? | `GameObj`\<[`KPWorldComp`](/api/interfaces/KPWorldComp)\> | The world container to add the joint. |
+
+#### Returns
+
+[`KPWheelJointComp`](/api/interfaces/KPWheelJointComp)
+
+***
+
 ### kpWorld()
 
 > **kpWorld**(`def`?): [`KPWorldComp`](/api/interfaces/KPWorldComp)
@@ -298,6 +531,24 @@ Sets the physics world.
 [`KPWorldComp`](/api/interfaces/KPWorldComp)
 
 A world component that works with KaPlanckPlugin methods.
+
+***
+
+### m2p()
+
+> **m2p**(`m`): `number`
+
+Converts meter to pixel.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `m` | `number` | The meter value. |
+
+#### Returns
+
+`number`
 
 ***
 
@@ -396,9 +647,9 @@ Converts a vector from Planck Vector to KAPLAY Vector.
 
 ***
 
-### p2u()
+### p2m()
 
-> **p2u**(`p`): `number`
+> **p2m**(`p`): `number`
 
 Converts pixel to unit.
 
@@ -407,24 +658,6 @@ Converts pixel to unit.
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
 | `p` | `number` | The pixel value. |
-
-#### Returns
-
-`number`
-
-***
-
-### u2p()
-
-> **u2p**(`m`): `number`
-
-Converts unit to pixel.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| ------ | ------ | ------ |
-| `m` | `number` | The unit value. |
 
 #### Returns
 

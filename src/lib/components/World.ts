@@ -8,17 +8,68 @@ import type { KPFixtureComp } from "./Fixture";
 import type { KPJointComp } from "./Joint";
 
 export interface KPWorldComp extends Comp {
+  /**
+   * The World
+   *
+   * @type {World}
+   */
   world: World;
 
+  /**
+   * Returns true if world allows sleeping.
+   *
+   * @return {boolean}
+   */
   getAllowSleeping(): boolean;
-  getAutoClearForces(): boolean;
+  /**
+   * Returns the number of bodies in the world.
+   *
+   * @return {number}
+   */
   getBodyCount(): number;
+  /**
+   * Returns the first body in the list, or null if there are no bodies.
+   *
+   * @return {(Body | null)}
+   */
   getBodyList(): Body | null;
+  /**
+   * Returns the number of contacts in the world.
+   *
+   * @return {number}
+   */
   getContactCount(): number;
+  /**
+   * Returns the gravity vector of the world.
+   *
+   * @return {Vec2}
+   */
   getGravity(): Vec2;
+  /**
+   * Returns the joint count in the world.
+   *
+   * @return {number}
+   */
   getJointCount(): number;
+  /**
+   * Returns the first joint in the list, or null if there are no joints.
+   *
+   * @return {(Joint | null)}
+   */
   getJointList(): Joint | null;
+  /**
+   * Returns true if the world is locked, false otherwise.
+   *
+   * @return {boolean}
+   */
   isLocked(): boolean;
+  /**
+   * Casts a ray from point1 to point2 in the world and calls an action function for each body hit.
+   *
+   * @param {Vec2} point1
+   * @param {Vec2} point2
+   * @param {(gameObj: GameObj,point: Vec2,normal: Vec2,fraction: number) => number} action
+   */
   rayCast(
     point1: Vec2,
     point2: Vec2,
@@ -29,34 +80,82 @@ export interface KPWorldComp extends Comp {
       fraction: number,
     ) => number,
   ): void;
+  /**
+   * Sets the state of allowing sleeping in the world.
+   *
+   * @param {boolean} flag
+   */
   setAllowSleeping(flag: boolean): void;
-  setAutoClearForces(flag: boolean): void;
+  /**
+   * Sets the gravity of the world.
+   *
+   * @param {Vec2Value} gravity
+   */
   setGravity(gravity: Vec2Value): void;
+  /**
+   * Sets the position of the world origin.
+   *
+   * @param {Vec2Value} newOrigin
+   */
   shiftOrigin(newOrigin: Vec2Value): void;
 
+  /**
+   * An event listener for when two objects begin to touch.
+   *
+   * @param {(objA: GameObj, objB: GameObj, contact?: Contact) => void} action
+   */
   onContactBegin(
     action: (objA: GameObj, objB: GameObj, contact?: Contact) => void,
   ): void;
+  /**
+   * An event listener for when two objects stop touching.
+   *
+   * @param {(objA: GameObj, objB: GameObj, contact?: Contact) => void} action
+   */
   onContactEnd(
     action: (objA: GameObj, objB: GameObj, contact?: Contact) => void,
   ): void;
+  /**
+   * An event listener for when two objects are touching and a contact is being solved.
+   *
+   * @param {(objA: GameObj, objB: GameObj, contact?: Contact) => void} action
+   */
   onContactPreSolve(
     action: (objA: GameObj, objB: GameObj, contact?: Contact) => void,
   ): void;
+  /**
+   * An event listener for when two objects are touching and a contact has been solved.
+   *
+   * @param {(objA: GameObj, objB: GameObj, contact?: Contact) => void} action
+   */
   onContactPostSolve(
     action: (objA: GameObj, objB: GameObj, contact?: Contact) => void,
   ): void;
+  /**
+   * An event listener for when a body is removed from the world.
+   *
+   * @param {(bodyGameObj: GameObj<KPBodyComp>) => void} action
+   */
   onRemoveBody(action: (bodyGameObj: GameObj<KPBodyComp>) => void): void;
+  /**
+   * An event listener for when a fixture is removed from the body.
+   *
+   * @param {(fixtureGameObj: GameObj<KPFixtureComp>) => void} action
+   */
   onRemoveFixture(
     action: (fixtureGameObj: GameObj<KPFixtureComp>) => void,
   ): void;
+  /**
+   * An event listener for when a joint is removed from the world.
+   *
+   * @param {(jointGameObj: GameObj<KPJointComp>) => void} action
+   */
   onRemoveJoint(action: (jointGameObj: GameObj<KPJointComp>) => void): void;
 
   /**
    * Add a GameObj to the destroy list, which will be destroyed once the world is not locked.
    *
    * @param {GameObj} obj The GameObj to add to the destroy list.
-   * @memberof KPWorldComp
    */
   addToDestroyList(obj: GameObj): void;
 }
@@ -75,9 +174,6 @@ export default function world(
 
     getAllowSleeping() {
       return this.world.getAllowSleeping();
-    },
-    getAutoClearForces() {
-      return this.world.getAutoClearForces();
     },
     getBodyCount() {
       return this.world.getBodyCount();
@@ -118,9 +214,6 @@ export default function world(
     },
     setAllowSleeping(flag: boolean) {
       this.world.setAllowSleeping(flag);
-    },
-    setAutoClearForces(flag: boolean) {
-      this.world.setAutoClearForces(flag);
     },
     setGravity(gravity: Vec2Value) {
       this.world.setGravity(gravity);

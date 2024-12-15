@@ -1,0 +1,195 @@
+# Interface: KPRopeJointComp
+
+## Extends
+
+- [`KPJointComp`](/api/interfaces/KPJointComp)
+
+## Properties
+
+| Property | Type | Description | Overrides |
+| ------ | ------ | ------ | ------ |
+| `joint` | `RopeJoint` | The RopeJoint | [`KPJointComp`](/api/interfaces/KPJointComp).`joint` |
+
+## Methods
+
+### getAnchorA()
+
+> **getAnchorA**(): `Vec2`
+
+Returns the anchor A of the joint.
+
+#### Returns
+
+`Vec2`
+
+#### Inherited from
+
+[`KPJointComp`](/api/interfaces/KPJointComp).[`getAnchorA`](/api/interfaces/KPJointComp#getanchora)
+
+***
+
+### getAnchorB()
+
+> **getAnchorB**(): `Vec2`
+
+Returns the anchor B of the joint.
+
+#### Returns
+
+`Vec2`
+
+#### Inherited from
+
+[`KPJointComp`](/api/interfaces/KPJointComp).[`getAnchorB`](/api/interfaces/KPJointComp#getanchorb)
+
+***
+
+### getCollideConnected()
+
+> **getCollideConnected**(): `boolean`
+
+Returns true if the joint allows collision between the two bodies.
+
+#### Returns
+
+`boolean`
+
+#### Inherited from
+
+[`KPJointComp`](/api/interfaces/KPJointComp).[`getCollideConnected`](/api/interfaces/KPJointComp#getcollideconnected)
+
+***
+
+### getGameObjA()
+
+> **getGameObjA**(): `GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\>
+
+Returns the game object A of the joint.
+
+#### Returns
+
+`GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\>
+
+#### Inherited from
+
+[`KPJointComp`](/api/interfaces/KPJointComp).[`getGameObjA`](/api/interfaces/KPJointComp#getgameobja)
+
+***
+
+### getGameObjB()
+
+> **getGameObjB**(): `GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\>
+
+Returns the game object B of the joint.
+
+#### Returns
+
+`GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\>
+
+#### Inherited from
+
+[`KPJointComp`](/api/interfaces/KPJointComp).[`getGameObjB`](/api/interfaces/KPJointComp#getgameobjb)
+
+***
+
+### getLimitState()
+
+> **getLimitState**(): `number`
+
+Returns the limit state of the joint.
+
+#### Returns
+
+`number`
+
+***
+
+### getLocalAnchorA()
+
+> **getLocalAnchorA**(): `Vec2`
+
+Returns the local anchor A of the joint.
+
+#### Returns
+
+`Vec2`
+
+***
+
+### getLocalAnchorB()
+
+> **getLocalAnchorB**(): `Vec2`
+
+Returns the local anchor B of the joint.
+
+#### Returns
+
+`Vec2`
+
+***
+
+### getMaxLength()
+
+> **getMaxLength**(): `number`
+
+Returns the maximum length of the rope.
+
+#### Returns
+
+`number`
+
+***
+
+### isActive()
+
+> **isActive**(): `boolean`
+
+Returns true if the joint is active.
+
+#### Returns
+
+`boolean`
+
+#### Inherited from
+
+[`KPJointComp`](/api/interfaces/KPJointComp).[`isActive`](/api/interfaces/KPJointComp#isactive)
+
+***
+
+### setMaxLength()
+
+> **setMaxLength**(`maxLen`): `void`
+
+Sets the maximum length of the rope.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `maxLen` | `number` |  |
+
+#### Returns
+
+`void`
+
+***
+
+### shiftOrigin()
+
+> **shiftOrigin**(`new_origin`): `void`
+
+Shifts the origin of the joint.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `new_origin` | `Vec2Value` |  |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[`KPJointComp`](/api/interfaces/KPJointComp).[`shiftOrigin`](/api/interfaces/KPJointComp#shiftorigin)

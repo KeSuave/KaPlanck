@@ -14,13 +14,55 @@ export interface KPFrictionJointDef
 }
 
 export interface KPFrictionJointComp extends KPJointComp {
+  /**
+   * The FrictionJoint
+   *
+   * @type {FrictionJoint}
+   * @memberof KPFrictionJointComp
+   */
   joint: FrictionJoint;
 
+  /**
+   * Returns the local anchor point for bodyA.
+   *
+   * @return {Vec2}
+   * @memberof KPFrictionJointComp
+   */
   getLocalAnchorA(): Vec2;
+  /**
+   * Returns the local anchor point for bodyB.
+   *
+   * @return {Vec2}
+   * @memberof KPFrictionJointComp
+   */
   getLocalAnchorB(): Vec2;
+  /**
+   * Returns the maximum friction force.
+   *
+   * @return {number}
+   * @memberof KPFrictionJointComp
+   */
   getMaxForce(): number;
+  /**
+   * Returns the maximum torque.
+   *
+   * @return {number}
+   * @memberof KPFrictionJointComp
+   */
   getMaxTorque(): number;
+  /**
+   * Sets the maximum friction force.
+   *
+   * @param {number} force
+   * @memberof KPFrictionJointComp
+   */
   setMaxForce(force: number): void;
+  /**
+   * Sets the maximum torque.
+   *
+   * @param {number} torque
+   * @memberof KPFrictionJointComp
+   */
   setMaxTorque(torque: number): void;
 }
 

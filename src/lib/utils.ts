@@ -1,31 +1,15 @@
-import type { GameObj, KAPLAYCtx, Vec2 as KaVec2, RenderProps } from "kaplay";
-import { Settings, Vec2, type Vec2Value, type World } from "planck";
+import type { GameObj, KAPLAYCtx } from "kaplay";
+import { type World } from "planck";
 
 import type { KPWorldComp } from "./components/World";
 
-export function m2p(m: number) {
-  return m * Settings.lengthUnitsPerMeter;
-}
-
-export function p2m(p: number) {
-  return p / Settings.lengthUnitsPerMeter;
-}
-
-export function center(k: KAPLAYCtx) {
-  const center = k.center();
-  const vec = new Vec2(p2m(center.x), p2m(center.y));
-
-  return vec;
-}
-
-export function k2pVec2(vec: KaVec2): Vec2 {
-  return new Vec2(p2m(vec.x), p2m(vec.y));
-}
-
-export function p2kVec2(k: KAPLAYCtx, vec: Vec2Value): KaVec2 {
-  return k.vec2(m2p(vec.x), m2p(vec.y));
-}
-
+/**
+ * Get the world from a game object.
+ *
+ * @export
+ * @param {GameObj} obj The game object to get the world from.
+ * @return {(World | null)}
+ */
 export function getWorldFromGameObj(obj: GameObj): World | null {
   let world: World | null = null;
 
@@ -37,6 +21,13 @@ export function getWorldFromGameObj(obj: GameObj): World | null {
   return world;
 }
 
+/**
+ * Get the world game object container from a game object.
+ *
+ * @export
+ * @param {GameObj} obj The game object to get the container from.
+ * @return {(GameObj<KPWorldComp> | null)}
+ */
 export function getWorldContainerFromGameObj(
   obj: GameObj,
 ): GameObj<KPWorldComp> | null {
@@ -58,16 +49,13 @@ export function getWorldContainerFromGameObj(
   return container;
 }
 
-export function getRenderProps(obj: GameObj): RenderProps {
-  return {
-    color: obj.color,
-    opacity: obj.opacity,
-    outline: obj.outline,
-    shader: obj.shader,
-    uniform: obj.uniform,
-  };
-}
-
+/**
+ * Find the fist world game object container.
+ *
+ * @export
+ * @param {KAPLAYCtx} k The KAPLAY context to search in.
+ * @return {(GameObj<KPWorldComp> | null)}
+ */
 export function findWorldContainer(k: KAPLAYCtx): GameObj<KPWorldComp> | null {
   let obj: GameObj<KPWorldComp> | null = null;
 

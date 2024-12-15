@@ -2,9 +2,15 @@ import type { GameObj, KAPLAYCtx, Vec2 as KaVec2 } from "kaplay";
 import { type KPShapeComp, type KPShapeOpt } from "./Shape";
 
 import { ChainShape, type Vec2Value } from "planck";
-import { getRenderProps, p2kVec2 } from "../utils";
+import { getRenderProps, p2kVec2 } from "../internals";
 
 export interface KPChainShapeComp extends KPShapeComp {
+  /**
+   * The ChainShape
+   *
+   * @type {ChainShape}
+   * @memberof KPChainShapeComp
+   */
   shape: ChainShape;
 }
 

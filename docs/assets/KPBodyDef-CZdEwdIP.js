@@ -1,0 +1,4 @@
+import{u as d,j as e}from"./index-CLzoCpN7.js";const i={title:"Type Alias: KPBodyDef",description:"undefined"};function t(o){const n={a:"a",blockquote:"blockquote",code:"code",div:"div",h1:"h1",header:"header",p:"p",strong:"strong",...d(),...o.components};return e.jsxs(e.Fragment,{children:[e.jsx(n.header,{children:e.jsxs(n.h1,{id:"type-alias-kpbodydef",children:["Type Alias: KPBodyDef",e.jsx(n.a,{"aria-hidden":"true",tabIndex:"-1",href:"#type-alias-kpbodydef",children:e.jsx(n.div,{"data-autolink-icon":!0})})]})}),`
+`,e.jsxs(n.blockquote,{children:[`
+`,e.jsxs(n.p,{children:[e.jsx(n.strong,{children:"KPBodyDef"}),": ",e.jsx(n.code,{children:"Omit"}),"<",e.jsx(n.code,{children:"BodyDef"}),", ",e.jsx(n.code,{children:'"position"'})," | ",e.jsx(n.code,{children:'"angle"'}),">"]}),`
+`]})]})}function r(o={}){const{wrapper:n}={...d(),...o.components};return n?e.jsx(n,{...o,children:e.jsx(t,{...o})}):t(o)}export{r as default,i as frontmatter};

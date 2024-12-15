@@ -79,14 +79,8 @@ import wheelJoint, {
   type KPWheelJointComp,
   type KPWheelJointDef,
 } from "./components/WheelJoint";
-import {
-  center,
-  findWorldContainer,
-  k2pVec2,
-  m2p,
-  p2kVec2,
-  p2m,
-} from "./utils";
+import { center, k2pVec2, m2p, p2kVec2, p2m } from "./internals";
+import { findWorldContainer } from "./utils";
 
 export interface KaPlanckPluginCtx {
   // transform components

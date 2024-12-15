@@ -23,12 +23,9 @@ import {
   type Vec2Value,
 } from "planck";
 
+import { k2pVec2 } from "../internals";
 import { KPUserData } from "../types";
-import {
-  getWorldContainerFromGameObj,
-  getWorldFromGameObj,
-  k2pVec2,
-} from "../utils";
+import { getWorldContainerFromGameObj, getWorldFromGameObj } from "../utils";
 import type { KPPosComp } from "./Position";
 import type { KPRotateComp } from "./Rotate";
 
@@ -56,62 +53,335 @@ export interface KPBodyComp extends Comp {
    */
   inspectColor: { r: number; g: number; b: number };
 
-  // TODO: Add docs
+  /**
+   * Applies an angular impulse to the body.
+   *
+   * @param {number} impulse
+   * @param {boolean} [wake]
+   */
   applyAngularImpulse(impulse: number, wake?: boolean): void;
+  /**
+   * Applies a linear impulse to the body.
+   *
+   * @param {Vec2Value} force
+   * @param {Vec2Value} point
+   * @param {boolean} [wake]
+   */
   applyForce(force: Vec2Value, point: Vec2Value, wake?: boolean): void;
+  /**
+   * Applies a force to the center of the body.
+   *
+   * @param {Vec2Value} force
+   * @param {boolean} [wake]
+   */
   applyForceToCenter(force: Vec2Value, wake?: boolean): void;
+  /**
+   * Applies a linear impulse to the body.
+   *
+   * @param {Vec2Value} impulse
+   * @param {Vec2Value} point
+   * @param {boolean} [wake]
+   * @memberof KPBodyComp
+   */
   applyLinearImpulse(
     impulse: Vec2Value,
     point: Vec2Value,
     wake?: boolean,
   ): void;
+  /**
+   * Applies a torque to the body.
+   *
+   * @param {number} torque
+   * @param {boolean} [wake]
+   */
   applyTorque(torque: number, wake?: boolean): void;
+  /**
+   * Returns the angular damping of the body.
+   *
+   * @return {number}
+   */
   getAngularDamping(): number;
+  /**
+   * Returns the angular velocity of the body.
+   *
+   * @return {number}
+   */
   getAngularVelocity(): number;
+  /**
+   * Returns the contact list of the body.
+   *
+   * @return {(ContactEdge | null)}
+   */
   getContactList(): ContactEdge | null;
+  /**
+   * Retuns the fixture list of the body.
+   *
+   * @return {(Fixture | null)}
+   */
   getFixtureList(): Fixture | null;
+  /**
+   * Returns the gravity scale of the body.
+   *
+   * @return {number}
+   */
   getGravityScale(): number;
+  /**
+   * Returns the inertia of the body.
+   *
+   * @return {number}
+   */
   getInertia(): number;
+  /**
+   * Returns the joint list of the body.
+   *
+   * @return {(JointEdge | null)}
+   */
   getJointList(): JointEdge | null;
+  /**
+   * Returns the linear damping of the body.
+   *
+   * @return {number}
+   */
   getLinearDamping(): number;
+  /**
+   * Returns the linear velocity of the body.
+   *
+   * @return {Vec2}
+   */
   getLinearVelocity(): Vec2;
+  /**
+   * Returns the linear velocity from a local point.
+   *
+   * @param {Vec2Value} localPoint
+   * @return {Vec2}
+   */
   getLinearVelocityFromLocalPoint(localPoint: Vec2Value): Vec2;
+  /**
+   * Returns the linear velocity from a world point.
+   *
+   * @param {Vec2Value} worldPoint
+   * @return {Vec2}
+   */
   getLinearVelocityFromWorldPoint(worldPoint: Vec2Value): Vec2;
+  /**
+   * Returns the local center of the body.
+   *
+   * @return {Vec2}
+   */
   getLocalCenter(): Vec2;
+  /**
+   * Returns the local point from a world point.
+   *
+   * @param {Vec2Value} worldPoint
+   * @return {Vec2}
+   */
   getLocalPoint(worldPoint: Vec2Value): Vec2;
+  /**
+   * Returns the local vector from a world vector.
+   *
+   * @param {Vec2Value} worldVector
+   * @return {Vec2}
+   */
   getLocalVector(worldVector: Vec2Value): Vec2;
+  /**
+   * Returns the mass data of the body.
+   *
+   * @return {number}
+   */
   getMass(): number;
+  /**
+   * Returns the mass data of the body.
+   *
+   * @param {MassData} data
+   */
   getMassData(data: MassData): void;
+  /**
+   * Returns the transform of the body.
+   *
+   * @return {Transform}
+   */
   getTransform(): Transform;
+  /**
+   * Returns the type of the body.
+   *
+   * @return {BodyType}
+   */
   getBodyType(): BodyType;
+  /**
+   * Returns the world center of the body.
+   *
+   * @return {Vec2}
+   */
   getWorldCenter(): Vec2;
+  /**
+   * Returns the world point from a local point.
+   *
+   * @param {Vec2Value} localPoint
+   * @return {Vec2}
+   */
   getWorldPoint(localPoint: Vec2Value): Vec2;
+  /**
+   * Returns the world vector from a local vector.
+   *
+   * @param {Vec2Value} localVector
+   * @return {Vec2}
+   */
   getWorldVector(localVector: Vec2Value): Vec2;
+  /**
+   * Returns true if the body is active, false otherwise.
+   *
+   * @return {boolean}
+   */
   isActive(): boolean;
+  /**
+   * Returns true if the body is awake, false otherwise.
+   *
+   * @return {boolean}
+   */
   isAwake(): boolean;
+  /**
+   * Returns true if the body is bullet, false otherwise.
+   *
+   * @return {boolean}
+   */
   isBullet(): boolean;
+  /**
+   * Returns true if the body is dynamic, false otherwise.
+   *
+   * @return {boolean}
+   */
   isDynamic(): boolean;
+  /**
+   * Returns true if the body is fixed rotation, false otherwise.
+   *
+   * @return {boolean}
+   */
   isFixedRotation(): boolean;
+  /**
+   * Returns true if the body is kinematic, false otherwise.
+   *
+   * @return {boolean}
+   */
   isKinematic(): boolean;
+  /**
+   * Returns true if the body is sleeping allowed, false otherwise.
+   *
+   * @return {boolean}
+   */
   isSleepingAllowed(): boolean;
+  /**
+   * Returns true if the body is static, false otherwise.
+   *
+   * @return {boolean}
+   */
   isStatic(): boolean;
+  /**
+   * Returns true if the world is locked, false otherwise.
+   *
+   * @return {boolean}
+   */
   isWorldLocked(): boolean;
+  /**
+   * Resets the mass data of the body.
+   *
+   */
   resetMassData(): void;
+  /**
+   * Sets the active state of the body.
+   *
+   * @param {boolean} flag
+   */
   setActive(flag: boolean): void;
+  /**
+   * Sets the angular damping of the body.
+   *
+   * @param {number} damping
+   */
   setAngularDamping(damping: number): void;
+  /**
+   * Sets the angular velocity of the body.
+   *
+   * @param {number} velocity
+   */
   setAngularVelocity(velocity: number): void;
+  /**
+   * Sets the awake state of the body.
+   *
+   * @param {boolean} flag
+   */
   setAwake(flag: boolean): void;
+  /**
+   * Sets the bullet state of the body.
+   *
+   * @param {boolean} flag
+   */
   setBullet(flag: boolean): void;
+  /**
+   * Sets the body to be dynamic.
+   *
+   * @return {Body}
+   */
   setDynamic(): Body;
+  /**
+   * Sets the fixed rotation state of the body.
+   *
+   * @param {boolean} flag
+   */
   setFixedRotation(flag: boolean): void;
+  /**
+   * Sets the gravity scale of the body.
+   *
+   * @param {number} scale
+   */
   setGravityScale(scale: number): void;
+  /**
+   * Sets the body to be kinematic.
+   *
+   * @return {Body}
+   */
   setKinematic(): Body;
+  /**
+   * Sets the linear damping of the body.
+   *
+   * @param {number} damping
+   */
   setLinearDamping(damping: number): void;
+  /**
+   * Sets the linear velocity of the body.
+   *
+   * @param {Vec2Value} velocity
+   */
   setLinearVelocity(velocity: Vec2Value): void;
+  /**
+   * Sets the mass data of the body.
+   *
+   * @param {MassData} data
+   */
   setMassData(data: MassData): void;
+  /**
+   * Sets sleeping allowed state of the body.
+   *
+   * @param {boolean} flag
+   */
   setSleepingAllowed(flag: boolean): void;
+  /**
+   * Sets the type of the body to be static.
+   *
+   * @return {Body}
+   */
   setStatic(): Body;
+  /**
+   * Sets the transform of the body.
+   *
+   * @param {Vec2Value} position
+   * @param {number} angle
+   */
   setTransform(position: Vec2Value, angle: number): void;
+  /**
+   * Sets the type of the body.
+   *
+   * @param {BodyType} type
+   */
   setType(type: BodyType): void;
 
   /**

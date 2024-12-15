@@ -2,9 +2,14 @@ import type { GameObj, KAPLAYCtx } from "kaplay";
 import { type KPShapeComp, type KPShapeOpt } from "./Shape";
 
 import { BoxShape, type Vec2Value } from "planck";
-import { getRenderProps, m2p, p2kVec2 } from "../utils";
+import { getRenderProps, m2p, p2kVec2 } from "../internals";
 
 export interface KPBoxShapeComp extends KPShapeComp {
+  /**
+   * The BoxShape
+   *
+   * @type {BoxShape}
+   */
   shape: BoxShape;
 }
 

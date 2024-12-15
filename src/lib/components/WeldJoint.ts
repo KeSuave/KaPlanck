@@ -12,13 +12,48 @@ export interface KPWeldJointDef extends Omit<WeldJointDef, "bodyA" | "bodyB"> {
 }
 
 export interface KPWeldJointComp extends KPJointComp {
+  /**
+   * The WeldJoint
+   *
+   * @type {WeldJoint}
+   */
   joint: WeldJoint;
 
+  /**
+   * Returns the damping ratio of the joint.
+   *
+   * @return {number}
+   */
   getDampingRatio(): number;
+  /**
+   * Returns the frequency of the joint.
+   *
+   * @return {number}
+   */
   getFrequency(): number;
+  /**
+   * Returns the local anchor A.
+   *
+   * @return {Vec2}
+   */
   getLocalAnchorA(): Vec2;
+  /**
+   * Returns the local anchor B.
+   *
+   * @return {Vec2}
+   */
   getLocalAnchorB(): Vec2;
+  /**
+   * Sets the damping ratio of the joint.
+   *
+   * @param {number} dampingRatio
+   */
   setDampingRatio(dampingRatio: number): void;
+  /**
+   * Sets the frequency of the joint.
+   *
+   * @param {number} hz
+   */
   setFrequency(hz: number): void;
 }
 

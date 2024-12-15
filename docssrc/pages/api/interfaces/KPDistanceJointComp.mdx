@@ -1,0 +1,243 @@
+# Interface: KPDistanceJointComp
+
+## Extends
+
+- [`KPJointComp`](/api/interfaces/KPJointComp)
+
+## Properties
+
+| Property | Type | Description | Overrides |
+| ------ | ------ | ------ | ------ |
+| `joint` | `DistanceJoint` | The DistanceJoint | [`KPJointComp`](/api/interfaces/KPJointComp).`joint` |
+
+## Methods
+
+### getAnchorA()
+
+> **getAnchorA**(): `Vec2`
+
+Returns the anchor A of the joint.
+
+#### Returns
+
+`Vec2`
+
+#### Inherited from
+
+[`KPJointComp`](/api/interfaces/KPJointComp).[`getAnchorA`](/api/interfaces/KPJointComp#getanchora)
+
+***
+
+### getAnchorB()
+
+> **getAnchorB**(): `Vec2`
+
+Returns the anchor B of the joint.
+
+#### Returns
+
+`Vec2`
+
+#### Inherited from
+
+[`KPJointComp`](/api/interfaces/KPJointComp).[`getAnchorB`](/api/interfaces/KPJointComp#getanchorb)
+
+***
+
+### getCollideConnected()
+
+> **getCollideConnected**(): `boolean`
+
+Returns true if the joint allows collision between the two bodies.
+
+#### Returns
+
+`boolean`
+
+#### Inherited from
+
+[`KPJointComp`](/api/interfaces/KPJointComp).[`getCollideConnected`](/api/interfaces/KPJointComp#getcollideconnected)
+
+***
+
+### getDampingRatio()
+
+> **getDampingRatio**(): `number`
+
+Returns the damping ratio of the joint.
+
+#### Returns
+
+`number`
+
+***
+
+### getFrequency()
+
+> **getFrequency**(): `number`
+
+Returns the frequency of the joint.
+
+#### Returns
+
+`number`
+
+***
+
+### getGameObjA()
+
+> **getGameObjA**(): `GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\>
+
+Returns the game object A of the joint.
+
+#### Returns
+
+`GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\>
+
+#### Inherited from
+
+[`KPJointComp`](/api/interfaces/KPJointComp).[`getGameObjA`](/api/interfaces/KPJointComp#getgameobja)
+
+***
+
+### getGameObjB()
+
+> **getGameObjB**(): `GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\>
+
+Returns the game object B of the joint.
+
+#### Returns
+
+`GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\>
+
+#### Inherited from
+
+[`KPJointComp`](/api/interfaces/KPJointComp).[`getGameObjB`](/api/interfaces/KPJointComp#getgameobjb)
+
+***
+
+### getLength()
+
+> **getLength**(): `number`
+
+Returns the length of the joint.
+
+#### Returns
+
+`number`
+
+***
+
+### getLocalAnchorA()
+
+> **getLocalAnchorA**(): `Vec2`
+
+Returns the local anchor A of the joint.
+
+#### Returns
+
+`Vec2`
+
+***
+
+### getLocalAnchorB()
+
+> **getLocalAnchorB**(): `Vec2`
+
+Returns the local anchor B of the joint.
+
+#### Returns
+
+`Vec2`
+
+***
+
+### isActive()
+
+> **isActive**(): `boolean`
+
+Returns true if the joint is active.
+
+#### Returns
+
+`boolean`
+
+#### Inherited from
+
+[`KPJointComp`](/api/interfaces/KPJointComp).[`isActive`](/api/interfaces/KPJointComp#isactive)
+
+***
+
+### setDampingRatio()
+
+> **setDampingRatio**(`damping_ratio`): `void`
+
+Sets the damping ratio of the joint.
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `damping_ratio` | `number` |
+
+#### Returns
+
+`void`
+
+***
+
+### setFrequency()
+
+> **setFrequency**(`frequency`): `void`
+
+Sets the frequency of the joint.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `frequency` | `number` |  |
+
+#### Returns
+
+`void`
+
+***
+
+### setLength()
+
+> **setLength**(`length`): `void`
+
+Sets the length of the joint.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `length` | `number` |  |
+
+#### Returns
+
+`void`
+
+***
+
+### shiftOrigin()
+
+> **shiftOrigin**(`new_origin`): `void`
+
+Shifts the origin of the joint.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `new_origin` | `Vec2Value` |  |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[`KPJointComp`](/api/interfaces/KPJointComp).[`shiftOrigin`](/api/interfaces/KPJointComp#shiftorigin)

@@ -1,0 +1,364 @@
+# Interface: KPPrismaticJointComp
+
+## Extends
+
+- [`KPJointComp`](/api/interfaces/KPJointComp)
+
+## Properties
+
+| Property | Type | Description | Overrides |
+| ------ | ------ | ------ | ------ |
+| `joint` | `PrismaticJoint` | The PrismaticJoint | [`KPJointComp`](/api/interfaces/KPJointComp).`joint` |
+
+## Methods
+
+### enableLimit()
+
+> **enableLimit**(`flag`): `void`
+
+Set the state of the joint limit.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `flag` | `boolean` |  |
+
+#### Returns
+
+`void`
+
+***
+
+### enableMotor()
+
+> **enableMotor**(`flag`): `void`
+
+Set the state of the joint motor.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `flag` | `boolean` |  |
+
+#### Returns
+
+`void`
+
+***
+
+### getAnchorA()
+
+> **getAnchorA**(): `Vec2`
+
+Returns the anchor A of the joint.
+
+#### Returns
+
+`Vec2`
+
+#### Inherited from
+
+[`KPJointComp`](/api/interfaces/KPJointComp).[`getAnchorA`](/api/interfaces/KPJointComp#getanchora)
+
+***
+
+### getAnchorB()
+
+> **getAnchorB**(): `Vec2`
+
+Returns the anchor B of the joint.
+
+#### Returns
+
+`Vec2`
+
+#### Inherited from
+
+[`KPJointComp`](/api/interfaces/KPJointComp).[`getAnchorB`](/api/interfaces/KPJointComp#getanchorb)
+
+***
+
+### getCollideConnected()
+
+> **getCollideConnected**(): `boolean`
+
+Returns true if the joint allows collision between the two bodies.
+
+#### Returns
+
+`boolean`
+
+#### Inherited from
+
+[`KPJointComp`](/api/interfaces/KPJointComp).[`getCollideConnected`](/api/interfaces/KPJointComp#getcollideconnected)
+
+***
+
+### getGameObjA()
+
+> **getGameObjA**(): `GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\>
+
+Returns the game object A of the joint.
+
+#### Returns
+
+`GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\>
+
+#### Inherited from
+
+[`KPJointComp`](/api/interfaces/KPJointComp).[`getGameObjA`](/api/interfaces/KPJointComp#getgameobja)
+
+***
+
+### getGameObjB()
+
+> **getGameObjB**(): `GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\>
+
+Returns the game object B of the joint.
+
+#### Returns
+
+`GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\>
+
+#### Inherited from
+
+[`KPJointComp`](/api/interfaces/KPJointComp).[`getGameObjB`](/api/interfaces/KPJointComp#getgameobjb)
+
+***
+
+### getJointSpeed()
+
+> **getJointSpeed**(): `number`
+
+Returns the joint's speed.
+
+#### Returns
+
+`number`
+
+***
+
+### getJointTranslation()
+
+> **getJointTranslation**(): `number`
+
+Returns the joint's translation.
+
+#### Returns
+
+`number`
+
+***
+
+### getLocalAnchorA()
+
+> **getLocalAnchorA**(): `Vec2`
+
+Returns local anchor A.
+
+#### Returns
+
+`Vec2`
+
+***
+
+### getLocalAnchorB()
+
+> **getLocalAnchorB**(): `Vec2`
+
+Returns local anchor B.
+
+#### Returns
+
+`Vec2`
+
+***
+
+### getLocalAxisA()
+
+> **getLocalAxisA**(): `Vec2`
+
+Returns the local axis A.
+
+#### Returns
+
+`Vec2`
+
+***
+
+### getLowerLimit()
+
+> **getLowerLimit**(): `number`
+
+Returns the lower limit.
+
+#### Returns
+
+`number`
+
+***
+
+### getMaxMotorForce()
+
+> **getMaxMotorForce**(): `number`
+
+Returns the maximum motor force.
+
+#### Returns
+
+`number`
+
+***
+
+### getMotorSpeed()
+
+> **getMotorSpeed**(): `number`
+
+Returns the motor speed.
+
+#### Returns
+
+`number`
+
+***
+
+### getReferenceAngle()
+
+> **getReferenceAngle**(): `number`
+
+Returns the reference angle.
+
+#### Returns
+
+`number`
+
+***
+
+### getUpperLimit()
+
+> **getUpperLimit**(): `number`
+
+Returns the upper limit.
+
+#### Returns
+
+`number`
+
+***
+
+### isActive()
+
+> **isActive**(): `boolean`
+
+Returns true if the joint is active.
+
+#### Returns
+
+`boolean`
+
+#### Inherited from
+
+[`KPJointComp`](/api/interfaces/KPJointComp).[`isActive`](/api/interfaces/KPJointComp#isactive)
+
+***
+
+### isLimitEnabled()
+
+> **isLimitEnabled**(): `boolean`
+
+Returns true if the joint limit is enabled, false otherwise.
+
+#### Returns
+
+`boolean`
+
+***
+
+### isMotorEnabled()
+
+> **isMotorEnabled**(): `boolean`
+
+Returns true if the motor is enabled, false otherwise.
+
+#### Returns
+
+`boolean`
+
+***
+
+### setLimits()
+
+> **setLimits**(`lower`, `upper`): `void`
+
+Set the joint limits.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `lower` | `number` |  |
+| `upper` | `number` |  |
+
+#### Returns
+
+`void`
+
+***
+
+### setMaxMotorForce()
+
+> **setMaxMotorForce**(`force`): `void`
+
+Set the maximum motor force.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `force` | `number` |  |
+
+#### Returns
+
+`void`
+
+***
+
+### setMotorSpeed()
+
+> **setMotorSpeed**(`speed`): `void`
+
+Set the motor speed.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `speed` | `number` |  |
+
+#### Returns
+
+`void`
+
+***
+
+### shiftOrigin()
+
+> **shiftOrigin**(`new_origin`): `void`
+
+Shifts the origin of the joint.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `new_origin` | `Vec2Value` |  |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[`KPJointComp`](/api/interfaces/KPJointComp).[`shiftOrigin`](/api/interfaces/KPJointComp#shiftorigin)

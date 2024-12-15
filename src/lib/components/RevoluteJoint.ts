@@ -13,23 +13,109 @@ export interface KPRevoluteJointDef
 }
 
 export interface KPRevoluteJointComp extends KPJointComp {
+  /**
+   * The RevoluteJoint
+   *
+   * @type {RevoluteJoint}
+   */
   joint: RevoluteJoint;
 
+  /**
+   * Sets the state of the joint limit.
+   *
+   * @param {boolean} flag
+   */
   enableLimit(flag: boolean): void;
+  /**
+   * Sets the state of the joint motor.
+   *
+   * @param {boolean} flag
+   */
   enableMotor(flag: boolean): void;
+  /**
+   * Returns the joint angle.
+   *
+   * @return {number}
+   */
   getJointAngle(): number;
+  /**
+   * Returns the joint's speed.
+   *
+   * @return {number}
+   */
   getJointSpeed(): number;
+  /**
+   * Returns the local anchor A.
+   *
+   * @return {Vec2}
+   */
   getLocalAnchorA(): Vec2;
+  /**
+   * Returns the local anchor B.
+   *
+   * @return {Vec2}
+   */
   getLocalAnchorB(): Vec2;
+  /**
+   * Sets the joint's lower limit.
+   *
+   * @return {number}
+   */
   getLowerLimit(): number;
+  /**
+   * Sets the joint's maximum motor torque.
+   *
+   * @return {number}
+   */
   getMaxMotorTorque(): number;
+  /**
+   * Returns the joint's motor speed.
+   *
+   * @return {number}
+   */
   getMotorSpeed(): number;
+  /**
+   * Returns the joint's reference angle.
+   *
+   * @return {number}
+   */
   getReferenceAngle(): number;
+  /**
+   * Returns the joint's upper limit.
+   *
+   * @return {number}
+   */
   getUpperLimit(): number;
+  /**
+   * Returns true if the joint's limit is enabled, false otherwise.
+   *
+   * @return {boolean}
+   */
   isLimitEnabled(): boolean;
+  /**
+   * Returns true if the joint's motor is enabled, false otherwise.
+   *
+   * @return {boolean}
+   */
   isMotorEnabled(): boolean;
+  /**
+   * Sets the joint's lower and upper limits.
+   *
+   * @param {number} lower
+   * @param {number} upper
+   */
   setLimits(lower: number, upper: number): void;
+  /**
+   * Sets the joint's max motor torque.
+   *
+   * @param {number} torque
+   */
   setMaxMotorTorque(torque: number): void;
+  /**
+   * Sets the joint's motor speed.
+   *
+   * @param {number} speed
+   */
   setMotorSpeed(speed: number): void;
 }
 

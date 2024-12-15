@@ -1,20 +1,60 @@
 import type { Comp, GameObj, KAPLAYCtx } from "kaplay";
 import { type Joint, Vec2, type Vec2Value } from "planck";
 
-import { p2kVec2 } from "../utils";
+import { p2kVec2 } from "../internals";
 import type { KPBodyComp } from "./Body";
 import type { KPPosComp } from "./Position";
 import type { KPRotateComp } from "./Rotate";
 
 export interface KPJointComp extends Comp {
+  /**
+   * The Joint
+   *
+   * @type {Joint}
+   */
   joint: Joint;
 
+  /**
+   * Returns the anchor A of the joint.
+   *
+   * @return {Vec2}
+   */
   getAnchorA(): Vec2;
+  /**
+   * Returns the anchor B of the joint.
+   *
+   * @return {Vec2}
+   */
   getAnchorB(): Vec2;
+  /**
+   * Returns true if the joint allows collision between the two bodies.
+   *
+   * @return {boolean}
+   */
   getCollideConnected(): boolean;
+  /**
+   * Returns the game object A of the joint.
+   *
+   * @return {(GameObj<KPBodyComp & KPPosComp & KPRotateComp>)}
+   */
   getGameObjA(): GameObj<KPBodyComp & KPPosComp & KPRotateComp>;
+  /**
+   * Returns the game object B of the joint.
+   *
+   * @return {(GameObj<KPBodyComp & KPPosComp & KPRotateComp>)}
+   */
   getGameObjB(): GameObj<KPBodyComp & KPPosComp & KPRotateComp>;
+  /**
+   * Returns true if the joint is active.
+   *
+   * @return {boolean}
+   */
   isActive(): boolean;
+  /**
+   * Shifts the origin of the joint.
+   *
+   * @param {Vec2Value} new_origin
+   */
   shiftOrigin(new_origin: Vec2Value): void;
 }
 

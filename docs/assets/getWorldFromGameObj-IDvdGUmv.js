@@ -1,0 +1,10 @@
+import{u as d,j as e}from"./index-CLzoCpN7.js";const i={title:"Function: getWorldFromGameObj()",description:"undefined"};function n(t){const r={a:"a",blockquote:"blockquote",code:"code",div:"div",h1:"h1",h2:"h2",header:"header",p:"p",strong:"strong",table:"table",tbody:"tbody",td:"td",th:"th",thead:"thead",tr:"tr",...d(),...t.components};return e.jsxs(e.Fragment,{children:[e.jsx(r.header,{children:e.jsxs(r.h1,{id:"function-getworldfromgameobj",children:["Function: getWorldFromGameObj()",e.jsx(r.a,{"aria-hidden":"true",tabIndex:"-1",href:"#function-getworldfromgameobj",children:e.jsx(r.div,{"data-autolink-icon":!0})})]})}),`
+`,e.jsxs(r.blockquote,{children:[`
+`,e.jsxs(r.p,{children:[e.jsx(r.strong,{children:"getWorldFromGameObj"}),"(",e.jsx(r.code,{children:"obj"}),"): ",e.jsx(r.code,{children:"World"})," | ",e.jsx(r.code,{children:"null"})]}),`
+`]}),`
+`,e.jsx(r.p,{children:"Get the world from a game object."}),`
+`,e.jsxs(r.h2,{id:"parameters",children:["Parameters",e.jsx(r.a,{"aria-hidden":"true",tabIndex:"-1",href:"#parameters",children:e.jsx(r.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsxs(r.table,{children:[e.jsx(r.thead,{children:e.jsxs(r.tr,{children:[e.jsx(r.th,{children:"Parameter"}),e.jsx(r.th,{children:"Type"}),e.jsx(r.th,{children:"Description"})]})}),e.jsx(r.tbody,{children:e.jsxs(r.tr,{children:[e.jsx(r.td,{children:e.jsx(r.code,{children:"obj"})}),e.jsx(r.td,{children:e.jsx(r.code,{children:"GameObj"})}),e.jsx(r.td,{children:"The game object to get the world from."})]})})]}),`
+`,e.jsxs(r.h2,{id:"returns",children:["Returns",e.jsx(r.a,{"aria-hidden":"true",tabIndex:"-1",href:"#returns",children:e.jsx(r.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsxs(r.p,{children:[e.jsx(r.code,{children:"World"})," | ",e.jsx(r.code,{children:"null"})]}),`
+`,e.jsxs(r.h2,{id:"export",children:["Export",e.jsx(r.a,{"aria-hidden":"true",tabIndex:"-1",href:"#export",children:e.jsx(r.div,{"data-autolink-icon":!0})})]})]})}function s(t={}){const{wrapper:r}={...d(),...t.components};return r?e.jsx(r,{...t,children:e.jsx(n,{...t})}):n(t)}export{s as default,i as frontmatter};

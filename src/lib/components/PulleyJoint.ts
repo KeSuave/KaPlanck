@@ -13,14 +13,54 @@ export interface KPPulleyJointDef
 }
 
 export interface KPPulleyJointComp extends KPJointComp {
+  /**
+   * The PulleyJoint
+   *
+   * @type {PulleyJoint}
+   */
   joint: PulleyJoint;
 
+  /**
+   * Returns the current length of A
+   *
+   * @return {number}
+   */
   getCurrentLengthA(): number;
+  /**
+   * Returns the current length of B
+   *
+   * @return {number}
+   */
   getCurrentLengthB(): number;
+  /**
+   * Returns the current ground anchor A
+   *
+   * @return {Vec2}
+   */
   getGroundAnchorA(): Vec2;
+  /**
+   * Returns the current ground anchor B
+   *
+   * @return {Vec2}
+   */
   getGroundAnchorB(): Vec2;
+  /**
+   * Returns the length of A
+   *
+   * @return {number}
+   */
   getLengthA(): number;
+  /**
+   * Returns the length of B
+   *
+   * @return {number}
+   */
   getLengthB(): number;
+  /**
+   * Returns the ratio
+   *
+   * @return {number}
+   */
   getRatio(): number;
 }
 

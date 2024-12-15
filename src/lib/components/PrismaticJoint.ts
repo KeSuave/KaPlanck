@@ -13,24 +13,115 @@ export interface KPPrismaticJointDef
 }
 
 export interface KPPrismaticJointComp extends KPJointComp {
+  /**
+   * The PrismaticJoint
+   *
+   * @type {PrismaticJoint}
+   */
   joint: PrismaticJoint;
 
+  /**
+   * Set the state of the joint limit.
+   *
+   * @param {boolean} flag
+   */
   enableLimit(flag: boolean): void;
+  /**
+   * Set the state of the joint motor.
+   *
+   * @param {boolean} flag
+   */
   enableMotor(flag: boolean): void;
+  /**
+   * Returns the joint's speed.
+   *
+   * @return {number}
+   */
   getJointSpeed(): number;
+  /**
+   * Returns the joint's translation.
+   *
+   * @return {number}
+   */
   getJointTranslation(): number;
+  /**
+   * Returns local anchor A.
+   *
+   * @return {Vec2}
+   */
   getLocalAnchorA(): Vec2;
+  /**
+   * Returns local anchor B.
+   *
+   * @return {Vec2}
+   */
   getLocalAnchorB(): Vec2;
+  /**
+   * Returns the local axis A.
+   *
+   * @return {Vec2}
+   */
   getLocalAxisA(): Vec2;
+  /**
+   * Returns the lower limit.
+   *
+   * @return {number}
+   */
   getLowerLimit(): number;
+  /**
+   * Returns the maximum motor force.
+   *
+   * @return {number}
+   */
   getMaxMotorForce(): number;
+  /**
+   * Returns the motor speed.
+   *
+   * @return {number}
+   */
   getMotorSpeed(): number;
+  /**
+   * Returns the reference angle.
+   *
+   * @return {number}
+   */
   getReferenceAngle(): number;
+  /**
+   * Returns the upper limit.
+   *
+   * @return {number}
+   */
   getUpperLimit(): number;
+  /**
+   * Returns true if the joint limit is enabled, false otherwise.
+   *
+   * @return {boolean}
+   */
   isLimitEnabled(): boolean;
+  /**
+   * Returns true if the motor is enabled, false otherwise.
+   *
+   * @return {boolean}
+   */
   isMotorEnabled(): boolean;
+  /**
+   * Set the joint limits.
+   *
+   * @param {number} lower
+   * @param {number} upper
+   */
   setLimits(lower: number, upper: number): void;
+  /**
+   * Set the maximum motor force.
+   *
+   * @param {number} force
+   */
   setMaxMotorForce(force: number): void;
+  /**
+   * Set the motor speed.
+   *
+   * @param {number} speed
+   */
   setMotorSpeed(speed: number): void;
 }
 

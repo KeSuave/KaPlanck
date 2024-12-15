@@ -1,0 +1,708 @@
+# Class: Vec2
+
+**`Experimental`**
+
+A 2D vector class that extends Planck's Vec2
+
+## Export
+
+Vec2
+
+## Extends
+
+- `Vec2`
+
+## Constructors
+
+### new Vec2()
+
+> **new Vec2**(`x`, `y`): [`Vec2`](/api/classes/Vec2)
+
+**`Experimental`**
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `x` | `number` |
+| `y` | `number` |
+
+#### Returns
+
+[`Vec2`](/api/classes/Vec2)
+
+#### Overrides
+
+`PlanckVec2.constructor`
+
+### new Vec2()
+
+> **new Vec2**(`obj`): [`Vec2`](/api/classes/Vec2)
+
+**`Experimental`**
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `obj` | `Vec2Value` |
+
+#### Returns
+
+[`Vec2`](/api/classes/Vec2)
+
+#### Overrides
+
+`PlanckVec2.constructor`
+
+### new Vec2()
+
+> **new Vec2**(): [`Vec2`](/api/classes/Vec2)
+
+**`Experimental`**
+
+#### Returns
+
+[`Vec2`](/api/classes/Vec2)
+
+#### Overrides
+
+`PlanckVec2.constructor`
+
+## Properties
+
+### DOWN
+
+> `static` **DOWN**: [`Vec2`](/api/classes/Vec2)
+
+**`Experimental`**
+
+Creates a vector with components (0, 1)
+
+#### Static
+
+***
+
+### LEFT
+
+> `static` **LEFT**: [`Vec2`](/api/classes/Vec2)
+
+**`Experimental`**
+
+Creates a vector with components (-1, 0)
+
+#### Static
+
+***
+
+### ONE
+
+> `static` **ONE**: [`Vec2`](/api/classes/Vec2)
+
+**`Experimental`**
+
+Creates a vector with components (1, 1)
+
+#### Static
+
+***
+
+### RIGHT
+
+> `static` **RIGHT**: [`Vec2`](/api/classes/Vec2)
+
+**`Experimental`**
+
+Creates a vector with components (1, 0)
+
+#### Static
+
+***
+
+### UP
+
+> `static` **UP**: [`Vec2`](/api/classes/Vec2)
+
+**`Experimental`**
+
+Creates a vector with components (0, -1)
+
+#### Static
+
+***
+
+### ZERO
+
+> `static` **ZERO**: [`Vec2`](/api/classes/Vec2)
+
+**`Experimental`**
+
+Creates an empty vector (0, 0)
+
+#### Static
+
+## Methods
+
+### angle()
+
+> **angle**(`other`): `number`
+
+**`Experimental`**
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `other` | [`Vec2`](/api/classes/Vec2) | The vector to calculate the angle with |
+
+#### Returns
+
+`number`
+
+***
+
+### angleBetween()
+
+> **angleBetween**(`other`): `number`
+
+**`Experimental`**
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `other` | [`Vec2`](/api/classes/Vec2) |  |
+
+#### Returns
+
+`number`
+
+***
+
+### clone()
+
+> **clone**(): [`Vec2`](/api/classes/Vec2)
+
+**`Experimental`**
+
+#### Returns
+
+[`Vec2`](/api/classes/Vec2)
+
+The cloned vector
+
+#### Overrides
+
+`PlanckVec2.clone`
+
+***
+
+### cross()
+
+> **cross**(`other`): `number`
+
+**`Experimental`**
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `other` | [`Vec2`](/api/classes/Vec2) | The vector to calculate the cross product with |
+
+#### Returns
+
+`number`
+
+***
+
+### dist()
+
+> **dist**(`other`): `number`
+
+**`Experimental`**
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `other` | [`Vec2`](/api/classes/Vec2) | The other vector to calculate the distance from |
+
+#### Returns
+
+`number`
+
+The distance between the two vectors
+
+***
+
+### dot()
+
+> **dot**(`other`): `number`
+
+**`Experimental`**
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `other` | [`Vec2`](/api/classes/Vec2) | The vector to calculate the dot product with |
+
+#### Returns
+
+`number`
+
+***
+
+### eq()
+
+> **eq**(`other`): `boolean`
+
+**`Experimental`**
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `other` | [`Vec2`](/api/classes/Vec2) | The other Vec2 object |
+
+#### Returns
+
+`boolean`
+
+***
+
+### isZero()
+
+> **isZero**(): `boolean`
+
+**`Experimental`**
+
+#### Returns
+
+`boolean`
+
+***
+
+### len()
+
+> **len**(): `number`
+
+**`Experimental`**
+
+#### Returns
+
+`number`
+
+The length of the vector
+
+***
+
+### lerp()
+
+> **lerp**(`dest`, `t`): [`Vec2`](/api/classes/Vec2)
+
+**`Experimental`**
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `dest` | [`Vec2`](/api/classes/Vec2) | The destination vector |
+| `t` | `number` | The interpolation factor (between 0 and 1) |
+
+#### Returns
+
+[`Vec2`](/api/classes/Vec2)
+
+The interpolated vector
+
+***
+
+### normal()
+
+> **normal**(): [`Vec2`](/api/classes/Vec2)
+
+**`Experimental`**
+
+#### Returns
+
+[`Vec2`](/api/classes/Vec2)
+
+***
+
+### project()
+
+> **project**(`on`): [`Vec2`](/api/classes/Vec2)
+
+**`Experimental`**
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `on` | [`Vec2`](/api/classes/Vec2) | The vector to project onto |
+
+#### Returns
+
+[`Vec2`](/api/classes/Vec2)
+
+The projection of this vector onto the given vector
+
+***
+
+### reflect()
+
+> **reflect**(`normal`): [`Vec2`](/api/classes/Vec2)
+
+**`Experimental`**
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `normal` | [`Vec2`](/api/classes/Vec2) | The normal vector to reflect off of |
+
+#### Returns
+
+[`Vec2`](/api/classes/Vec2)
+
+The reflected vector
+
+***
+
+### reject()
+
+> **reject**(`on`): [`Vec2`](/api/classes/Vec2)
+
+**`Experimental`**
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `on` | [`Vec2`](/api/classes/Vec2) | The vector to reject from |
+
+#### Returns
+
+[`Vec2`](/api/classes/Vec2)
+
+The rejection of this vector from the given vector
+
+***
+
+### scale()
+
+> **scale**(`scalar`): [`Vec2`](/api/classes/Vec2)
+
+**`Experimental`**
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `scalar` | `number` | The scalar value to scale the vector by |
+
+#### Returns
+
+[`Vec2`](/api/classes/Vec2)
+
+this
+
+***
+
+### sdist()
+
+> **sdist**(`other`): `number`
+
+**`Experimental`**
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `other` | [`Vec2`](/api/classes/Vec2) | The other vector to calculate the distance from |
+
+#### Returns
+
+`number`
+
+The squared distance between the two vectors
+
+***
+
+### slen()
+
+> **slen**(): `number`
+
+**`Experimental`**
+
+#### Returns
+
+`number`
+
+The squared length of the vector
+
+***
+
+### slerp()
+
+> **slerp**(`dest`, `t`): [`Vec2`](/api/classes/Vec2)
+
+**`Experimental`**
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `dest` | [`Vec2`](/api/classes/Vec2) | The destination vector |
+| `t` | `number` | The interpolation factor (between 0 and 1) |
+
+#### Returns
+
+[`Vec2`](/api/classes/Vec2)
+
+The interpolated vector
+
+***
+
+### toArray()
+
+> **toArray**(): [`number`, `number`]
+
+**`Experimental`**
+
+#### Returns
+
+[`number`, `number`]
+
+***
+
+### toFixed()
+
+> **toFixed**(`n`): [`Vec2`](/api/classes/Vec2)
+
+**`Experimental`**
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `n` | `number` | The number of decimal places to fix |
+
+#### Returns
+
+[`Vec2`](/api/classes/Vec2)
+
+this
+
+***
+
+### toString()
+
+> **toString**(): `string`
+
+**`Experimental`**
+
+#### Returns
+
+`string`
+
+#### Overrides
+
+`PlanckVec2.toString`
+
+***
+
+### transform()
+
+> **transform**(`m`): [`Vec2`](/api/classes/Vec2)
+
+**`Experimental`**
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `m` | `Mat4` | The Mat4 to multiply with |
+
+#### Returns
+
+[`Vec2`](/api/classes/Vec2)
+
+this
+
+***
+
+### unit()
+
+> **unit**(): [`Vec2`](/api/classes/Vec2)
+
+**`Experimental`**
+
+#### Returns
+
+[`Vec2`](/api/classes/Vec2)
+
+this
+
+***
+
+### clone()
+
+> `static` **clone**(`src`): [`Vec2`](/api/classes/Vec2)
+
+**`Experimental`**
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `src` | [`Vec2`](/api/classes/Vec2) | The source vector |
+
+#### Returns
+
+[`Vec2`](/api/classes/Vec2)
+
+The cloned vector
+
+#### Static
+
+#### Overrides
+
+`PlanckVec2.clone`
+
+***
+
+### fromAngle()
+
+> `static` **fromAngle**(`angle`): [`Vec2`](/api/classes/Vec2)
+
+**`Experimental`**
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `angle` | `number` | The angle in radians |
+
+#### Returns
+
+[`Vec2`](/api/classes/Vec2)
+
+The vector created from the angle
+
+#### Static
+
+***
+
+### fromArray()
+
+> `static` **fromArray**(`array`): [`Vec2`](/api/classes/Vec2)
+
+**`Experimental`**
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `array` | [`number`, `number`] | The array of two numbers |
+
+#### Returns
+
+[`Vec2`](/api/classes/Vec2)
+
+The vector created from the array
+
+#### Static
+
+***
+
+### lerp()
+
+> `static` **lerp**(`src`, `dst`, `t`, `out`): [`Vec2`](/api/classes/Vec2)
+
+**`Experimental`**
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `src` | [`Vec2`](/api/classes/Vec2) | The source vector |
+| `dst` | [`Vec2`](/api/classes/Vec2) | The destination vector |
+| `t` | `number` | The interpolation factor (0-1) |
+| `out` | [`Vec2`](/api/classes/Vec2) | The output vector |
+
+#### Returns
+
+[`Vec2`](/api/classes/Vec2)
+
+#### Static
+
+***
+
+### slerp()
+
+> `static` **slerp**(`src`, `dst`, `t`, `out`): [`Vec2`](/api/classes/Vec2)
+
+**`Experimental`**
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `src` | [`Vec2`](/api/classes/Vec2) | The source vector |
+| `dst` | [`Vec2`](/api/classes/Vec2) |  |
+| `t` | `number` |  |
+| `out` | [`Vec2`](/api/classes/Vec2) |  |
+
+#### Returns
+
+[`Vec2`](/api/classes/Vec2)
+
+#### Static
+
+***
+
+### toAngle()
+
+> `static` **toAngle**(`src`): `number`
+
+**`Experimental`**
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `src` | [`Vec2`](/api/classes/Vec2) | The source vector |
+
+#### Returns
+
+`number`
+
+#### Static
+
+#### Memberof
+
+Vec2
+
+***
+
+### unit()
+
+> `static` **unit**(`src`): [`Vec2`](/api/classes/Vec2)
+
+**`Experimental`**
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `src` | [`Vec2`](/api/classes/Vec2) | The source vector |
+
+#### Returns
+
+[`Vec2`](/api/classes/Vec2)
+
+The normalized vector
+
+#### Static

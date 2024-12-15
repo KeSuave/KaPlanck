@@ -3,10 +3,30 @@ import type { Comp, GameObj, KAPLAYCtx, RotateComp } from "kaplay";
 import { KPBodyComp } from "./Body";
 
 export interface KPRotateComp extends Comp {
+  /**
+   * Returns the current rotation angle of the object in radians.
+   *
+   * @return {number}
+   */
   getKPAngle(): number;
+  /**
+   * Sets the rotation angle of the object in radians.
+   *
+   * @param {number} angle
+   */
   setKPAngle(angle: number): void;
 
+  /**
+   * Rotates the object by a given angle in radians.
+   *
+   * @param {number} angle
+   */
   kpRotateBy(angle: number): void;
+  /**
+   * Rotates the object to a given angle in radians.
+   *
+   * @param {number} angle
+   */
   kpRotateTo(angle: number): void;
 }
 

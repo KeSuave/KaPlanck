@@ -1,18 +1,63 @@
 import type { Comp, GameObj, KAPLAYCtx, PosComp } from "kaplay";
 import { Vec2, type Vec2Value } from "planck";
-import { k2pVec2, p2kVec2 } from "../utils";
+import { k2pVec2, p2kVec2 } from "../internals";
 import { KPBodyComp } from "./Body";
 
 export type KPVec2Args = [number, number] | [Vec2Value] | [Vec2] | [];
 
 export interface KPPosComp extends Comp {
+  /**
+   * Returns the position of the object.
+   *
+   * @return {Vec2}
+   */
   getKPPosition(): Vec2;
+  /**
+   * Sets the position of the object.
+   *
+   * @param {Vec2Value} pos
+   */
   setKPPosition(pos: Vec2Value): void;
+  /**
+   * Moves the object by a given amount.
+   *
+   * @param {number} x
+   * @param {number} y
+   */
   kpMove(x: number, y: number): void;
+  /**
+   * Moves the object by a given vector.
+   *
+   * @param {Vec2} vel
+   */
   kpMove(vel: Vec2): void;
+  /**
+   * Moves the object by a given vector.
+   *
+   * @param {number} dx
+   * @param {number} dy
+   */
   kpMoveBy(dx: number, dy: number): void;
+  /**
+   * Moves the object by a given vector.
+   *
+   * @param {Vec2} d
+   */
   kpMoveBy(d: Vec2): void;
+  /**
+   * Moves the object to a given position.
+   *
+   * @param {Vec2} dest
+   * @param {number} [speed]
+   */
   kpMoveTo(dest: Vec2, speed?: number): void;
+  /**
+   * Moves the object to a given position.
+   *
+   * @param {number} x
+   * @param {number} y
+   * @param {number} [speed]
+   */
   kpMoveTo(x: number, y: number, speed?: number): void;
 }
 

@@ -15,13 +15,53 @@ export interface KPFixtureComp extends Comp {
    */
   fixture: Fixture;
 
+  /**
+   * Returns the density of the fixture.
+   *
+   * @return {number}
+   */
   getDensity(): number;
+  /**
+   * Returns the friction of the fixture.
+   *
+   * @return {number}
+   */
   getFriction(): number;
+  /**
+   * Returns the restitution of the fixture.
+   *
+   * @return {number}
+   */
   getRestitution(): number;
+  /**
+   * Returns true if the fixture is a sensor, otherwise false.
+   *
+   * @return {boolean}
+   */
   isSensor(): boolean;
+  /**
+   * Sets the density of the fixture.
+   *
+   * @param {number} density
+   */
   setDensity(density: number): void;
+  /**
+   * Sets the friction of the fixture.
+   *
+   * @param {number} friction
+   */
   setFriction(friction: number): void;
+  /**
+   * Sets the restitution of the fixture.
+   *
+   * @param {number} restitution
+   */
   setRestitution(restitution: number): void;
+  /**
+   * Sets the fixture as a sensor or not.
+   *
+   * @param {boolean} flag
+   */
   setSensor(flag: boolean): void;
 }
 

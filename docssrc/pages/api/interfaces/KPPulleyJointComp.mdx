@@ -1,0 +1,213 @@
+# Interface: KPPulleyJointComp
+
+## Extends
+
+- [`KPJointComp`](/api/interfaces/KPJointComp)
+
+## Properties
+
+| Property | Type | Description | Overrides |
+| ------ | ------ | ------ | ------ |
+| `joint` | `PulleyJoint` | The PulleyJoint | [`KPJointComp`](/api/interfaces/KPJointComp).`joint` |
+
+## Methods
+
+### getAnchorA()
+
+> **getAnchorA**(): `Vec2`
+
+Returns the anchor A of the joint.
+
+#### Returns
+
+`Vec2`
+
+#### Inherited from
+
+[`KPJointComp`](/api/interfaces/KPJointComp).[`getAnchorA`](/api/interfaces/KPJointComp#getanchora)
+
+***
+
+### getAnchorB()
+
+> **getAnchorB**(): `Vec2`
+
+Returns the anchor B of the joint.
+
+#### Returns
+
+`Vec2`
+
+#### Inherited from
+
+[`KPJointComp`](/api/interfaces/KPJointComp).[`getAnchorB`](/api/interfaces/KPJointComp#getanchorb)
+
+***
+
+### getCollideConnected()
+
+> **getCollideConnected**(): `boolean`
+
+Returns true if the joint allows collision between the two bodies.
+
+#### Returns
+
+`boolean`
+
+#### Inherited from
+
+[`KPJointComp`](/api/interfaces/KPJointComp).[`getCollideConnected`](/api/interfaces/KPJointComp#getcollideconnected)
+
+***
+
+### getCurrentLengthA()
+
+> **getCurrentLengthA**(): `number`
+
+Returns the current length of A
+
+#### Returns
+
+`number`
+
+***
+
+### getCurrentLengthB()
+
+> **getCurrentLengthB**(): `number`
+
+Returns the current length of B
+
+#### Returns
+
+`number`
+
+***
+
+### getGameObjA()
+
+> **getGameObjA**(): `GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\>
+
+Returns the game object A of the joint.
+
+#### Returns
+
+`GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\>
+
+#### Inherited from
+
+[`KPJointComp`](/api/interfaces/KPJointComp).[`getGameObjA`](/api/interfaces/KPJointComp#getgameobja)
+
+***
+
+### getGameObjB()
+
+> **getGameObjB**(): `GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\>
+
+Returns the game object B of the joint.
+
+#### Returns
+
+`GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\>
+
+#### Inherited from
+
+[`KPJointComp`](/api/interfaces/KPJointComp).[`getGameObjB`](/api/interfaces/KPJointComp#getgameobjb)
+
+***
+
+### getGroundAnchorA()
+
+> **getGroundAnchorA**(): `Vec2`
+
+Returns the current ground anchor A
+
+#### Returns
+
+`Vec2`
+
+***
+
+### getGroundAnchorB()
+
+> **getGroundAnchorB**(): `Vec2`
+
+Returns the current ground anchor B
+
+#### Returns
+
+`Vec2`
+
+***
+
+### getLengthA()
+
+> **getLengthA**(): `number`
+
+Returns the length of A
+
+#### Returns
+
+`number`
+
+***
+
+### getLengthB()
+
+> **getLengthB**(): `number`
+
+Returns the length of B
+
+#### Returns
+
+`number`
+
+***
+
+### getRatio()
+
+> **getRatio**(): `number`
+
+Returns the ratio
+
+#### Returns
+
+`number`
+
+***
+
+### isActive()
+
+> **isActive**(): `boolean`
+
+Returns true if the joint is active.
+
+#### Returns
+
+`boolean`
+
+#### Inherited from
+
+[`KPJointComp`](/api/interfaces/KPJointComp).[`isActive`](/api/interfaces/KPJointComp#isactive)
+
+***
+
+### shiftOrigin()
+
+> **shiftOrigin**(`new_origin`): `void`
+
+Shifts the origin of the joint.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `new_origin` | `Vec2Value` |  |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[`KPJointComp`](/api/interfaces/KPJointComp).[`shiftOrigin`](/api/interfaces/KPJointComp#shiftorigin)

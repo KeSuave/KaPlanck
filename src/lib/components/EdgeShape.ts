@@ -2,9 +2,15 @@ import type { GameObj, KAPLAYCtx } from "kaplay";
 import { type KPShapeComp, type KPShapeOpt } from "./Shape";
 
 import { EdgeShape, type Vec2Value } from "planck";
-import { getRenderProps, p2kVec2 } from "../utils";
+import { getRenderProps, p2kVec2 } from "../internals";
 
 export interface KPEdgeShapeComp extends KPShapeComp {
+  /**
+   * The EdgeShape
+   *
+   * @type {EdgeShape}
+   * @memberof KPEdgeShapeComp
+   */
   shape: EdgeShape;
 }
 

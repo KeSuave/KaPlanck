@@ -1,0 +1,37 @@
+# Notes
+
+Here are few notes that I believe worth to be aware of while using this library.
+
+- While using the events: [onKPCollide](/api/interfaces/KaPlanckPluginCtx#onkpcollide),
+[onKPCollideEnd](/api/interfaces/KaPlanckPluginCtx#onkpcollideend), and
+[onKPCollideUpdate](/api/interfaces/KaPlanckPluginCtx#onkpcollideupdate)
+please remember that you should not destroy any game object, instead try to use the helper function
+[addToDestroyList](/api/interfaces/KPWorldComp#addtodestroylist) from the `kpWorld` component.
+
+- Bodies, fixtures, joints have the [KPUserData](/api/interfaces/KPUserData) attached to them incase you need
+to access their respective game object.
+
+- If your bodies have multiple fixtures, I recommend to create a game object with `kpBody` and add children
+with the shapes and fixtures.
+
+```ts
+const player = worldContainer.add([
+  k.kpPos(),
+  k.kpRotate(),
+  k.kpBody()
+]);
+
+player.add([
+  k.kpBoxShape({ width: 1, height: 1 }),
+  k.kpFixture()
+]);
+
+player.add([
+  k.kpCircleShape({ radius: 0.5 }),
+  k.kpFixture()
+])
+```
+
+- The previous method can also be applied to things like sprites and other non-physics related components.
+
+_Thanks to ricjones (from KAPLAY's discord) for bring up some of these points!_

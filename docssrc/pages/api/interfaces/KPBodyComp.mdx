@@ -32,12 +32,14 @@ require to lookup the parent game object with `kpWorld` component._
 
 > **applyAngularImpulse**(`impulse`, `wake`?): `void`
 
+Applies an angular impulse to the body.
+
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `impulse` | `number` |
-| `wake`? | `boolean` |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `impulse` | `number` |  |
+| `wake`? | `boolean` |  |
 
 #### Returns
 
@@ -49,13 +51,15 @@ require to lookup the parent game object with `kpWorld` component._
 
 > **applyForce**(`force`, `point`, `wake`?): `void`
 
+Applies a linear impulse to the body.
+
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `force` | `Vec2Value` |
-| `point` | `Vec2Value` |
-| `wake`? | `boolean` |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `force` | `Vec2Value` |  |
+| `point` | `Vec2Value` |  |
+| `wake`? | `boolean` |  |
 
 #### Returns
 
@@ -67,12 +71,14 @@ require to lookup the parent game object with `kpWorld` component._
 
 > **applyForceToCenter**(`force`, `wake`?): `void`
 
+Applies a force to the center of the body.
+
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `force` | `Vec2Value` |
-| `wake`? | `boolean` |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `force` | `Vec2Value` |  |
+| `wake`? | `boolean` |  |
 
 #### Returns
 
@@ -84,17 +90,23 @@ require to lookup the parent game object with `kpWorld` component._
 
 > **applyLinearImpulse**(`impulse`, `point`, `wake`?): `void`
 
+Applies a linear impulse to the body.
+
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `impulse` | `Vec2Value` |
-| `point` | `Vec2Value` |
-| `wake`? | `boolean` |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `impulse` | `Vec2Value` |  |
+| `point` | `Vec2Value` |  |
+| `wake`? | `boolean` |  |
 
 #### Returns
 
 `void`
+
+#### Memberof
+
+KPBodyComp
 
 ***
 
@@ -102,12 +114,14 @@ require to lookup the parent game object with `kpWorld` component._
 
 > **applyTorque**(`torque`, `wake`?): `void`
 
+Applies a torque to the body.
+
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `torque` | `number` |
-| `wake`? | `boolean` |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `torque` | `number` |  |
+| `wake`? | `boolean` |  |
 
 #### Returns
 
@@ -139,6 +153,8 @@ The contact information if colliding, otherwise null.
 
 > **getAngularDamping**(): `number`
 
+Returns the angular damping of the body.
+
 #### Returns
 
 `number`
@@ -148,6 +164,8 @@ The contact information if colliding, otherwise null.
 ### getAngularVelocity()
 
 > **getAngularVelocity**(): `number`
+
+Returns the angular velocity of the body.
 
 #### Returns
 
@@ -159,6 +177,8 @@ The contact information if colliding, otherwise null.
 
 > **getBodyType**(): `BodyType`
 
+Returns the type of the body.
+
 #### Returns
 
 `BodyType`
@@ -168,6 +188,8 @@ The contact information if colliding, otherwise null.
 ### getContactList()
 
 > **getContactList**(): `null` \| `ContactEdge`
+
+Returns the contact list of the body.
 
 #### Returns
 
@@ -179,6 +201,8 @@ The contact information if colliding, otherwise null.
 
 > **getFixtureList**(): `null` \| `Fixture`
 
+Retuns the fixture list of the body.
+
 #### Returns
 
 `null` \| `Fixture`
@@ -188,6 +212,8 @@ The contact information if colliding, otherwise null.
 ### getGravityScale()
 
 > **getGravityScale**(): `number`
+
+Returns the gravity scale of the body.
 
 #### Returns
 
@@ -199,6 +225,8 @@ The contact information if colliding, otherwise null.
 
 > **getInertia**(): `number`
 
+Returns the inertia of the body.
+
 #### Returns
 
 `number`
@@ -208,6 +236,8 @@ The contact information if colliding, otherwise null.
 ### getJointList()
 
 > **getJointList**(): `null` \| `JointEdge`
+
+Returns the joint list of the body.
 
 #### Returns
 
@@ -219,6 +249,8 @@ The contact information if colliding, otherwise null.
 
 > **getLinearDamping**(): `number`
 
+Returns the linear damping of the body.
+
 #### Returns
 
 `number`
@@ -228,6 +260,8 @@ The contact information if colliding, otherwise null.
 ### getLinearVelocity()
 
 > **getLinearVelocity**(): `Vec2`
+
+Returns the linear velocity of the body.
 
 #### Returns
 
@@ -239,11 +273,13 @@ The contact information if colliding, otherwise null.
 
 > **getLinearVelocityFromLocalPoint**(`localPoint`): `Vec2`
 
+Returns the linear velocity from a local point.
+
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `localPoint` | `Vec2Value` |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `localPoint` | `Vec2Value` |  |
 
 #### Returns
 
@@ -255,11 +291,13 @@ The contact information if colliding, otherwise null.
 
 > **getLinearVelocityFromWorldPoint**(`worldPoint`): `Vec2`
 
+Returns the linear velocity from a world point.
+
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `worldPoint` | `Vec2Value` |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `worldPoint` | `Vec2Value` |  |
 
 #### Returns
 
@@ -271,6 +309,8 @@ The contact information if colliding, otherwise null.
 
 > **getLocalCenter**(): `Vec2`
 
+Returns the local center of the body.
+
 #### Returns
 
 `Vec2`
@@ -281,11 +321,13 @@ The contact information if colliding, otherwise null.
 
 > **getLocalPoint**(`worldPoint`): `Vec2`
 
+Returns the local point from a world point.
+
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `worldPoint` | `Vec2Value` |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `worldPoint` | `Vec2Value` |  |
 
 #### Returns
 
@@ -297,11 +339,13 @@ The contact information if colliding, otherwise null.
 
 > **getLocalVector**(`worldVector`): `Vec2`
 
+Returns the local vector from a world vector.
+
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `worldVector` | `Vec2Value` |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `worldVector` | `Vec2Value` |  |
 
 #### Returns
 
@@ -313,6 +357,8 @@ The contact information if colliding, otherwise null.
 
 > **getMass**(): `number`
 
+Returns the mass data of the body.
+
 #### Returns
 
 `number`
@@ -323,11 +369,13 @@ The contact information if colliding, otherwise null.
 
 > **getMassData**(`data`): `void`
 
+Returns the mass data of the body.
+
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `data` | `MassData` |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `data` | `MassData` |  |
 
 #### Returns
 
@@ -339,6 +387,8 @@ The contact information if colliding, otherwise null.
 
 > **getTransform**(): `Transform`
 
+Returns the transform of the body.
+
 #### Returns
 
 `Transform`
@@ -348,6 +398,8 @@ The contact information if colliding, otherwise null.
 ### getWorldCenter()
 
 > **getWorldCenter**(): `Vec2`
+
+Returns the world center of the body.
 
 #### Returns
 
@@ -359,11 +411,13 @@ The contact information if colliding, otherwise null.
 
 > **getWorldPoint**(`localPoint`): `Vec2`
 
+Returns the world point from a local point.
+
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `localPoint` | `Vec2Value` |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `localPoint` | `Vec2Value` |  |
 
 #### Returns
 
@@ -375,11 +429,13 @@ The contact information if colliding, otherwise null.
 
 > **getWorldVector**(`localVector`): `Vec2`
 
+Returns the world vector from a local vector.
+
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `localVector` | `Vec2Value` |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `localVector` | `Vec2Value` |  |
 
 #### Returns
 
@@ -411,6 +467,8 @@ True if the point is inside the body, false otherwise.
 
 > **isActive**(): `boolean`
 
+Returns true if the body is active, false otherwise.
+
 #### Returns
 
 `boolean`
@@ -421,6 +479,8 @@ True if the point is inside the body, false otherwise.
 
 > **isAwake**(): `boolean`
 
+Returns true if the body is awake, false otherwise.
+
 #### Returns
 
 `boolean`
@@ -430,6 +490,8 @@ True if the point is inside the body, false otherwise.
 ### isBullet()
 
 > **isBullet**(): `boolean`
+
+Returns true if the body is bullet, false otherwise.
 
 #### Returns
 
@@ -473,6 +535,8 @@ True if colliding, false otherwise.
 
 > **isDynamic**(): `boolean`
 
+Returns true if the body is dynamic, false otherwise.
+
 #### Returns
 
 `boolean`
@@ -482,6 +546,8 @@ True if colliding, false otherwise.
 ### isFixedRotation()
 
 > **isFixedRotation**(): `boolean`
+
+Returns true if the body is fixed rotation, false otherwise.
 
 #### Returns
 
@@ -504,6 +570,8 @@ Check if the mouse is hovering over this body.
 ### isKinematic()
 
 > **isKinematic**(): `boolean`
+
+Returns true if the body is kinematic, false otherwise.
 
 #### Returns
 
@@ -535,6 +603,8 @@ True if overlapping, false otherwise.
 
 > **isSleepingAllowed**(): `boolean`
 
+Returns true if the body is sleeping allowed, false otherwise.
+
 #### Returns
 
 `boolean`
@@ -545,6 +615,8 @@ True if overlapping, false otherwise.
 
 > **isStatic**(): `boolean`
 
+Returns true if the body is static, false otherwise.
+
 #### Returns
 
 `boolean`
@@ -554,6 +626,8 @@ True if overlapping, false otherwise.
 ### isWorldLocked()
 
 > **isWorldLocked**(): `boolean`
+
+Returns true if the world is locked, false otherwise.
 
 #### Returns
 
@@ -762,6 +836,8 @@ A controller for managing the event.
 
 > **resetMassData**(): `void`
 
+Resets the mass data of the body.
+
 #### Returns
 
 `void`
@@ -772,11 +848,13 @@ A controller for managing the event.
 
 > **setActive**(`flag`): `void`
 
+Sets the active state of the body.
+
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `flag` | `boolean` |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `flag` | `boolean` |  |
 
 #### Returns
 
@@ -788,11 +866,13 @@ A controller for managing the event.
 
 > **setAngularDamping**(`damping`): `void`
 
+Sets the angular damping of the body.
+
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `damping` | `number` |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `damping` | `number` |  |
 
 #### Returns
 
@@ -804,11 +884,13 @@ A controller for managing the event.
 
 > **setAngularVelocity**(`velocity`): `void`
 
+Sets the angular velocity of the body.
+
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `velocity` | `number` |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `velocity` | `number` |  |
 
 #### Returns
 
@@ -820,11 +902,13 @@ A controller for managing the event.
 
 > **setAwake**(`flag`): `void`
 
+Sets the awake state of the body.
+
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `flag` | `boolean` |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `flag` | `boolean` |  |
 
 #### Returns
 
@@ -836,11 +920,13 @@ A controller for managing the event.
 
 > **setBullet**(`flag`): `void`
 
+Sets the bullet state of the body.
+
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `flag` | `boolean` |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `flag` | `boolean` |  |
 
 #### Returns
 
@@ -852,6 +938,8 @@ A controller for managing the event.
 
 > **setDynamic**(): `Body$1`
 
+Sets the body to be dynamic.
+
 #### Returns
 
 `Body$1`
@@ -862,11 +950,13 @@ A controller for managing the event.
 
 > **setFixedRotation**(`flag`): `void`
 
+Sets the fixed rotation state of the body.
+
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `flag` | `boolean` |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `flag` | `boolean` |  |
 
 #### Returns
 
@@ -878,11 +968,13 @@ A controller for managing the event.
 
 > **setGravityScale**(`scale`): `void`
 
+Sets the gravity scale of the body.
+
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `scale` | `number` |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `scale` | `number` |  |
 
 #### Returns
 
@@ -894,6 +986,8 @@ A controller for managing the event.
 
 > **setKinematic**(): `Body$1`
 
+Sets the body to be kinematic.
+
 #### Returns
 
 `Body$1`
@@ -904,11 +998,13 @@ A controller for managing the event.
 
 > **setLinearDamping**(`damping`): `void`
 
+Sets the linear damping of the body.
+
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `damping` | `number` |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `damping` | `number` |  |
 
 #### Returns
 
@@ -920,11 +1016,13 @@ A controller for managing the event.
 
 > **setLinearVelocity**(`velocity`): `void`
 
+Sets the linear velocity of the body.
+
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `velocity` | `Vec2Value` |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `velocity` | `Vec2Value` |  |
 
 #### Returns
 
@@ -936,11 +1034,13 @@ A controller for managing the event.
 
 > **setMassData**(`data`): `void`
 
+Sets the mass data of the body.
+
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `data` | `MassData` |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `data` | `MassData` |  |
 
 #### Returns
 
@@ -952,11 +1052,13 @@ A controller for managing the event.
 
 > **setSleepingAllowed**(`flag`): `void`
 
+Sets sleeping allowed state of the body.
+
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `flag` | `boolean` |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `flag` | `boolean` |  |
 
 #### Returns
 
@@ -968,6 +1070,8 @@ A controller for managing the event.
 
 > **setStatic**(): `Body$1`
 
+Sets the type of the body to be static.
+
 #### Returns
 
 `Body$1`
@@ -978,12 +1082,14 @@ A controller for managing the event.
 
 > **setTransform**(`position`, `angle`): `void`
 
+Sets the transform of the body.
+
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `position` | `Vec2Value` |
-| `angle` | `number` |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `position` | `Vec2Value` |  |
+| `angle` | `number` |  |
 
 #### Returns
 
@@ -995,11 +1101,13 @@ A controller for managing the event.
 
 > **setType**(`type`): `void`
 
+Sets the type of the body.
+
 #### Parameters
 
-| Parameter | Type |
-| ------ | ------ |
-| `type` | `BodyType` |
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `type` | `BodyType` |  |
 
 #### Returns
 

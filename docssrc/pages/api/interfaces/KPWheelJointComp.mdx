@@ -1,0 +1,343 @@
+# Interface: KPWheelJointComp
+
+## Extends
+
+- [`KPJointComp`](/api/interfaces/KPJointComp)
+
+## Properties
+
+| Property | Type | Description | Overrides |
+| ------ | ------ | ------ | ------ |
+| `joint` | `WheelJoint` | The WheelJoint | [`KPJointComp`](/api/interfaces/KPJointComp).`joint` |
+
+## Methods
+
+### enableMotor()
+
+> **enableMotor**(`flag`): `void`
+
+Sets the state of the motor.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `flag` | `boolean` |  |
+
+#### Returns
+
+`void`
+
+***
+
+### getAnchorA()
+
+> **getAnchorA**(): `Vec2`
+
+Returns the anchor A of the joint.
+
+#### Returns
+
+`Vec2`
+
+#### Inherited from
+
+[`KPJointComp`](/api/interfaces/KPJointComp).[`getAnchorA`](/api/interfaces/KPJointComp#getanchora)
+
+***
+
+### getAnchorB()
+
+> **getAnchorB**(): `Vec2`
+
+Returns the anchor B of the joint.
+
+#### Returns
+
+`Vec2`
+
+#### Inherited from
+
+[`KPJointComp`](/api/interfaces/KPJointComp).[`getAnchorB`](/api/interfaces/KPJointComp#getanchorb)
+
+***
+
+### getCollideConnected()
+
+> **getCollideConnected**(): `boolean`
+
+Returns true if the joint allows collision between the two bodies.
+
+#### Returns
+
+`boolean`
+
+#### Inherited from
+
+[`KPJointComp`](/api/interfaces/KPJointComp).[`getCollideConnected`](/api/interfaces/KPJointComp#getcollideconnected)
+
+***
+
+### getGameObjA()
+
+> **getGameObjA**(): `GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\>
+
+Returns the game object A of the joint.
+
+#### Returns
+
+`GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\>
+
+#### Inherited from
+
+[`KPJointComp`](/api/interfaces/KPJointComp).[`getGameObjA`](/api/interfaces/KPJointComp#getgameobja)
+
+***
+
+### getGameObjB()
+
+> **getGameObjB**(): `GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\>
+
+Returns the game object B of the joint.
+
+#### Returns
+
+`GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\>
+
+#### Inherited from
+
+[`KPJointComp`](/api/interfaces/KPJointComp).[`getGameObjB`](/api/interfaces/KPJointComp#getgameobjb)
+
+***
+
+### getJointSpeed()
+
+> **getJointSpeed**(): `number`
+
+Returns the joint's speed.
+
+#### Returns
+
+`number`
+
+***
+
+### getJointTranslation()
+
+> **getJointTranslation**(): `number`
+
+Returns the joint's translation.
+
+#### Returns
+
+`number`
+
+***
+
+### getLocalAnchorA()
+
+> **getLocalAnchorA**(): `Vec2`
+
+Returns local anchor A.
+
+#### Returns
+
+`Vec2`
+
+***
+
+### getLocalAnchorB()
+
+> **getLocalAnchorB**(): `Vec2`
+
+Returns local anchor B.
+
+#### Returns
+
+`Vec2`
+
+***
+
+### getLocalAxisA()
+
+> **getLocalAxisA**(): `Vec2`
+
+Returns the local axis A.
+
+#### Returns
+
+`Vec2`
+
+***
+
+### getMaxMotorTorque()
+
+> **getMaxMotorTorque**(): `number`
+
+Returns the maximum motor torque.
+
+#### Returns
+
+`number`
+
+***
+
+### getMotorSpeed()
+
+> **getMotorSpeed**(): `number`
+
+Returns the motor speed.
+
+#### Returns
+
+`number`
+
+***
+
+### getSpringDampingRatio()
+
+> **getSpringDampingRatio**(): `number`
+
+Returns the spring damping ratio.
+
+#### Returns
+
+`number`
+
+***
+
+### getSpringFrequencyHz()
+
+> **getSpringFrequencyHz**(): `number`
+
+Returns the spring frequency hertz.
+
+#### Returns
+
+`number`
+
+***
+
+### isActive()
+
+> **isActive**(): `boolean`
+
+Returns true if the joint is active.
+
+#### Returns
+
+`boolean`
+
+#### Inherited from
+
+[`KPJointComp`](/api/interfaces/KPJointComp).[`isActive`](/api/interfaces/KPJointComp#isactive)
+
+***
+
+### isMotorEnabled()
+
+> **isMotorEnabled**(): `boolean`
+
+Returns true if the motor is enabled, false otherwise.
+
+#### Returns
+
+`boolean`
+
+#### Memberof
+
+KPWheelJointComp
+
+***
+
+### setMaxMotorTorque()
+
+> **setMaxMotorTorque**(`torque`): `void`
+
+Sets the maximum motor torque.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `torque` | `number` |  |
+
+#### Returns
+
+`void`
+
+***
+
+### setMotorSpeed()
+
+> **setMotorSpeed**(`speed`): `void`
+
+Sets the motor speed.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `speed` | `number` |  |
+
+#### Returns
+
+`void`
+
+***
+
+### setSpringDampingRatio()
+
+> **setSpringDampingRatio**(`ratio`): `void`
+
+Sets the spring damping ratio.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `ratio` | `number` |  |
+
+#### Returns
+
+`void`
+
+***
+
+### setSpringFrequencyHz()
+
+> **setSpringFrequencyHz**(`hz`): `void`
+
+Sets the spring frequency hertz.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `hz` | `number` |  |
+
+#### Returns
+
+`void`
+
+***
+
+### shiftOrigin()
+
+> **shiftOrigin**(`new_origin`): `void`
+
+Shifts the origin of the joint.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `new_origin` | `Vec2Value` |  |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[`KPJointComp`](/api/interfaces/KPJointComp).[`shiftOrigin`](/api/interfaces/KPJointComp#shiftorigin)

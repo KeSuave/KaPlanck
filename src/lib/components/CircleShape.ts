@@ -2,9 +2,15 @@ import type { GameObj, KAPLAYCtx } from "kaplay";
 import { type KPShapeComp, type KPShapeOpt } from "./Shape";
 
 import { CircleShape, Vec2, type Vec2Value } from "planck";
-import { getRenderProps, m2p, p2kVec2 } from "../utils";
+import { getRenderProps, m2p, p2kVec2 } from "../internals";
 
 export interface KPCircleShapeComp extends KPShapeComp {
+  /**
+   * The CircleShape
+   *
+   * @type {CircleShape}
+   * @memberof KPCircleShapeComp
+   */
   shape: CircleShape;
 }
 

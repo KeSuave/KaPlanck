@@ -19,15 +19,60 @@ export interface KPMouseJointDef
 }
 
 export interface KPMouseJointComp extends KPJointComp {
+  /**
+   * The MouseJoint
+   *
+   * @type {MouseJoint}
+   */
   joint: MouseJoint;
 
+  /**
+   * Returns the damping ratio of the joint.
+   *
+   * @return {number}
+   */
   getDampingRatio(): number;
+  /**
+   * Returns the frequency of the joint.
+   *
+   * @return {number}
+   */
   getFrequency(): number;
+  /**
+   * Returns the maximum force of the joint.
+   *
+   * @return {number}
+   */
   getMaxForce(): number;
+  /**
+   * Returns the target position of the joint.
+   *
+   * @return {Vec2}
+   */
   getTarget(): Vec2;
+  /**
+   * Sets the damping ratio of the joint.
+   *
+   * @param {number} dampingRatio
+   */
   setDampingRatio(dampingRatio: number): void;
+  /**
+   * Sets the frequency of the joint.
+   *
+   * @param {number} frequency
+   */
   setFrequency(frequency: number): void;
+  /**
+   * Sets the maximum force of the joint.
+   *
+   * @param {number} maxForce
+   */
   setMaxForce(maxForce: number): void;
+  /**
+   * Sets the target position of the joint.
+   *
+   * @param {Vec2Value} target
+   */
   setTarget(target: Vec2Value): void;
 }
 

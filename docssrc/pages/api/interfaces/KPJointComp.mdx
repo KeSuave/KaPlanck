@@ -1,0 +1,115 @@
+# Interface: KPJointComp
+
+## Extends
+
+- `Comp`
+
+## Extended by
+
+- [`KPDistanceJointComp`](/api/interfaces/KPDistanceJointComp)
+- [`KPFrictionJointComp`](/api/interfaces/KPFrictionJointComp)
+- [`KPGearJointComp`](/api/interfaces/KPGearJointComp)
+- [`KPMotorJointComp`](/api/interfaces/KPMotorJointComp)
+- [`KPMouseJointComp`](/api/interfaces/KPMouseJointComp)
+- [`KPPrismaticJointComp`](/api/interfaces/KPPrismaticJointComp)
+- [`KPPulleyJointComp`](/api/interfaces/KPPulleyJointComp)
+- [`KPRevoluteJointComp`](/api/interfaces/KPRevoluteJointComp)
+- [`KPRopeJointComp`](/api/interfaces/KPRopeJointComp)
+- [`KPWeldJointComp`](/api/interfaces/KPWeldJointComp)
+- [`KPWheelJointComp`](/api/interfaces/KPWheelJointComp)
+
+## Properties
+
+| Property | Type | Description |
+| ------ | ------ | ------ |
+| `joint` | `Joint` | The Joint |
+
+## Methods
+
+### getAnchorA()
+
+> **getAnchorA**(): `Vec2`
+
+Returns the anchor A of the joint.
+
+#### Returns
+
+`Vec2`
+
+***
+
+### getAnchorB()
+
+> **getAnchorB**(): `Vec2`
+
+Returns the anchor B of the joint.
+
+#### Returns
+
+`Vec2`
+
+***
+
+### getCollideConnected()
+
+> **getCollideConnected**(): `boolean`
+
+Returns true if the joint allows collision between the two bodies.
+
+#### Returns
+
+`boolean`
+
+***
+
+### getGameObjA()
+
+> **getGameObjA**(): `GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\>
+
+Returns the game object A of the joint.
+
+#### Returns
+
+`GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\>
+
+***
+
+### getGameObjB()
+
+> **getGameObjB**(): `GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\>
+
+Returns the game object B of the joint.
+
+#### Returns
+
+`GameObj`\<[`KPBodyComp`](/api/interfaces/KPBodyComp) & [`KPPosComp`](/api/interfaces/KPPosComp) & [`KPRotateComp`](/api/interfaces/KPRotateComp)\>
+
+***
+
+### isActive()
+
+> **isActive**(): `boolean`
+
+Returns true if the joint is active.
+
+#### Returns
+
+`boolean`
+
+***
+
+### shiftOrigin()
+
+> **shiftOrigin**(`new_origin`): `void`
+
+Shifts the origin of the joint.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `new_origin` | `Vec2Value` |  |
+
+#### Returns
+
+`void`

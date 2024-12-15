@@ -12,12 +12,42 @@ export interface KPRopeJointDef extends Omit<RopeJointDef, "bodyA" | "bodyB"> {
 }
 
 export interface KPRopeJointComp extends KPJointComp {
+  /**
+   * The RopeJoint
+   *
+   * @type {RopeJoint}
+   */
   joint: RopeJoint;
 
+  /**
+   * Returns the limit state of the joint.
+   *
+   * @return {number}
+   */
   getLimitState(): number;
+  /**
+   * Returns the local anchor A of the joint.
+   *
+   * @return {Vec2}
+   */
   getLocalAnchorA(): Vec2;
+  /**
+   * Returns the local anchor B of the joint.
+   *
+   * @return {Vec2}
+   */
   getLocalAnchorB(): Vec2;
+  /**
+   * Returns the maximum length of the rope.
+   *
+   * @return {number}
+   */
   getMaxLength(): number;
+  /**
+   * Sets the maximum length of the rope.
+   *
+   * @param {number} maxLen
+   */
   setMaxLength(maxLen: number): void;
 }
 
