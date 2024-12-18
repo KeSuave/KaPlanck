@@ -16,7 +16,7 @@ export interface KPPosComp extends Comp {
    * Sets the position of the object.
    *
    * @param {Vec2Value} pos
-   * @param {boolean} fromBody This is an internal flag that states it was updated by the body
+   * @param {boolean} [fromBody=false] This is an internal flag that states it was updated by the body
    */
   setKPPosition(pos: Vec2Value, fromBody?: boolean): void;
   /**

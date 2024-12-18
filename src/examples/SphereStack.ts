@@ -15,7 +15,7 @@ const sphereStackScene = (k: KAPLANCKCtx) => () => {
     k.kpEdgeShape({
       v1: new Vec2(-40, 0),
       v2: new Vec2(40, 0),
-      draw: false,
+      draw: true,
     }),
     k.kpFixture({ density: 0 }),
   ]);

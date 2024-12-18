@@ -13,7 +13,7 @@ export interface KPRotateComp extends Comp {
    * Sets the rotation angle of the object in radians.
    *
    * @param {number} angle
-   * @param {boolean} fromBody This is an internal flag that states it was updated by the body
+   * @param {boolean} [fromBody=false] This is an internal flag that states it was updated by the body
    */
   setKPAngle(angle: number, fromBody?: boolean): void;
 
